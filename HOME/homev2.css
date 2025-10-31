@@ -1,0 +1,643 @@
+/* CSS Resets */
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+@font-face {
+    font-family: Playfair Display;
+    src: url("playfair-display.regular.ttf");
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("Inter-Regular.woff");
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+/* Navigation Bar | Title */
+div.title {
+    display: flex;
+    justify-content: flex-start;
+    width: 35%;
+    font-family: Playfair Display;
+    color: #191919;
+    font-size: 30px;
+}
+
+/* Navigation Bar | Buttons */
+div.buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
+}
+
+div.buttons a {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-family: Playfair Display;
+    color: #191919;
+    text-decoration: none;
+    padding: 0 30px;
+    margin-left: 10px;
+    margin-right: -20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    border-radius: 20px;
+}
+
+div.buttons a:hover {
+   font-weight: bold;
+   cursor: pointer;
+}
+
+/* Slides */
+div.slideshow {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    width: 100%;
+    height: 845px;
+}
+div.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    animation: slide 30s infinite;
+}
+div.slide {
+    width: 100%;
+    flex-shrink: 0;
+}
+div.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+@keyframes slide {
+    0%   { transform: translateX(0%); }
+    27.78% { transform: translateX(0%); }     
+    33.33% { transform: translateX(-100%); }  
+    61.11% { transform: translateX(-100%); }  
+    66.66% { transform: translateX(-200%); }  
+    94.44% { transform: translateX(-200%); }  
+    100%  { transform: translateX(0%); }      
+}
+
+/* Slides | Dots */
+div.dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+span.dot {
+    width: 12px;
+    height: 12px;
+    background-color: #191919aa;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: dotActive 30s infinite;
+}
+span.dot1 { animation-delay: 0s; }
+span.dot2 { animation-delay: 10s; }
+span.dot3 { animation-delay: 20s; }
+
+@keyframes dotActive {
+  0%, 27.77% {
+    background-color: #ffffff;
+    opacity: 1;
+  }
+  27.78%, 100% {
+    background-color: #191919aa;
+    opacity: 0.6;
+  }
+}
+
+/* Slides | Text */
+div.slide-cont {
+    z-index: 1;
+    position: absolute;
+    margin-top: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 600px;
+    background-color: transparent;
+}
+
+div.slide-cont h1 {
+    font-size: 120px;
+    font-family: Playfair Display;
+    letter-spacing: 2.5px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #191919;
+}
+
+div.slide-cont p {
+    font-family: Inter;
+    font-size: 40px;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #191919;
+}
+
+div.slide-cont button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Playfair Display;
+    font-size: 27.5px;
+    letter-spacing: 1px;
+    width: 22.5%;
+    height: 100px;
+    background-color: #191919;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+div.slide-cont button:hover {
+   background-color: #191919cc;
+   cursor: pointer;
+}
+
+/* What is Art */
+div.art-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 760px;
+    background-color: #191919;
+    color: #ffffff;
+    gap: 60px;
+}
+
+/* What is Art | Text */
+div.art-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px 0;
+    width: 40%;
+    height: 500px;
+    gap: 30px;
+}
+
+div.art-intro h1 {
+    width: 100%;
+    height: 85px;
+    font-family: Playfair Display;
+    font-size: 60px;
+    letter-spacing: 3px;
+}
+
+div.art-intro p {
+    width: 100%;
+    height: 415px;
+    font-family: Inter;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    text-align: justify;
+}
+
+/* What is Art | Image */
+div.art-cont img{
+    width: auto;
+    height: 500px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.75);
+}
+
+/* Featured Artworks */
+div.artworks-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 975px;
+    background-color: #ffffff;
+    color:  #191919;
+    gap: 30px;
+}
+
+/* Featured Artworks | Text */
+div.featured {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    width: 100%;
+    height: 200px;
+    gap: 15px;
+}
+
+div.featured h1 {
+    width: auto;
+    height: 85px;
+    text-align: center;
+    font-family: Playfair Display;
+    font-size: 60px;
+    letter-spacing: 3px;
+}
+
+div.featured p {
+    width: auto;
+    height: 75px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 30px;
+}
+
+/* Featured Artworks | Image */
+div.featured-images-cont {
+    width: 100%;
+    height: 550px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+div.featured-images {
+    z-index: 1;
+    width: 22.5%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+    position: relative;
+}
+
+div.featured-images img {
+    object-fit: cover; 
+    width: 100%;
+    height: 100%;
+}
+
+div.featured-images:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+div.featured-info {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px 0 20px;
+    background-color: #ffffff;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+div.featured-info h1 {
+    font-family: Playfair Display;
+    font-size: 27.5px;
+    margin-bottom: 5px;
+}
+
+div.featured-info h3 {
+    font-family: Playfair Display;
+    font-size: 17.5px;
+    margin-bottom: 12.5px;
+}
+
+div.featured-info p {
+    font-family: Inter;
+    height: 50px;
+    font-size: 15px;
+    text-align: justify;
+}
+
+div.featured-images:hover div.featured-info {
+    opacity: 0;
+}
+
+/* Featured Artworks | Button */
+div.artworks-cont button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 75px;
+    background-color: #191919;
+    border: none;
+    border-radius: 5px;
+}
+
+div.artworks-cont a {
+    font-family: Playfair Display;
+    font-size: 27.5px;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+div.artworks-cont button:hover {
+   background-color: #191919cc;
+   cursor: pointer;
+}
+
+/* Latest Feedback */
+div.latest-feedback-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 675px;
+    background-color: #191919;
+    color:  #ffffff;
+    gap: 30px;
+}
+
+/* Latest Feedback \ Text */
+div.latest-feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    width: 100%;
+    height: 200px;
+    gap: 15px;
+}
+
+div.latest-feedback h1 {
+    width: auto;
+    height: 85px;
+    text-align: center;
+    font-family: Playfair Display;
+    font-size: 60px;
+    letter-spacing: 3px;
+}
+
+div.latest-feedback p {
+    width: auto;
+    height: 75px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 30px;
+}
+
+/* Latest Feedback | Image */
+div.latest-feedback-images {
+    width: 90%;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+div.latest-feedback-images img {
+    object-fit: cover; 
+    width: 30%;
+    height: 100%;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.75);
+}
+
+/* Whistleblowers Section */
+div.whistleblowers-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 850px;
+    background-color: #ffffff;
+    color:  #191919;
+    gap: 20px;
+}
+
+/* Whistleblowers Section | Text */
+div.whistleblowers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    width: 100%;
+    height: 200px;
+    gap: 15px;
+}
+
+div.whistleblowers h1 {
+    width: auto;
+    height: 85px;
+    text-align: center;
+    font-family: Playfair Display;
+    font-size: 60px;
+    letter-spacing: 3px;
+}
+
+div.whistleblowers p {
+    width: auto;
+    height: 75px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 30px;
+}
+
+/* Whistleblowers Section | Form */
+div.whistleblowers-cont form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 550px;
+    padding: 40px 50px 50px 50px;
+    background-color: #191919;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+div.whistleblowers-cont form label {
+    font-family: Playfair Display;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+div.whistleblowers-cont form input[type="text"], div.whistleblowers-cont form input[type="email"] {
+    font-family: Inter;
+    font-size: 15px;
+    height: 40px;
+    padding: 10px;
+    letter-spacing: 0.5px;
+    background-color: #191919;
+    color: #ffffff;
+    border: solid 1px #ffffff;
+    border-radius: 2.5px;
+}
+
+div.whistleblowers-cont form textarea {
+    resize: none;
+    font-family: Inter;
+    font-size: 15px;
+    padding: 10px;
+    background-color: #191919;
+    color: #ffffff;
+    border: solid 1px #ffffff;
+    letter-spacing: 0.25px;
+    border-radius: 2.5px;
+}
+
+div.submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.submit input[type="submit"] {
+    font-family: Playfair Display;
+    font-size: 17.5px;
+    font-weight: bold;
+    width: 30%;
+    height: 50px;
+    padding: 10px;
+    background-color: #191919;
+    color: #ffffff;
+    letter-spacing: 0.25px;
+    border: solid 1px #ffffff;
+    border-radius: 2.5px;
+}
+
+div.submit input[type="submit"]:hover {
+    background-color: #ffffff41;
+    cursor: pointer;
+}
+
+/* Contacts Section */
+div.contacts-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 225px;
+    background-color: #191919;
+    color:  #ffffff;
+}
+
+/* Contacts */
+div.contacts {
+    width: 95%;
+    height: 175px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Contacts | Logo */
+div.logo {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 30px 0 10px 0;
+    font-family: Playfair Display;
+    color: #ffffff;
+    font-size: 30px;
+    gap: 10px;
+}
+
+div.logos {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-left: -5px;
+}
+
+div.logos img.logo1 {
+    width: 50px;
+    height: 50px;
+}
+
+div.logos img.logo2 {
+    padding-top: 5px;
+    width: 47.5px;
+    height: 47.5px;
+}
+
+div.logos img.logo3 {
+    padding-top: 7.5px;
+    padding-left: 5px;
+    width: 42.5px;
+    height: 42.5px;
+}
+
+/* Contacts | Contact */
+div.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: auto;
+    padding: 30px 0 10px 0;
+    color: #ffffff;
+    font-size: 30px;
+    gap: 10px;
+}
+
+div.contact h4 {
+    font-family: Playfair Display;
+    margin-bottom: 12.5px;
+}
+
+div.contact p {
+    font-family: Inter;
+    font-size: 25px;
+}
+
+/* All Rights Reserved */
+div.all-rights {
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 15px;
+}

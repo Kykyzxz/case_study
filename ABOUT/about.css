@@ -1,3 +1,17 @@
+/* CSS Resets */
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
 @font-face {
     font-family: Playfair Display;
     src: url("playfair-display.regular.ttf");
@@ -6,20 +20,6 @@
 @font-face {
     font-family: Inter;
     src: url("Inter-Regular.woff");
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #cbcaca;
-    color: #000000;
-    line-height: 1.6;
-    overflow-x: hidden;
 }
 
 /* Navigation Bar */
@@ -71,10 +71,10 @@ div.buttons a {
 }
 
 div.buttons a:hover {
-    font-weight: bold;
-    cursor: pointer;
+   font-weight: bold;
+   cursor: pointer;
 }
-
+/* hero section */
 .hero {
     padding: 180px 180px 90px; /* give space below fixed nav */
     text-align: center;
@@ -107,6 +107,7 @@ div.buttons a:hover {
     color: #333333;
 }
 
+/* about section */
 .about {
     display: flex;
     flex-wrap: wrap;
@@ -143,6 +144,7 @@ div.buttons a:hover {
     font-family: "Inter", sans-serif;
 }
 
+/* mission section */
 .mission-section {
     background-color: #e0e0e0;
     padding: 3.125rem 8.125rem;
