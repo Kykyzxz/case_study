@@ -1,0 +1,181 @@
+@font-face {
+    font-family: Playfair Display;
+    src: url("playfair-display.regular.ttf");
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("Inter-Regular.woff");
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #cbcaca;
+    color: #000000;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+/* Navigation Bar | Title */
+div.title {
+    display: flex;
+    justify-content: flex-start;
+    width: 35%;
+    font-family: Playfair Display;
+    color: #191919;
+    font-size: 30px;
+}
+
+/* Navigation Bar | Buttons */
+div.buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
+}
+
+div.buttons a {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-family: Playfair Display;
+    color: #191919;
+    text-decoration: none;
+    padding: 0 30px;
+    margin-left: 10px;
+    margin-right: -20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    border-radius: 20px;
+}
+
+div.buttons a:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hero {
+    padding: 180px 180px 90px; /* give space below fixed nav */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #cbcaca;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.hero-content h1 {
+    font-family:"Playfair Display", serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    font-family: "Inter", sans-serif;
+    color: #333333;
+}
+
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 100px;
+    background-color: #f5f5f5;
+}
+
+.about img{
+    flex: 1 1 45%;
+    margin: 20px;
+    border-radius: 10px;
+    width: 600px;
+    height: auto;
+}
+
+.about-content {
+    flex: 1 1 45%;
+    margin: 20px;
+}
+
+.about-content h2 {
+    font-family:"Playfair Display", serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #555555;
+    font-family: "Inter", sans-serif;
+}
+
+.mission-section {
+    background-color: #e0e0e0;
+    padding: 3.125rem 8.125rem;
+    text-align: center;
+}
+
+.mission-container{
+    padding: 30px 50px;
+    background-color: #ffffff;
+    border-radius: 20px;
+
+}
+
+.mission{
+    padding-left: 90px;
+    padding-right: 90px;
+}
+.mission-container h2 {
+    font-family:"Playfair Display", serif;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+.mission-container p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #555555;
+    font-family: "Inter", sans-serif;
+}
+
+.variables{
+    display: flex;
+    margin-top: 3rem;
+    gap: 20px;
+}
