@@ -1,172 +1,231 @@
-/* ========== INTER FONT FAMILY ========== */
 @font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
-  font-weight: 300;
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
+    font-weight: 300;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter_28pt-Regular.ttf") format("truetype");
-  font-weight: 400;
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Regular.ttf") format("truetype");
+    font-weight: 400;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter_24pt-Medium.ttf") format("truetype");
-  font-weight: 500;
+    font-family: "Inter";
+    src: url("fonts/Inter_24pt-Medium.ttf") format("truetype");
+    font-weight: 500;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter_28pt-Bold.ttf") format("truetype");
-  font-weight: 700;
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Bold.ttf") format("truetype");
+    font-weight: 700;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter_28pt-Black.ttf") format("truetype");
-  font-weight: 900;
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Black.ttf") format("truetype");
+    font-weight: 900;
 }
 
 /* Optional WOFF fallback */
 @font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter-Regular.woff") format("woff");
-  font-weight: 400;
+    font-family: "Inter";
+    src: url("fonts/Inter-Regular.woff") format("woff");
+    font-weight: 400;
 }
 
 /* ========== PLAYFAIR DISPLAY FONT FAMILY ========== */
 @font-face {
-  font-family: "Playfair Display";
-  src: url("fonts/PlayfairDisplay-Regular.ttf") format("truetype");
-  font-weight: 400;
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+    font-weight: 400;
 }
 
 @font-face {
-  font-family: "Playfair Display";
-  src: url("fonts/PlayfairDisplay-Medium.ttf") format("truetype");
-  font-weight: 500;
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Medium.ttf") format("truetype");
+    font-weight: 500;
 }
 
 @font-face {
-  font-family: "Playfair Display";
-  src: url("fonts/PlayfairDisplay-Bold.ttf") format("truetype");
-  font-weight: 700;
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Bold.ttf") format("truetype");
+    font-weight: 700;
 }
 
 @font-face {
-  font-family: "Playfair Display";
-  src: url("fonts/PlayfairDisplay-Black.ttf") format("truetype");
-  font-weight: 900;
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Black.ttf") format("truetype");
+    font-weight: 900;
 }
 
-
-/* ========== Global Reset ========== */
+/* global reset */
 *, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-/* ========== Base Styles ========== */
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #cbcaca;
-  color: #000;
-  line-height: 1.6;
-  overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    background-color: #cbcaca;
+    color: #000;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-
-/* ========== Navigation Bar ========== */
+/* nav links */
 nav {
-  z-index: 2;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  color: #191919;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(10px);
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
 }
 
 /* Navigation Bar | Title */
 div.title {
-  display: flex;
-  justify-content: flex-start;
-  width: 35%;
-  font-family: 'Playfair Display', serif;
-  color: #191919;
-  font-size: 30px;
+    display: flex;
+    justify-content: flex-start;
+    width: 35%;
+    font-family: 'Playfair Display', serif;
+    color: #191919;
+    font-size: 30px;
 }
 
 /* Navigation Bar | Buttons */
 div.buttons {
-  display: flex;
-  justify-content: flex-end;
-  width: 55%;
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
 }
 
 div.buttons a {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  font-family: 'Playfair Display', serif;
-  color: #191919;
-  text-decoration: none;
-  padding: 0 30px;
-  margin-left: 10px;
-  margin-right: -20px;
-  font-size: 15px;
-  letter-spacing: 5px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-family: 'Playfair Display', serif;
+    color: #191919;
+    text-decoration: none;
+    padding: 0 30px;
+    margin-left: 10px;
+    margin-right: -20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 div.buttons a:hover {
-  border-bottom: 2px solid black;
-  cursor: pointer;
+    border-bottom: 2px solid black;
+    cursor: pointer;
 }
 
 
 /* ========== Hero Section ========== */
 .hero {
-  padding: 60px 180px 60px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #cbcaca;
+    padding: 70px 180px 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #cbcaca;
 }
 
 .hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .hero-content h1 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 900; /* BLACK */
-  font-size: 4rem;
-  /* margin-bottom: 1rem; */
-  color: #000;
-  letter-spacing: 0.2em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; /* BLACK */
+    font-size: 4rem;
+    /* margin-bottom: 1rem; */
+    color: #000;
+    letter-spacing: 0.2em;
 }
 
 .hero-content p {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 1.125rem;
-  margin-bottom: 2rem;
-  letter-spacing: 5px;
-  max-width: 800px;
-  color: #333;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    letter-spacing: 5px;
+    max-width: 800px;
+    color: #333;
+}
+
+/* control list section */
+.controls{
+    border: 2px solid black;
+    /* background-color: #191919; */
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+}
+
+.control-content{
+    border: 2px solid red;
+    height: 100%;
+    width: 80%;
+    border-radius: 20px;
+    display: flex;
+}
+
+.control{
+    border: 2px solid blue;
+    height: auto;
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    padding: 20px;
+}
+.control-btn{
+    border: 2px solid blue;
+    height: auto;
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.control label{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #191919;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.control input, .control select{
+    height: 40%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #191919;
+    padding: 10px 14px;
+    border: 1.5px solid #aaa;
+    border-radius: 10px;
+    background-color: #fff;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+.control input:focus, .control select:focus{
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
