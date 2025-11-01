@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="artworks.css">
+        <script src="artworks.js" defer></script>
         <title>Nocturne Gallery</title>
     </head>
     <body>
@@ -73,15 +74,15 @@
             <div class="artwork-count">
                 <h3>Showing <b class="count">12</b> Artworks</h3>
                 <div class="artwork-layout-btn">
-                    <button class="grid-view" onclick="window.location.href='artworks.html'">Grid View</button>
-                    <button class="list-view" onclick="window.location.href='artworks2.html'">List View</button>
+                    <button class="grid-view active" onclick="switchView('grid')">Grid View</button>
+                    <button class="list-view" onclick="switchView('list')">List View</button>
                 </div>
             </div>
          </section>
 
          <!-- artwork list -->
           <section class="artwork-section">
-            <div class="artwork-container">
+            <div class="artwork-container grid-layout">
 
                 <div class="artwork-item">
                     <img src="IMAGES/960px-Starry_Night_Over_the_Rhone.jpg" alt="starry night over the phone">

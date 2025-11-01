@@ -313,16 +313,28 @@ div.buttons a:hover {
     font-size: 0.9rem
 }
 
+/* gridview button */
 .grid-view{
+    border: 1.5px solid #191919;
+    background-color: transparent;
+}
+.grid-view.active{
     border: none;
     cursor: pointer;
+    background-color: #fff;
 }
+
 .grid-view:hover{
     background-color: #191919;
     color: #fff;
     transition: all 0.2s ease-in-out;
 }
-
+/* list view button */
+.list-view.active{
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
 .list-view{
     border: 1.5px solid #191919;
     background-color: transparent;
@@ -349,15 +361,15 @@ div.buttons a:hover {
     padding: 20px;
 }
 
-.artwork-container{
+.artwork-container.grid-layout{
     /* border: 2px solid blue; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     max-width: 83%;
 }
-
-.artwork-item{
+/* grid layout for item */
+.artwork-container.grid-layout .artwork-item{
     /* border: 2px solid red; */
     background-color: #fff;
     border-radius: 10px;
@@ -366,6 +378,29 @@ div.buttons a:hover {
     grid-template-rows: auto 1fr; /* Image takes auto, content takes remaining space */
     cursor: pointer;
 }
+
+/* list layout so other html required, but need js*/
+.artwork-container.list-layout{ 
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    max-width: 83%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* lsit view on item */
+.artwork-container.list-layout .artwork-item{
+    /* border: 2px solid red; */
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    display: grid;
+    grid-template-columns: auto 1fr; /* Image takes auto, content takes remaining space */
+    cursor: pointer;
+}
+
+
+
 .artwork-item:hover{
     transform: scale(1.05);
     /* transition: all 0.4 ease-in-out; */
