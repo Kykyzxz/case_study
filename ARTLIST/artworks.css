@@ -413,11 +413,12 @@ div.buttons a:hover {
 .artwork-description{
     display: -webkit-box;
     -webkit-line-clamp: 4; /* Limit the short desc to 4 lines */
+    line-clamp: 4; /* Standard property for compatibility */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.5em;
-    max-height: 6em; /* 4 lines * 1.5em line-height = 6em */
+    max-height: 6em; /* 4 lines */
     margin-top: 0.5rem;
 }
 
