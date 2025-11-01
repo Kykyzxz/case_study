@@ -177,31 +177,71 @@ div.buttons a:hover {
 }
 
 .control-content{
-    border: 2px solid red;
+    background-color: #aaa;
+    /* border: 2px solid red; */
     height: 100%;
     width: 80%;
     border-radius: 20px;
     display: flex;
+    padding: 10px;
 }
 
 .control{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     height: auto;
     width: 33%;
     display: flex;
     justify-content: center;
     /* align-items: center; */
     flex-direction: column;
-    padding: 20px;
+    padding-left: 20px;
+    /* padding: 10px; */
 }
 .control-btn{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     height: auto;
     width: 33%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    /* padding: 10px; */
+    padding-right: 20px;
+    padding-left: 10px;
+}
+.control-btn button{
+    margin-bottom: -35px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border: 1.5px solid #aaa;
+    color: #191919;
+    letter-spacing: 0.125rem;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+}
+.apply-filter{
+    height: 40%;
+    width: 60%;
+    cursor: pointer;
+}
+.apply-filter:hover {
+    background-color: #191919;
+    color: #fff;
+    border-color: #191919;
+}
+
+.reset-filter{
+    height: 40%;
+    width: 40%;
+    /* background-color: transparent; */
+    /* border: 1.5px solid black; */
+    cursor: pointer;
+}
+.reset-filter:hover{
+    background-color: #191919;
+    color: #fff;
+    border-color: #191919;
 }
 .control label{
     font-family: 'Inter', sans-serif;
@@ -219,13 +259,78 @@ div.buttons a:hover {
     font-weight: 400;
     color: #191919;
     padding: 10px 14px;
-    border: 1.5px solid #aaa;
+    border: 1.5px soli1d #aaa;
     border-radius: 10px;
     background-color: #fff;
     outline: none;
     transition: all 0.2s ease-in-out;
 }
+
 .control input:focus, .control select:focus{
-    border-color: #000;
+    border-color: blue;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
+
+/* artwork count section */
+.artwork-count-section{
+    border: 2px solid black;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.artwork-count{
+    border: 2px solid blue;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.artwork-count h3{
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #191919;
+    letter-spacing: 0.1em;
+}
+
+.artwork-layout-btn{
+    border: 2px solid blue;
+    width: 15%;
+    height: 40%;
+    display: flex;
+    gap: 10px;
+}
+.artwork-layout-btn button{
+    border-radius: 10px;
+    height: 100%; 
+    width: 50%;
+    font-family: 'Inter', serif;
+    letter-spacing: 0.10rem;
+    font-size: 0.9rem
+}
+
+.grid-view{
+    border: none;
+    cursor: pointer;
+}
+.grid-view:hover{
+    background-color: #191919;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-view{
+    border: 1.5px solid #191919;
+    background-color: transparent;
+}
+
+.list-view:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #191919;
+    color: #fff;
+}
+
+/* Artwork lists */
