@@ -1,3 +1,4 @@
+/* KYRAN SOLOMON */
 @font-face {
     font-family: "Inter";
     src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
@@ -168,7 +169,7 @@ div.buttons a:hover {
 
 /* control list section */
 .controls{
-    border: 2px solid black;
+    /* border: 2px solid black; */
     /* background-color: #191919; */
     width: 100%;
     height: 20vh;
@@ -273,7 +274,7 @@ div.buttons a:hover {
 
 /* artwork count section */
 .artwork-count-section{
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height: 15vh;
     display: flex;
     justify-content: center;
@@ -281,7 +282,7 @@ div.buttons a:hover {
 }
 
 .artwork-count{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     width: 80%;
     display: flex;
     justify-content: space-between;
@@ -297,7 +298,7 @@ div.buttons a:hover {
 }
 
 .artwork-layout-btn{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     width: 15%;
     height: 40%;
     display: flex;
@@ -333,4 +334,250 @@ div.buttons a:hover {
     color: #fff;
 }
 
+
 /* Artwork lists */
+.artwork-section{
+    /* border: 2px solid black; */
+    height: auto;
+    width: 100%;
+    /* max-width: 1200px; */
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    /* background-color: #f5f5dc; */
+    padding: 20px;
+}
+
+.artwork-container{
+    /* border: 2px solid blue; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 83%;
+}
+
+.artwork-item{
+    /* border: 2px solid red; */
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Image takes auto, content takes remaining space */
+    cursor: pointer;
+}
+.artwork-item:hover{
+    transform: scale(1.05);
+    /* transition: all 0.4 ease-in-out; */
+}
+
+.artwork-item img{
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(39, 35, 58, 0.3);
+}
+.content-container{
+    /* border: 2px solid red; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Important for grid items */
+}
+.category-container{
+    /* border: 2px solid black; */
+    margin-bottom: 5px;
+    width: 50%;
+    /* text-align: center; */
+    background-color: #aaa;
+    border-radius: 20px;
+    font-family: 'Inter', serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    /* margin: 10px; */
+}
+.artwork-content{
+    /* border: 2px solid blue; */
+    /* margin: 10px; */
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.artwork-description{
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limit the short desc to 4 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5em;
+    max-height: 6em; /* 4 lines * 1.5em line-height = 6em */
+    margin-top: 0.5rem;
+}
+
+/* page control section */
+.page-control{
+    /* border: 2px solid black; */
+    width: 100%;
+    height: 18vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-btn{
+    /* border: 2px solid blue; */
+    height: 50%;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 5px; */
+}
+.prev-btn{
+    border-radius: 10px;
+    height: 100%; 
+    width: 30%;
+    font-family: 'Inter', serif;
+    letter-spacing: 0.10rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+.prev-btn:hover{
+    background-color: #191919;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.next-btn{
+    border-radius: 10px;
+    height: 100%; 
+    width: 20%;
+    font-family: 'Inter', serif;
+    letter-spacing: 0.10rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+.next-btn:hover{
+    background-color: #191919;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.page-num{
+    border-radius: 10px;
+    height: 100%; 
+    width: 15%;
+    font-family: 'Inter', serif;
+    letter-spacing: 0.10rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+.page-num.active{
+    background-color: #383737;
+    color: #fff;
+}
+.page-num:hover{
+    background-color: #191919;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+/* footer */
+div.contacts-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 25vh;
+    background-color: #191919;
+    color: #ffffff;
+    padding: 2rem 1rem;
+}
+
+/* Contacts Layout */
+div.contacts {
+    width: 95%;
+    min-height: 20vh;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Makes it stack nicely on smaller screens */
+    gap: 1.5rem;
+}
+
+/* Logo */
+div.logo {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0 0.5rem 0;
+    font-family: "Playfair Display", serif;
+    color: #ffffff;
+    font-size: 1.8rem;
+    gap: 0.6rem;
+}
+
+div.logos {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+}
+
+div.logos img.logo1 {
+    width: 3rem;
+    height: 3rem;
+}
+
+div.logos img.logo2 {
+    padding-top: 0.3rem;
+    width: 2.9rem;
+    height: 2.9rem;
+}
+
+div.logos img.logo3 {
+    padding-top: 0.4rem;
+    padding-left: 0.3rem;
+    width: 2.6rem;
+    height: 2.6rem;
+}
+
+/* Contact Info */
+div.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1.5rem 0 0.5rem 0;
+    color: #ffffff;
+    font-size: 1.8rem;
+    gap: 0.6rem;
+}
+
+div.contact h4 {
+    font-family: "Playfair Display", serif;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+div.contact p {
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+}
+
+/* All Rights Reserved */
+div.all-rights {
+    display: flex;
+    height: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-align: center;
+}
