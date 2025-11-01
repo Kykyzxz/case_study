@@ -155,17 +155,17 @@ div.slide-cont {
 }
 
 div.slide-cont h1 {
-    font-size: 120px;
+    font-size: 7rem;
     font-family: Playfair Display;
-    letter-spacing: 2.5px;
+    letter-spacing: 3.5px;
     margin-bottom: 20px;
     text-align: center;
     color: #191919;
 }
 
 div.slide-cont p {
-    font-family: Inter;
-    font-size: 40px;
+    font-family: Playfair Display;
+    font-size: 2rem;
     letter-spacing: 1px;
     margin-bottom: 50px;
     text-align: center;
