@@ -1,0 +1,901 @@
+/* KYRAN SOLOMON */
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_24pt-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+
+/* Optional WOFF fallback */
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter-Regular.woff") format("woff");
+    font-weight: 400;
+}
+
+/* ========== PLAYFAIR DISPLAY FONT FAMILY ========== */
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+
+/* global reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #cbcaca;
+    color: #000;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* nav links */
+nav {
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+/* Navigation Bar | Title */
+div.title {
+    display: flex;
+    justify-content: flex-start;
+    width: 35%;
+    font-family: 'Playfair Display', serif;
+    color: #191919;
+    font-size: 30px;
+}
+
+/* Navigation Bar | Buttons */
+div.buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
+}
+
+div.buttons a {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-family: 'Playfair Display', serif;
+    color: #191919;
+    text-decoration: none;
+    padding: 0 30px;
+    margin-left: 10px;
+    margin-right: -20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+div.buttons a:hover {
+    border-bottom: 2px solid black;
+    cursor: pointer;
+}
+
+
+
+.artwork-section {
+    border: 2px solid black;
+    width: 100%;
+    height: 100vh; /* fill viewport */
+    display: flex;
+    justify-content: center;
+}
+
+.artwork-container {
+    /* position: fixed; */
+    top: 0;
+    left: 5%;
+    /* border: 2px solid green; */
+    width: 90%;
+    height: 100vh; /* fixed full screen */
+    display: flex;
+    padding-top: 110px;
+}
+
+/* Left Image */
+.art-img-container {
+    /* position: fixed; */
+    /* border: 2px solid blue; */
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.art-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right Scrollable Details */
+.art-details-container {
+    /* border: 2px solid red; */
+    width: 50%;
+    height: 100%; 
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 20px;
+    padding-top: 85px;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* smooth scrolling */
+}
+
+/* hides scrollbar in Chrome, Edge, and Safari */
+.art-details-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Inside content */
+.about-artwork,
+.artwork-specification {
+    /* border: 2px solid black; */
+    min-height: 73.1vh; /* or whatever you want */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #aaa;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* artist container */
+.about-artist{
+    min-height: 40vh;
+    background-color: #aaa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* control button for deletion and edit */
+.control-btn{
+    /* border: 2px solid black; */
+    min-height: 9vh;
+    display: flex;
+    justify-content: space-between;
+}
+.control-btn button{
+    width: 48%;
+    border-radius: 20px;
+}
+
+
+/* button */
+.back-btn-container{
+    /* border: 2px solid black; */
+    height: 9vh;
+    display: flex;
+}
+.back-btn-link{
+    /* border: 2px solid blue; */
+    width: 28%;
+    text-decoration: none;
+    height: 7.5vh;
+}
+.back-btn-link button{
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border: 1.5px solid #aaa;
+    color: #191919;
+    letter-spacing: 0.125rem;
+    transition: all 0.2s ease-in-out;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.back-btn-link button:hover{
+    background-color: #191919;
+    color: #fff;
+}
+/* image */
+.art-detail-img{
+    /* position: fixed; */
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 75vh;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* left: 5%; */
+}
+.art-detail-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;   
+    border-radius: 10px;
+}
+/* content for about artwork */
+.artwork-details{
+    /* border: 2px solid red; */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    width: 100%;
+    /* padding: 10px; */
+}
+.about-title{
+    /* border: 2px solid blue; */
+    font-family: 'Playfair Display',serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    width: 100%;
+    height: auto;
+}
+.artwork-title-info{
+    /* border: 2px solid blue; */
+    width: 100%;
+    height: auto;
+
+}
+.artwork-description{
+    /* border: 2px solid blue; */
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    line-height: 1.6rem;
+}
+
+/* artwork specification */
+.artwork-specification-title{
+    /* border: 2px solid blue; */
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.artwork-specification-details{
+    /* border: 2px solid blue; */
+    height: 58vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.artwork-specs{
+    /* border: 2px solid black; */
+    border-radius: 20px;
+    background-color:#d1cfcf;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0;
+    transition: all 0.2s ease-in-out;
+}
+.artwork-specs:hover{
+    transform: scale(1.05);
+}
+.artwork-specs p{
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+}
+
+/* about artist section */
+.about-artist-title{
+    /* border: 2px solid blue; */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+
+}
+.about-artist-name{
+    /* border:2px solid blue; */
+}
+.about-artist-description{
+    /* border: 2px solid blue; */
+    height: 20vh;
+    font-family: 'Inter', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+}
+
+/* button section */
+.control-btn button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.07rem;
+    border: none;
+}
+
+.edit-artwork-btn{
+    background-color: #63e948;
+    transition: all 0.2s ease-in-out;
+}
+.edit-artwork-btn:hover{
+    transform: scale(1.05);
+    opacity: 0.5;
+}
+.delete-artwork-btn{
+    background-color: #f33737;
+    transition: all 0.2s ease-in-out;
+}
+.delete-artwork-btn:hover{
+    transform: scale(1.05);
+    opacity: 0.5;
+}
+
+/* responsiveness */
+
+/* Large Tablets and Small Laptops */
+@media screen and (max-width: 1024px) {
+    /* Navigation */
+    nav {
+        height: 80px;
+        padding: 0 20px;
+    }
+    
+    div.title {
+        font-size: 24px;
+        width: 40%;
+    }
+    
+    div.buttons {
+        width: 60%;
+    }
+    
+    div.buttons a {
+        padding: 0 15px;
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+
+    /* Remove fixed height, make scrollable */
+    .artwork-section {
+        height: auto;
+        border: none;
+    }
+    
+    .artwork-container {
+        position: static; /* Remove fixed positioning */
+        width: 100%;
+        left: 0;
+        height: auto;
+        flex-direction: column; /* Stack vertically */
+        padding-top: 90px;
+    }
+    
+    .art-img-container {
+        position: static; /* Remove fixed */
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .back-btn-container {
+        height: auto;
+        padding: 15px 20px;
+    }
+    
+    .back-btn-link {
+        width: 200px;
+    }
+    
+    .back-btn-link button {
+        height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .art-detail-img {
+        position: static; /* Remove fixed */
+        height: auto;
+        width: 100%;
+        padding: 0 20px 20px;
+    }
+    
+    .art-detail-img img {
+        width: 100%;
+        height: 60vh;
+        max-height: 500px;
+        object-fit: cover;
+    }
+    
+    .art-details-container {
+        width: 100%;
+        height: auto;
+        overflow-y: visible; 
+        padding: 0 20px 40px;
+        padding-top: 0;
+    }
+    
+    /* Back Button */
+    /* .back-btn-link {
+        width: 35%;
+    }
+    
+    .back-btn-link button {
+        font-size: 0.85rem;
+        letter-spacing: 0.08rem;
+    } */
+    
+    /* Detail Sections */
+    .about-artwork,
+    .artwork-specification {
+        padding: 30px;
+    }
+    
+    .about-artist {
+        padding: 30px;
+    }
+    
+    /* Specification Details */
+    .artwork-specs p {
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+    }
+    
+    /* Control Buttons */
+    .control-btn button {
+        font-size: 1.1rem;
+        gap: 15px;
+    }
+}
+
+/* Tablets*/
+@media screen and (max-width: 768px) {
+    /* Navigation */
+    nav {
+        height: 70px;
+        flex-direction: column;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+    
+    div.title {
+        width: 100%;
+        justify-content: center;
+        font-size: 20px;
+    }
+    
+    div.buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    div.buttons a {
+        padding: 0 10px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin: 0 5px;
+    }
+    
+    .artwork-section {
+        height: auto;
+        border: none;
+    }
+    
+    .artwork-container {
+        position: static; 
+        width: 100%;
+        left: 0;
+        height: auto;
+        flex-direction: column; 
+        padding-top: 90px;
+    }
+    
+
+    .art-img-container {
+        position: static; /* Remove fixed */
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .back-btn-container {
+        height: auto;
+        padding: 15px 20px;
+    }
+    
+    .back-btn-link {
+        width: 200px;
+    }
+    
+    .back-btn-link button {
+        height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .art-detail-img {
+        position: static; /* Remove fixed */
+        height: auto;
+        width: 100%;
+        padding: 0 20px 20px;
+    }
+    
+    .art-detail-img img {
+        width: 100%;
+        height: 60vh;
+        max-height: 500px;
+        object-fit: cover;
+    }
+    
+    .art-details-container {
+        width: 100%;
+        height: auto;
+        overflow-y: visible;
+        padding: 0 20px 40px;
+        padding-top: 0;
+    }
+    
+    /* Detail Sections */
+    .about-artwork,
+    .artwork-specification {
+        min-height: auto;
+        padding: 25px;
+        margin-bottom: 15px;
+    }
+    
+    .about-artist {
+        min-height: auto;
+        padding: 25px;
+        margin-bottom: 15px;
+    }
+    
+    /* Titles */
+    .about-title {
+        font-size: 1.2rem;
+    }
+    
+    .artwork-specification-title {
+        font-size: 1.1rem;
+        height: auto;
+    }
+    
+    .about-artist-title {
+        font-size: 1.1rem;
+    }
+    
+    /* Artwork Details */
+    .artwork-details {
+        gap: 15px;
+    }
+    
+    .artwork-description {
+        font-size: 0.95rem;
+        line-height: 1.5rem;
+    }
+    
+    /* Specifications */
+    .artwork-specification-details {
+        height: auto;
+        gap: 15px;
+    }
+    
+    .artwork-specs {
+        height: auto;
+        min-height: 60px;
+        padding: 15px 20px;
+    }
+    
+    .artwork-specs h2 {
+        font-size: 1rem;
+    }
+    
+    .artwork-specs p {
+        font-size: 0.95rem;
+        letter-spacing: 0.08rem;
+        text-align: right;
+    }
+    
+    /* Artist Description */
+    .about-artist-description {
+        height: auto;
+        font-size: 1rem;
+    }
+    
+    /* Control Buttons */
+    .control-btn {
+        min-height: auto;
+        height: auto;
+        gap: 10px;
+    }
+    
+    .control-btn button {
+        height: 55px;
+        font-size: 1rem;
+        gap: 12px;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 480px) {
+    /* Navigation */
+    nav {
+        height: auto;
+        padding: 15px 10px;
+    }
+    
+    div.title {
+        font-size: 18px;
+    }
+    
+    div.buttons {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    div.buttons a {
+        padding: 8px 12px;
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin: 2px;
+        height: 35px;
+    }
+    
+    /* Container */
+    .artwork-container {
+        padding-top: 80px;
+    }
+    
+    /* Back Button */
+    .back-btn-container {
+        padding: 10px 15px;
+    }
+    
+    .back-btn-link {
+        width: 100%;
+        max-width: 180px;
+    }
+    
+    .back-btn-link button {
+        height: 45px;
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+        gap: 8px;
+    }
+    
+    /* Image */
+    .art-detail-img {
+        padding: 0 15px 15px;
+    }
+    
+    .art-detail-img img {
+        height: 50vh;
+        max-height: 400px;
+    }
+    
+    /* Details Container */
+    .art-details-container {
+        padding: 0 15px 30px;
+    }
+    
+    /* Detail Sections */
+    .about-artwork,
+    .artwork-specification {
+        padding: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .about-artist {
+        padding: 20px;
+        margin-bottom: 12px;
+        gap: 15px;
+    }
+    
+    /* Titles */
+    .about-title h1 {
+        font-size: 1.3rem;
+    }
+    
+    .artwork-specification-title h1 {
+        font-size: 1.3rem;
+    }
+    
+    .about-artist-title h1 {
+        font-size: 1.3rem;
+    }
+    
+    /* Artwork Info */
+    .artwork-title-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .artwork-title-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .artwork-title-info h4 {
+        font-size: 1rem;
+    }
+    
+    .artwork-details {
+        gap: 12px;
+    }
+    
+    .artwork-description {
+        font-size: 0.9rem;
+        line-height: 1.4rem;
+        letter-spacing: 0.03rem;
+    }
+    
+    /* Specifications - Stack on Mobile */
+    .artwork-specification-details {
+        gap: 12px;
+    }
+    
+    .artwork-specs {
+        min-height: 70px;
+        padding: 12px 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        /* align-items: flex-start; */
+        gap: 5px;
+    }
+    
+    .artwork-specs h2 {
+        font-size: 0.95rem;
+    }
+    
+    .artwork-specs p {
+        font-size: 0.9rem;
+        letter-spacing: 0.05rem;
+        text-align: left;
+    }
+    
+    /* Artist Info */
+    .about-artist-name h3 {
+        font-size: 1.2rem;
+    }
+    
+    .about-artist-description {
+        font-size: 0.95rem;
+        line-height: 1.5rem;
+    }
+    
+    /* Control Buttons - Stack Vertically */
+    .control-btn {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .control-btn button {
+        width: 100%;
+        height: 50px;
+        font-size: 0.95rem;
+        gap: 10px;
+    }
+}
+
+/* Extra Small Mobile (360px and below) */
+@media screen and (max-width: 360px) {
+    div.title {
+        font-size: 16px;
+    }
+    
+    div.buttons a {
+        font-size: 9px;
+        padding: 6px 10px;
+    }
+    
+    .back-btn-link button {
+        font-size: 0.75rem;
+        height: 42px;
+    }
+    
+    .art-detail-img img {
+        height: 45vh;
+        max-height: 350px;
+    }
+    
+    .about-artwork,
+    .artwork-specification,
+    .about-artist {
+        padding: 15px;
+    }
+    
+    .about-title h1,
+    .artwork-specification-title h1,
+    .about-artist-title h1 {
+        font-size: 1.1rem;
+    }
+    
+    .artwork-title-info h2 {
+        font-size: 1.3rem;
+    }
+    
+    .artwork-description,
+    .about-artist-description {
+        font-size: 0.85rem;
+    }
+    
+    .artwork-specs {
+        min-height: 65px;
+        padding: 10px 12px;
+    }
+    
+    .artwork-specs h2 {
+        font-size: 0.9rem;
+    }
+    
+    .artwork-specs p {
+        font-size: 0.85rem;
+    }
+    
+    .control-btn button {
+        height: 48px;
+        font-size: 0.9rem;
+    }
+}

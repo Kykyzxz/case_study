@@ -78,6 +78,7 @@ body {
 
 /* nav links */
 nav {
+    position: fixed;
     z-index: 2;
     display: flex;
     flex-direction: row;
@@ -132,7 +133,7 @@ div.buttons a:hover {
 
 /* ========== Hero Section ========== */
 .hero {
-    padding: 70px 180px 40px;
+    padding: 180px 180px 40px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -313,16 +314,62 @@ div.buttons a:hover {
     font-size: 0.9rem
 }
 
+/* gridview button */
 .grid-view{
+    border: 1.5px solid #191919;
+    background-color: transparent;
+}
+.grid-view.active{
     border: none;
     cursor: pointer;
+    background-color: #fff;
 }
+
 .grid-view:hover{
     background-color: #191919;
     color: #fff;
     transition: all 0.2s ease-in-out;
 }
+/* list view button */
+.list-view.active{
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+.list-view{
+    border: 1.5px solid #191919;
+    background-color: transparent;
+}
 
+.list-view:hover{
+    transition: all 0.2s ease-in-out;
+    background-color: #191919;
+    color: #fff;
+}
+
+
+/* Artwork lists */
+.grid-view{
+    border: 1.5px solid #191919;
+    background-color: transparent;
+}
+.grid-view.active{
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.grid-view:hover{
+    background-color: #191919;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+/* list view button */
+.list-view.active{
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
 .list-view{
     border: 1.5px solid #191919;
     background-color: transparent;
@@ -337,59 +384,90 @@ div.buttons a:hover {
 
 /* Artwork lists */
 .artwork-section{
-    /* border: 2px solid black; */
     height: auto;
     width: 100%;
-    /* max-width: 1200px; */
     display: flex;
     flex-direction: column;
     justify-self: center;
     align-items: center;
-    /* background-color: #f5f5dc; */
     padding: 20px;
 }
 
-.artwork-container{
-    /* border: 2px solid blue; */
+.artwork-container.grid-layout{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     max-width: 83%;
 }
 
-.artwork-item{
-    /* border: 2px solid red; */
+/* grid layout for item */
+.artwork-container.grid-layout .artwork-item{
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    overflow: hidden; /* Important: prevents image overflow */
+}
+
+/* list layout */
+.artwork-container.list-layout{ 
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 30px;
+    max-width: 83%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* list view on item */
+.artwork-container.list-layout .artwork-item{
     background-color: #fff;
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
     display: grid;
-    grid-template-rows: auto 1fr; /* Image takes auto, content takes remaining space */
+    grid-template-columns: 350px 1fr; /* Fixed width for image column */
     cursor: pointer;
-}
-.artwork-item:hover{
-    transform: scale(1.05);
-    /* transition: all 0.4 ease-in-out; */
+    overflow: hidden; /* Important: prevents image overflow */
+    min-height: 300px;
 }
 
-.artwork-item img{
-    height: 300px;
+.artwork-item:hover{
+    transform: scale(1.05);
+}
+
+/* Image container wrapper for better control */
+.artwork-container.grid-layout .artwork-item img{
     width: 100%;
-    border-radius: 10px;
+    height: 350px; /* Increased height for better view */
     object-fit: cover;
+    object-position: center top; /* Shows top portion of image (good for portraits) */
+    border-radius: 10px 10px 0 0; /* Only round top corners */
+    box-shadow: 0 4px 10px rgba(39, 35, 58, 0.3);
+    display: block;
+}
+
+.artwork-container.list-layout .artwork-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px 0 0 10px;
     box-shadow: 0 4px 10px rgba(39, 35, 58, 0.3);
 }
+
 .content-container{
-    /* border: 2px solid red; */
     padding: 20px;
     display: flex;
     flex-direction: column;
-    min-height: 0; /* Important for grid items */
+    min-height: 0;
+    flex: 1; /* Takes remaining space */
 }
+
 .category-container{
-    /* border: 2px solid black; */
     margin-bottom: 5px;
-    width: 50%;
-    /* text-align: center; */
+    width: auto;
+    max-width: fit-content;
     background-color: #aaa;
     border-radius: 20px;
     font-family: 'Inter', serif;
@@ -400,11 +478,9 @@ div.buttons a:hover {
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
-    /* margin: 10px; */
 }
+
 .artwork-content{
-    /* border: 2px solid blue; */
-    /* margin: 10px; */
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -412,14 +488,26 @@ div.buttons a:hover {
 
 .artwork-description{
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Limit the short desc to 4 lines */
-    line-clamp: 4; /* Standard property for compatibility */
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.5em;
-    max-height: 6em; /* 4 lines */
+    max-height: 6em;
     margin-top: 0.5rem;
+}
+/* list view  */
+.artwork-container.list-layout .artwork-description{
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    max-height: 9em;
+}
+
+.artwork-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 /* page control section */
@@ -581,4 +669,467 @@ div.all-rights {
     color: #ffffff;
     font-size: 0.9rem;
     text-align: center;
+}
+
+/* responsiveness */
+
+/* Large Tablets */
+@media screen and (max-width: 1024px) {
+    /* Navigation */
+    nav {
+        height: 80px;
+        padding: 0 20px;
+    }
+    
+    div.title {
+        font-size: 24px;
+        width: 40%;
+    }
+    
+    div.buttons {
+        width: 60%;
+    }
+    
+    div.buttons a {
+        padding: 0 15px;
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 140px 60px 40px;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+        letter-spacing: 0.15em;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+    /* grid view - list view */
+    .artwork-layout-btn{
+        width: 40%;
+        height: 60%;
+    }
+    /* Controls */
+    .controls label{
+        font-size: 0.8rem;
+    }
+    .controls input{
+        font-size: 0.7rem;
+    }
+    .controls select{
+        font-size: 0.6rem;
+    }
+    .control-content {
+        width: 100%;
+        height: 100%;
+    }
+    .control-btn button{
+        height: 40%;
+        font-size: 0.7rem;
+    }
+    
+    /* Artwork Grid - 2 columns */
+    .artwork-container.grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90%;
+        gap: 25px;
+    }
+    
+    .artwork-container.list-layout {
+        max-width: 90%;
+    }
+    
+    /* Page Controls */
+    .page-btn {
+        width: 40%;
+    }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+    /* Navigation */
+    nav {
+        height: 70px;
+        flex-direction: column;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+    
+    div.title {
+        width: 100%;
+        justify-content: center;
+        font-size: 20px;
+    }
+    
+    div.buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    div.buttons a {
+        padding: 0 10px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin: 0 5px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 120px 40px 30px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+    }
+    
+    /* Controls - Stack vertically */
+    .controls {
+        height: auto;
+        padding: 20px;
+    }
+    
+    .control-content {
+        width: 95%;
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .control,
+    .control-btn {
+        height: 10vh;
+        /* height: 50%; */
+        width: 100%;
+        padding: 0;
+    }
+    
+    .control-btn {
+        padding: 0;
+        margin-top: 10px;
+    }
+    
+    .control-btn button {
+        height: 80%;
+        margin-bottom: 0;
+    }
+    
+    /* .apply-filter,
+    .reset-filter {
+        height: 45px;
+    } */
+    
+    .control input,
+    .control select {
+        height: 45px;
+    }
+    
+    /* Artwork Count */
+    .artwork-count-section {
+        height: auto;
+        padding: 20px;
+    }
+    
+    .artwork-count {
+        width: 95%;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .artwork-layout-btn {
+        width: 100%;
+        height: 45px;
+    }
+    
+    /* Artwork Grid - Still 2 columns on tablet */
+    .artwork-container.grid-layout {
+        max-width: 95%;
+        gap: 20px;
+    }
+    
+    /* List Layout */
+    .artwork-container.list-layout {
+        max-width: 95%;
+    }
+    
+    .artwork-container.list-layout .artwork-item {
+        grid-template-columns: 250px 1fr;
+        min-height: 250px;
+    }
+    
+    .artwork-container.grid-layout .artwork-item img {
+        height: 300px;
+    }
+    
+    /* Page Controls */
+    .page-control {
+        height: auto;
+        padding: 30px 20px;
+    }
+    
+    .page-btn {
+        width: 80%;
+        height: 50px;
+    }
+    
+    .prev-btn {
+        width: 35%;
+        font-size: 0.9rem;
+    }
+    
+    .next-btn {
+        width: 25%;
+        font-size: 0.9rem;
+    }
+    
+    .page-num {
+        width: 12%;
+        font-size: 0.9rem;
+    }
+    
+    /* Footer */
+    div.contacts {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    div.logo {
+        align-items: center;
+    }
+    
+    div.contact {
+        align-items: center;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 480px) {
+    nav {
+        height: auto;
+        padding: 15px 10px;
+    }
+    
+    div.title {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    div.buttons {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    div.buttons a {
+        padding: 8px 12px;
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin: 2px;
+        height: 35px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 100px 20px 20px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.05em;
+    }
+    
+    .hero-content p {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+    
+    /* Controls */
+    .controls {
+        padding: 15px 10px;
+    }
+    
+    .control-content {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .control label {
+        font-size: 1rem;
+    }
+    
+    .control-btn {
+        flex-direction: column;
+        gap: 10px;
+        height: 15vh;
+    }
+    
+    .apply-filter,
+    .reset-filter {
+        width: 100%;
+        height: 45px;
+    }
+    
+    /* Artwork Count */
+    .artwork-count h3 {
+        font-size: 1rem;
+    }
+    
+    .artwork-layout-btn button {
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    /* Artwork Grid - 1 column on mobile */
+    .artwork-container.grid-layout {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 100%;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    /* List Layout - Stack image on top */
+    .artwork-container.list-layout {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .artwork-container.list-layout .artwork-item {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    
+    .artwork-container.list-layout .artwork-item img {
+        height: 250px;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .artwork-container.grid-layout .artwork-item img {
+        height: 250px;
+    }
+    
+    .content-container {
+        padding: 15px;
+    }
+    
+    .category-container {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .artwork-title {
+        font-size: 1.2rem;
+    }
+    
+    .artwork-description {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        max-height: 4.5em;
+    }
+    
+    /* Page Controls */
+    .page-btn {
+        width: 90%;
+        height: 45px;
+        gap: 5px;
+    }
+    
+    .prev-btn {
+        width: 30%;
+        font-size: 0.75rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    .next-btn {
+        width: 22%;
+        font-size: 0.75rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    .page-num {
+        width: 14%;
+        font-size: 0.8rem;
+    }
+    
+    /* Footer */
+    div.contacts-cont {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    div.logo {
+        font-size: 1.4rem;
+    }
+    
+    div.logos img.logo1 {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    div.logos img.logo2 {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+    
+    div.logos img.logo3 {
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+    
+    div.contact {
+        font-size: 1.4rem;
+    }
+    
+    div.contact h4 {
+        font-size: 1rem;
+    }
+    
+    div.contact p {
+        font-size: 0.85rem;
+    }
+    
+    div.all-rights {
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra Small Mobile (360px and below) */
+@media screen and (max-width: 360px) {
+    div.title {
+        font-size: 16px;
+    }
+    
+    div.buttons a {
+        font-size: 9px;
+        padding: 6px 10px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.8rem;
+    }
+    
+    .page-btn {
+        width: 95%;
+    }
+    
+    .prev-btn,
+    .next-btn {
+        font-size: 0.7rem;
+    }
 }
