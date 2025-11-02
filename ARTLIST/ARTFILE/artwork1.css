@@ -1,0 +1,392 @@
+/* KYRAN SOLOMON */
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_24pt-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter_28pt-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+
+/* Optional WOFF fallback */
+@font-face {
+    font-family: "Inter";
+    src: url("fonts/Inter-Regular.woff") format("woff");
+    font-weight: 400;
+}
+
+/* ========== PLAYFAIR DISPLAY FONT FAMILY ========== */
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Playfair Display";
+    src: url("fonts/PlayfairDisplay-Black.ttf") format("truetype");
+    font-weight: 900;
+}
+
+/* global reset */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #cbcaca;
+    color: #000;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* nav links */
+nav {
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+/* Navigation Bar | Title */
+div.title {
+    display: flex;
+    justify-content: flex-start;
+    width: 35%;
+    font-family: 'Playfair Display', serif;
+    color: #191919;
+    font-size: 30px;
+}
+
+/* Navigation Bar | Buttons */
+div.buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 55%;
+}
+
+div.buttons a {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-family: 'Playfair Display', serif;
+    color: #191919;
+    text-decoration: none;
+    padding: 0 30px;
+    margin-left: 10px;
+    margin-right: -20px;
+    font-size: 15px;
+    letter-spacing: 5px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+div.buttons a:hover {
+    border-bottom: 2px solid black;
+    cursor: pointer;
+}
+
+
+
+.artwork-section {
+    border: 2px solid black;
+    width: 100%;
+    height: 100vh; /* fill viewport */
+    display: flex;
+    justify-content: center;
+}
+
+.artwork-container {
+    /* position: fixed; */
+    top: 0;
+    left: 5%;
+    /* border: 2px solid green; */
+    width: 90%;
+    height: 100vh; /* fixed full screen */
+    display: flex;
+    padding-top: 110px;
+}
+
+/* Left Image */
+.art-img-container {
+    /* position: fixed; */
+    /* border: 2px solid blue; */
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.art-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right Scrollable Details */
+.art-details-container {
+    /* border: 2px solid red; */
+    width: 50%;
+    height: 100%; 
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding: 20px;
+    padding-top: 85px;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* smooth scrolling */
+}
+
+/* hides scrollbar in Chrome, Edge, and Safari */
+.art-details-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Inside content */
+.about-artwork,
+.artwork-specification {
+    /* border: 2px solid black; */
+    min-height: 73.1vh; /* or whatever you want */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #aaa;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* artist container */
+.about-artist{
+    min-height: 40vh;
+    background-color: #aaa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* control button for deletion and edit */
+.control-btn{
+    /* border: 2px solid black; */
+    min-height: 9vh;
+    display: flex;
+    justify-content: space-between;
+}
+.control-btn button{
+    width: 48%;
+    border-radius: 20px;
+}
+
+
+/* button */
+.back-btn-container{
+    /* border: 2px solid black; */
+    height: 9vh;
+    display: flex;
+}
+.back-btn-link{
+    /* border: 2px solid blue; */
+    width: 28%;
+    text-decoration: none;
+    height: 7.5vh;
+}
+.back-btn-link button{
+    height: 100%;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border: 1.5px solid #aaa;
+    color: #191919;
+    letter-spacing: 0.125rem;
+    transition: all 0.2s ease-in-out;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.back-btn-link button:hover{
+    background-color: #191919;
+    color: #fff;
+}
+/* image */
+.art-detail-img{
+    /* position: fixed; */
+    /* border: 2px solid red; */
+    width: 100%;
+    height: 75vh;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /* left: 5%; */
+}
+.art-detail-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;   
+    border-radius: 10px;
+}
+/* content for about artwork */
+.artwork-details{
+    /* border: 2px solid red; */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    width: 100%;
+    /* padding: 10px; */
+}
+.about-title{
+    /* border: 2px solid blue; */
+    font-family: 'Playfair Display',serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    width: 100%;
+    height: auto;
+}
+.artwork-title-info{
+    /* border: 2px solid blue; */
+    width: 100%;
+    height: auto;
+
+}
+.artwork-description{
+    /* border: 2px solid blue; */
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    line-height: 1.6rem;
+}
+
+/* artwork specification */
+.artwork-specification-title{
+    /* border: 2px solid blue; */
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.artwork-specification-details{
+    /* border: 2px solid blue; */
+    height: 58vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.artwork-specs{
+    /* border: 2px solid black; */
+    border-radius: 20px;
+    background-color:#d1cfcf;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0;
+    transition: all 0.2s ease-in-out;
+}
+.artwork-specs:hover{
+    transform: scale(1.05);
+}
+.artwork-specs p{
+    font-size: 1.1rem;
+    letter-spacing: 0.2rem;
+}
+
+/* about artist section */
+.about-artist-title{
+    /* border: 2px solid blue; */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+
+}
+.about-artist-name{
+    /* border:2px solid blue; */
+}
+.about-artist-description{
+    /* border: 2px solid blue; */
+    height: 20vh;
+    font-family: 'Inter', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+}
+
+/* button section */
+.control-btn button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.07rem;
+    border: none;
+}
+
+.edit-artwork-btn{
+    background-color: #63e948;
+    transition: all 0.2s ease-in-out;
+}
+.edit-artwork-btn:hover{
+    transform: scale(1.05);
+    opacity: 0.5;
+}
+.delete-artwork-btn{
+    background-color: #f33737;
+    transition: all 0.2s ease-in-out;
+}
+.delete-artwork-btn:hover{
+    transform: scale(1.05);
+    opacity: 0.5;
+}
