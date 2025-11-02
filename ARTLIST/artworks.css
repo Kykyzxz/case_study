@@ -670,3 +670,466 @@ div.all-rights {
     font-size: 0.9rem;
     text-align: center;
 }
+
+/* responsiveness */
+
+/* Large Tablets */
+@media screen and (max-width: 1024px) {
+    /* Navigation */
+    nav {
+        height: 80px;
+        padding: 0 20px;
+    }
+    
+    div.title {
+        font-size: 24px;
+        width: 40%;
+    }
+    
+    div.buttons {
+        width: 60%;
+    }
+    
+    div.buttons a {
+        padding: 0 15px;
+        font-size: 13px;
+        letter-spacing: 3px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 140px 60px 40px;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+        letter-spacing: 0.15em;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+    /* grid view - list view */
+    .artwork-layout-btn{
+        width: 40%;
+        height: 60%;
+    }
+    /* Controls */
+    .controls label{
+        font-size: 0.8rem;
+    }
+    .controls input{
+        font-size: 0.7rem;
+    }
+    .controls select{
+        font-size: 0.6rem;
+    }
+    .control-content {
+        width: 100%;
+        height: 100%;
+    }
+    .control-btn button{
+        height: 40%;
+        font-size: 0.7rem;
+    }
+    
+    /* Artwork Grid - 2 columns */
+    .artwork-container.grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 90%;
+        gap: 25px;
+    }
+    
+    .artwork-container.list-layout {
+        max-width: 90%;
+    }
+    
+    /* Page Controls */
+    .page-btn {
+        width: 40%;
+    }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+    /* Navigation */
+    nav {
+        height: 70px;
+        flex-direction: column;
+        padding: 10px 20px;
+        gap: 10px;
+    }
+    
+    div.title {
+        width: 100%;
+        justify-content: center;
+        font-size: 20px;
+    }
+    
+    div.buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    div.buttons a {
+        padding: 0 10px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin: 0 5px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 120px 40px 30px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+    }
+    
+    /* Controls - Stack vertically */
+    .controls {
+        height: auto;
+        padding: 20px;
+    }
+    
+    .control-content {
+        width: 95%;
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .control,
+    .control-btn {
+        height: 10vh;
+        /* height: 50%; */
+        width: 100%;
+        padding: 0;
+    }
+    
+    .control-btn {
+        padding: 0;
+        margin-top: 10px;
+    }
+    
+    .control-btn button {
+        height: 80%;
+        margin-bottom: 0;
+    }
+    
+    /* .apply-filter,
+    .reset-filter {
+        height: 45px;
+    } */
+    
+    .control input,
+    .control select {
+        height: 45px;
+    }
+    
+    /* Artwork Count */
+    .artwork-count-section {
+        height: auto;
+        padding: 20px;
+    }
+    
+    .artwork-count {
+        width: 95%;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .artwork-layout-btn {
+        width: 100%;
+        height: 45px;
+    }
+    
+    /* Artwork Grid - Still 2 columns on tablet */
+    .artwork-container.grid-layout {
+        max-width: 95%;
+        gap: 20px;
+    }
+    
+    /* List Layout */
+    .artwork-container.list-layout {
+        max-width: 95%;
+    }
+    
+    .artwork-container.list-layout .artwork-item {
+        grid-template-columns: 250px 1fr;
+        min-height: 250px;
+    }
+    
+    .artwork-container.grid-layout .artwork-item img {
+        height: 300px;
+    }
+    
+    /* Page Controls */
+    .page-control {
+        height: auto;
+        padding: 30px 20px;
+    }
+    
+    .page-btn {
+        width: 80%;
+        height: 50px;
+    }
+    
+    .prev-btn {
+        width: 35%;
+        font-size: 0.9rem;
+    }
+    
+    .next-btn {
+        width: 25%;
+        font-size: 0.9rem;
+    }
+    
+    .page-num {
+        width: 12%;
+        font-size: 0.9rem;
+    }
+    
+    /* Footer */
+    div.contacts {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    div.logo {
+        align-items: center;
+    }
+    
+    div.contact {
+        align-items: center;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 480px) {
+    nav {
+        height: auto;
+        padding: 15px 10px;
+    }
+    
+    div.title {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    div.buttons {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    div.buttons a {
+        padding: 8px 12px;
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin: 2px;
+        height: 35px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        padding: 100px 20px 20px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+        letter-spacing: 0.05em;
+    }
+    
+    .hero-content p {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+    }
+    
+    /* Controls */
+    .controls {
+        padding: 15px 10px;
+    }
+    
+    .control-content {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    .control label {
+        font-size: 1rem;
+    }
+    
+    .control-btn {
+        flex-direction: column;
+        gap: 10px;
+        height: 15vh;
+    }
+    
+    .apply-filter,
+    .reset-filter {
+        width: 100%;
+        height: 45px;
+    }
+    
+    /* Artwork Count */
+    .artwork-count h3 {
+        font-size: 1rem;
+    }
+    
+    .artwork-layout-btn button {
+        font-size: 0.8rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    /* Artwork Grid - 1 column on mobile */
+    .artwork-container.grid-layout {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 100%;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    /* List Layout - Stack image on top */
+    .artwork-container.list-layout {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .artwork-container.list-layout .artwork-item {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    
+    .artwork-container.list-layout .artwork-item img {
+        height: 250px;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .artwork-container.grid-layout .artwork-item img {
+        height: 250px;
+    }
+    
+    .content-container {
+        padding: 15px;
+    }
+    
+    .category-container {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .artwork-title {
+        font-size: 1.2rem;
+    }
+    
+    .artwork-description {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        max-height: 4.5em;
+    }
+    
+    /* Page Controls */
+    .page-btn {
+        width: 90%;
+        height: 45px;
+        gap: 5px;
+    }
+    
+    .prev-btn {
+        width: 30%;
+        font-size: 0.75rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    .next-btn {
+        width: 22%;
+        font-size: 0.75rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    .page-num {
+        width: 14%;
+        font-size: 0.8rem;
+    }
+    
+    /* Footer */
+    div.contacts-cont {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    div.logo {
+        font-size: 1.4rem;
+    }
+    
+    div.logos img.logo1 {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    div.logos img.logo2 {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+    
+    div.logos img.logo3 {
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+    
+    div.contact {
+        font-size: 1.4rem;
+    }
+    
+    div.contact h4 {
+        font-size: 1rem;
+    }
+    
+    div.contact p {
+        font-size: 0.85rem;
+    }
+    
+    div.all-rights {
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra Small Mobile (360px and below) */
+@media screen and (max-width: 360px) {
+    div.title {
+        font-size: 16px;
+    }
+    
+    div.buttons a {
+        font-size: 9px;
+        padding: 6px 10px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.8rem;
+    }
+    
+    .page-btn {
+        width: 95%;
+    }
+    
+    .prev-btn,
+    .next-btn {
+        font-size: 0.7rem;
+    }
+}
