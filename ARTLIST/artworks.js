@@ -16,3 +16,19 @@ function switchView(view){
         listBtn.classList.add('active');
     }
 }
+
+    function toggle(show) {
+    const menu = document.getElementById('menubtn');
+    const close = document.getElementById('closebtn');
+    const panel = document.getElementById('panel');
+
+    if (show) {
+        menu.classList.add('hidden');
+        close.classList.remove('hidden');
+        panel.classList.add('show');
+    } else {
+        close.classList.add('hidden');
+        menu.classList.remove('hidden');
+        panel.classList.remove('show');
+    }
+    }
