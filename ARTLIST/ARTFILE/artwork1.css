@@ -76,8 +76,8 @@ body {
     overflow-x: hidden;
 }
 
-/* nav links */
-nav {
+/* Navigation Bar | Desktop */
+nav.desktop {
     position: fixed;
     z-index: 2;
     display: flex;
@@ -92,17 +92,17 @@ nav {
     backdrop-filter: blur(10px);
 }
 
-/* Navigation Bar | Title */
+/* Navigation Bar | Title (Desktop/Tablet/Mobile) */
 div.title {
     display: flex;
     justify-content: flex-start;
     width: 35%;
-    font-family: 'Playfair Display', serif;
+    font-family: Playfair Display;
     color: #191919;
     font-size: 30px;
 }
 
-/* Navigation Bar | Buttons */
+/* Navigation Bar | Buttons (Desktop) */
 div.buttons {
     display: flex;
     justify-content: flex-end;
@@ -113,7 +113,7 @@ div.buttons a {
     display: flex;
     align-items: center;
     height: 40px;
-    font-family: 'Playfair Display', serif;
+    font-family: Playfair Display;
     color: #191919;
     text-decoration: none;
     padding: 0 30px;
@@ -121,17 +121,113 @@ div.buttons a {
     margin-right: -20px;
     font-size: 15px;
     letter-spacing: 5px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
 }
 
 div.buttons a:hover {
-    border-bottom: 2px solid black;
+   font-weight: bold;
+   cursor: pointer;
+}
+
+/* Navigation Bar | Mobile */
+nav.tablet-mobile {
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 40px;
+    width: 100%;
+    height: 100px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+nav.tablet-mobile #menubtn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+}
+
+nav.tablet-mobile #closebtn {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+}
+
+nav.tablet-mobile button:hover {
     cursor: pointer;
 }
 
+nav.tablet-mobile img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Navigation Bar | Buttons (Mobile) */
+div.panel {
+    position: fixed;
+    z-index: 3;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 98%;
+    height: 152.5px;
+    color: #191919;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .4s ease, visibility .4s ease;
+}
+
+div.panel.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+div.panel a {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-family: Playfair Display;
+    color: #191919;
+    text-decoration: none;
+    padding: 15px 0;
+    font-size: 15px;
+    letter-spacing: 5px;
+}
+
+div.panel a:hover {
+   font-weight: bold;
+   cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.fade { 
+    opacity: 0; 
+}
+
+.show { 
+    display: flex;
+    opacity: 1; 
+}
 
 
+/* artwork section */
 .artwork-section {
     border: 2px solid black;
     width: 100%;
@@ -405,6 +501,12 @@ div.buttons a:hover {
         font-size: 24px;
         width: 40%;
     }
+    nav.tablet-mobile {
+        display: flex;
+    }
+    nav.desktop{
+        display: none;
+    }
     
     div.buttons {
         width: 60%;
@@ -443,7 +545,8 @@ div.buttons a:hover {
     
     .back-btn-container {
         height: auto;
-        padding: 15px 20px;
+        /* padding: 15px 20px 0px; */
+        padding: 40px 20px 0px;
     }
     
     .back-btn-link {
@@ -459,7 +562,9 @@ div.buttons a:hover {
         position: static; /* Remove fixed */
         height: auto;
         width: 100%;
-        padding: 0 20px 20px;
+        padding: 20px 20px;
+        /* padding-bottom: -20px; */
+        /* margin: -20px; */
     }
     
     .art-detail-img img {
@@ -519,10 +624,15 @@ div.buttons a:hover {
         padding: 10px 20px;
         gap: 10px;
     }
-    
+    nav.tablet-mobile {
+        display: flex;
+    }
+    nav.desktop{
+        display: none;
+    }
     div.title {
         width: 100%;
-        justify-content: center;
+        /* justify-content: center; */
         font-size: 20px;
     }
     
@@ -565,7 +675,7 @@ div.buttons a:hover {
     
     .back-btn-container {
         height: auto;
-        padding: 15px 20px;
+        padding: 15px 20px 0PX;
     }
     
     .back-btn-link {
