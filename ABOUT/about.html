@@ -6,16 +6,29 @@
         <link rel="stylesheet" href="about.css">
         <title>Nocturne Gallery</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="artworks.js" defer></script>
     </head>
     <body>
-        <nav>
+        <nav class="desktop">
             <div class="title">NOCTURNE GALLERY</div>
             <div class="buttons">
                 <a href="/HOME/home.html">HOME</a>
                 <a href="/ARTLIST/artworks.html">ARTWORK LIST</a>
-                <a href="about.html">ABOUT</a>
+                <a href="/ABOUT/about.html">ABOUT</a>
             </div>
         </nav>
+        <nav class="tablet-mobile">
+            <div class="title">NOCTURNE GALLERY</div>
+            <button id="menubtn" onclick="toggle(true)"><img src="/HOME/menu-1-svgrepo-com.svg" alt="Menu"></button>
+            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="/HOME/close-1511-svgrepo-com.svg" alt="Close"></button>
+        </nav>
+        <div id="panel" class="panel hidden">
+            <a href="/HOME/home.html">HOME</a>
+            <hr style="width: 95%;">
+            <a href="/ARTLIST/artworks.html">ARTWORK LIST</a>
+            <hr style="width: 95%;">
+            <a href="/ABOUT/about.html">ABOUT</a>
+        </div>
         <section class="hero">
             <div class="hero-content">
                 <h1>About Nocturne Gallery</h1>
