@@ -5,30 +5,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/2972950e8f.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="artwork1.css">
-        <script src="artworks.js" defer></script>
+        <script src="ARTLIST/artworks.js" defer></script>
         <title>Nocturne Gallery</title>
     </head>
     <body>
-        <nav>
+        <nav class="desktop">
             <div class="title">NOCTURNE GALLERY</div>
             <div class="buttons">
-                <a href="/HOME/homev2.html">HOME</a>
-                <a href="/ARTLIST/artworks.html">ARTWORK LIST</a>
-                <a href="/ABOUT/about.html">ABOUT</a>
+                <a href="HOME/home.html">HOME</a>
+                <a href="ARTLIST/artworks.html">ARTWORK LIST</a>
+                <a href="ABOUT/about.html">ABOUT</a>
             </div>
         </nav>
+        <nav class="tablet-mobile">
+            <div class="title">NOCTURNE GALLERY</div>
+            <button id="menubtn" onclick="toggle(true)"><img src="HOME/menu-1-svgrepo-com.svg" alt="Menu"></button>
+            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="HOME/close-1511-svgrepo-com.svg" alt="Close"></button>
+        </nav>
+        <div id="panel" class="panel hidden">
+            <a href="HOME/home.html">HOME</a>
+            <hr style="width: 95%;">
+            <a href="ARTLIST/artworks.html">ARTWORK LIST</a>
+            <hr style="width: 95%;">
+            <a href="ABOUT/about.html">ABOUT</a>
+        </div>
+
 
         <!-- art detail section -->
          <section class="artwork-section">
             <div class="artwork-container">
                 <div class="art-img-container">
                     <div class="back-btn-container">
-                        <a href="/ARTLIST/artworks.html" class="back-btn-link">
+                        <a href="ARTLIST/artworks.html" class="back-btn-link">
                             <button><i class="fa-solid fa-arrow-left-long fa-lg"></i>Back to Gallery</button>
                         </a>
                     </div>
                     <div class="art-detail-img">
-                        <img src="/ARTLIST/IMAGES/Henri_de_Toulouse-Lautrec,_French_-_At_the_Moulin_Rouge-_The_Dance_-_Google_Art_Project.jpg" alt="henri">
+                        <img src="ARTLIST/IMAGES/Henri_de_Toulouse-Lautrec,_French_-_At_the_Moulin_Rouge-_The_Dance_-_Google_Art_Project.jpg" alt="henri">
                     </div>
                 </div>
                 <div class="art-details-container">

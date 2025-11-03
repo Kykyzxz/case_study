@@ -445,6 +445,7 @@ div.panel a:hover {
     font-size: 1.2rem;
 
 }
+
 .about-artist-description{
     /* border: 2px solid blue; */
     height: 20vh;
@@ -667,12 +668,13 @@ div.panel a:hover {
         overflow: visible;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 20px;
+
     }
     
     .back-btn-container {
         height: auto;
-        padding: 15px 20px 0PX;
+        padding: 40px 20px 0PX;
     }
     
     .back-btn-link {

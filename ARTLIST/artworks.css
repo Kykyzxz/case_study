@@ -818,24 +818,35 @@ div.all-rights {
         height: 60%;
     }
     /* Controls */
-    .controls label{
-        font-size: 0.8rem;
+    .control label{
+        font-size: 0.9rem;
     }
-    .controls input{
-        font-size: 0.7rem;
+    .control input{
+        font-size: 0.9rem;
     }
-    .controls select{
-        font-size: 0.6rem;
+    .control select{
+        font-size: 0.9rem;
+    }
+    .control{
+        padding-left: 10px;
     }
     .control-content {
         width: 100%;
         height: 100%;
     }
+    .control-btn{
+        height: 90%;
+    }
     .control-btn button{
         height: 40%;
         font-size: 0.7rem;
     }
-    
+    .controls{
+        padding: 20px;
+    }
+    .artwork-layout-btn{
+        height: 50%;
+    }
     /* Artwork Grid - 2 columns */
     .artwork-container.grid-layout {
         grid-template-columns: repeat(2, 1fr);
@@ -908,6 +919,7 @@ div.all-rights {
     .controls {
         height: auto;
         padding: 20px;
+        margin-top: -20px;
     }
     
     .control-content {
@@ -943,6 +955,10 @@ div.all-rights {
     .control input,
     .control select {
         height: 45px;
+        font-size: 0.9rem;
+    }
+    .control label{
+        font-size: 0.9rem;
     }
     
     /* Artwork Count */
@@ -1011,7 +1027,7 @@ div.all-rights {
     
     /* Footer */
     div.contacts {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         text-align: center;
     }
@@ -1182,6 +1198,7 @@ div.all-rights {
     /* Footer */
     div.contacts-cont {
         padding: 1.5rem 0.5rem;
+        /* flex-direction: row; */
     }
     
     div.logo {
@@ -1246,5 +1263,45 @@ div.all-rights {
     .prev-btn,
     .next-btn {
         font-size: 0.7rem;
+    }
+        /* Footer */
+    div.contacts-cont {
+        padding: 1.5rem 0.5rem;
+        /* flex-direction: row; */
+    }
+    
+    div.logo {
+        font-size: 1rem;
+    }
+    
+    div.logos img.logo1 {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    div.logos img.logo2 {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    div.logos img.logo3 {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    div.contact {
+        font-size: 1rem;
+    }
+    
+    div.contact h4 {
+        font-size: 0.7rem;
+    }
+    
+    div.contact p {
+        font-size: 0.5rem;
+    }
+    
+    div.all-rights {
+        font-size: 0.6rem;
     }
 }
