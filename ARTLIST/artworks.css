@@ -430,7 +430,7 @@ div.panel hr {
 
 .artwork-container.grid-layout {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
     width: 100%;
     max-width: 1400px;
@@ -731,7 +731,7 @@ div.panel hr {
 /* Local Artists Container */
 .local-artists-container.grid-layout {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
     width: 100%;
     max-width: 1400px;

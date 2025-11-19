@@ -1,1010 +1,690 @@
-/* KYRAN SOLOMON */
-@font-face {
-    font-family: "Inter";
-    src: url("fonts/Inter_28pt-Light.ttf") format("truetype");
-    font-weight: 300;
-}
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-@font-face {
-    font-family: "Inter";
-    src: url("fonts/Inter_28pt-Regular.ttf") format("truetype");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("fonts/Inter_24pt-Medium.ttf") format("truetype");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("fonts/Inter_28pt-Bold.ttf") format("truetype");
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("fonts/Inter_28pt-Black.ttf") format("truetype");
-    font-weight: 900;
-}
-
-/* Optional WOFF fallback */
-@font-face {
-    font-family: "Inter";
-    src: url("fonts/Inter-Regular.woff") format("woff");
-    font-weight: 400;
-}
-
-/* ========== PLAYFAIR DISPLAY FONT FAMILY ========== */
-@font-face {
-    font-family: "Playfair Display";
-    src: url("fonts/PlayfairDisplay-Regular.ttf") format("truetype");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "Playfair Display";
-    src: url("fonts/PlayfairDisplay-Medium.ttf") format("truetype");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "Playfair Display";
-    src: url("fonts/PlayfairDisplay-Bold.ttf") format("truetype");
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: "Playfair Display";
-    src: url("fonts/PlayfairDisplay-Black.ttf") format("truetype");
-    font-weight: 900;
-}
-
-/* global reset */
+/* ============================================ */
+/* RESETS & BASE */
+/* ============================================ */
 *, *::before, *::after {
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
+    width: 100%;
+    background: #0f172a;
+    color: #F2F0EF;
     font-family: 'Inter', sans-serif;
-    background-color: #cbcaca;
-    color: #000;
-    line-height: 1.6;
     overflow-x: hidden;
 }
 
-/* Navigation Bar | Desktop */
+/* ============================================ */
+/* NAVIGATION - DARK THEME */
+/* ============================================ */
 nav.desktop {
     position: fixed;
-    z-index: 2;
+    z-index: 1000;
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 100px;
-    color: #191919;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
+    height: 90px;
+    padding: 0 5%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.2);
+    transition: all 0.4s ease;
 }
 
-/* Navigation Bar | Title (Desktop/Tablet/Mobile) */
+nav.desktop.scrolled {
+    background: rgba(15, 23, 42, 0.90);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
 div.title {
-    display: flex;
-    justify-content: flex-start;
-    width: 35%;
-    font-family: Playfair Display;
-    color: #191919;
-    font-size: 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #f59e0b;
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    transition: all 0.3s ease;
 }
 
-/* Navigation Bar | Buttons (Desktop) */
+div.title:hover {
+    text-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+a.logo_link {
+    text-decoration: none;
+    color: #f59e0b;
+}
+
 div.buttons {
     display: flex;
-    justify-content: flex-end;
-    width: 55%;
+    gap: 2rem;
 }
 
 div.buttons a {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    font-family: Playfair Display;
-    color: #191919;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #93c5fd;
     text-decoration: none;
-    padding: 0 30px;
-    margin-left: 10px;
-    margin-right: -20px;
-    font-size: 15px;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+div.buttons a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
 }
 
 div.buttons a:hover {
-   font-weight: bold;
-   cursor: pointer;
+    color: #fbbf24;
 }
 
-/* Navigation Bar | Mobile */
+div.buttons a:hover::after {
+    width: 100%;
+}
+
 nav.tablet-mobile {
     position: fixed;
-    z-index: 2;
-    display: flex;
+    z-index: 1000;
     display: none;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 30px 0 40px;
+    align-items: center;
+    padding: 0 5%;
     width: 100%;
-    height: 100px;
-    color: #191919;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
+    height: 80px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.2);
 }
 
-nav.tablet-mobile #menubtn {
-    width: 50px;
-    height: 50px;
+nav.tablet-mobile button {
+    width: 40px;
+    height: 40px;
     border: none;
-    background-color: transparent;
-}
-
-nav.tablet-mobile #closebtn {
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 nav.tablet-mobile button:hover {
-    cursor: pointer;
+    transform: scale(1.1);
 }
 
 nav.tablet-mobile img {
     width: 100%;
     height: 100%;
+    filter: brightness(0) saturate(100%) invert(69%) sepia(85%) saturate(408%) hue-rotate(358deg) brightness(101%) contrast(95%);
 }
 
-/* Navigation Bar | Buttons (Mobile) */
 div.panel {
     position: fixed;
-    z-index: 3;
-    top: 110px;
+    z-index: 999;
+    top: 80px;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(147, 197, 253, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 98%;
-    height: 152.5px;
-    color: #191919;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
+    padding: 20px 0;
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
-    transition: opacity .4s ease, visibility .4s ease;
+    transform: translateY(-20px);
+    transition: all 0.4s ease;
 }
 
 div.panel.show {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    transform: translateY(0);
 }
 
 div.panel a {
-    display: flex;
-    align-items: center;
-    height: 50px;
-    font-family: Playfair Display;
-    color: #191919;
+    font-family: 'Inter', sans-serif;
+    color: #93c5fd;
     text-decoration: none;
+    letter-spacing: 2px;
     padding: 15px 0;
-    font-size: 15px;
-    letter-spacing: 5px;
+    font-size: 14px;
+    transition: color 0.3s ease;
 }
 
 div.panel a:hover {
-   font-weight: bold;
-   cursor: pointer;
+    color: #fbbf24;
+}
+
+div.panel hr {
+    width: 90%;
+    border: none;
+    height: 1px;
+    background: rgba(147, 197, 253, 0.2);
 }
 
 .hidden {
     display: none;
 }
 
-.fade { 
-    opacity: 0; 
-}
-
-.show { 
-    display: flex;
-    opacity: 1; 
-}
-
-
-/* artwork section */
+/* ============================================ */
+/* ARTWORK DETAIL PAGE - SPLIT LAYOUT */
+/* ============================================ */
 .artwork-section {
-    border: 2px solid black;
     width: 100%;
-    height: 100vh; /* fill viewport */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    background: #0f172a;
 }
 
 .artwork-container {
-    /* position: fixed; */
-    top: 0;
-    left: 5%;
-    /* border: 2px solid green; */
-    width: 90%;
-    height: 100vh; /* fixed full screen */
-    display: flex;
-    padding-top: 110px;
-}
-
-/* Left Image */
-.art-img-container {
-    /* position: fixed; */
-    /* border: 2px solid blue; */
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.art-img-container img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 1800px;
+    min-height: 100vh;
+    display: flex;
+    padding-top: 90px;
 }
 
-/* Right Scrollable Details */
-.art-details-container {
-    /* border: 2px solid red; */
+/* Left: Fixed Image */
+.art-img-container {
     width: 50%;
-    height: 100%; 
-    overflow-y: scroll;
-    scrollbar-width: none;
-    padding: 20px;
-    padding-top: 85px;
-    box-sizing: border-box;
-    scroll-behavior: smooth; /* smooth scrolling */
-}
-
-/* hides scrollbar in Chrome, Edge, and Safari */
-.art-details-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* Inside content */
-.about-artwork,
-.artwork-specification {
-    /* border: 2px solid black; */
-    min-height: 73.1vh; /* or whatever you want */
-    margin-bottom: 20px;
-    border-radius: 10px;
-    background-color: #aaa;
-    padding: 40px;
+    height: calc(100vh - 90px);
+    position: sticky;
+    top: 90px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-/* artist container */
-.about-artist{
-    min-height: 40vh;
-    background-color: #aaa;
-    border-radius: 10px;
-    margin-bottom: 20px;
     padding: 40px;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
 }
 
-/* control button for deletion and edit */
-.control-btn{
-    /* border: 2px solid black; */
-    min-height: 9vh;
-    display: flex;
-    justify-content: space-between;
-}
-.control-btn button{
-    width: 48%;
-    border-radius: 20px;
+/* Back Button in Image Container */
+.back-btn-container {
+    flex-shrink: 0;
 }
 
-
-/* button */
-.back-btn-container{
-    /* border: 2px solid black; */
-    height: 9vh;
-    display: flex;
-}
-.back-btn-link{
-    /* border: 2px solid blue; */
-    width: 28%;
+.back-btn-link {
     text-decoration: none;
-    height: 7.5vh;
+    display: inline-block;
 }
-.back-btn-link button{
-    height: 100%;
-    width: 100%;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    border: 1.5px solid #aaa;
-    color: #191919;
-    letter-spacing: 0.125rem;
-    transition: all 0.2s ease-in-out;
-    border-radius: 20px;
 
+.back-btn-link button {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 2px solid rgba(147, 197, 253, 0.3);
+    background: transparent;
+    color: #93c5fd;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 10px;
+    letter-spacing: 1px;
 }
-.back-btn-link button:hover{
-    background-color: #191919;
-    color: #fff;
+
+.back-btn-link button:hover {
+    background: #93c5fd;
+    color: #0f172a;
+    border-color: #93c5fd;
+    transform: translateY(-3px);
 }
-/* image */
-.art-detail-img{
-    /* position: fixed; */
-    /* border: 2px solid red; */
+
+/* Image Wrapper */
+.art-detail-img {
+    flex: 1;
     width: 100%;
-    height: 75vh;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    /* left: 5%; */
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    transition: all 0.4s ease;
+    background: rgba(30, 58, 138, 0.1);
 }
+
+.art-detail-img:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+    transform: scale(1.02);
+}
+
 .art-detail-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    display: block;   
-    border-radius: 10px;
-}
-/* content for about artwork */
-.artwork-details{
-    /* border: 2px solid red; */
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex: 1;
-    width: 100%;
-    /* padding: 10px; */
-}
-.about-title{
-    /* border: 2px solid blue; */
-    font-family: 'Playfair Display',serif;
-    font-weight: 700;
-    font-size: 1.4rem;
-    width: 100%;
-    height: auto;
-}
-.artwork-title-info{
-    /* border: 2px solid blue; */
-    width: 100%;
-    height: auto;
-
-}
-.artwork-description{
-    /* border: 2px solid blue; */
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.05rem;
-    line-height: 1.6rem;
+    display: block;
+    transition: transform 0.4s ease;
 }
 
-/* artwork specification */
-.artwork-specification-title{
-    /* border: 2px solid blue; */
-    height: 5vh;
-    display: flex;
-    align-items: center;
+.art-detail-img:hover img {
+    transform: scale(1.05);
+}
+
+/* Right: Scrollable Details */
+.art-details-container {
+    width: 50%;
+    height: auto;
+    overflow-y: auto;
+    padding: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(147, 197, 253, 0.3) rgba(15, 23, 42, 0.5);
+}
+
+.art-details-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.art-details-container::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.art-details-container::-webkit-scrollbar-thumb {
+    background: rgba(147, 197, 253, 0.3);
+    border-radius: 4px;
+}
+
+.art-details-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(147, 197, 253, 0.5);
+}
+
+/* Content Cards */
+.about-artwork,
+.artwork-specification,
+.about-artist {
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 35px;
+    margin-bottom: 25px;
+    transition: all 0.4s ease;
+}
+
+.about-artwork:hover,
+.artwork-specification:hover,
+.about-artist:hover {
+    border-color: #fbbf24;
+    box-shadow: 0 10px 40px rgba(245, 158, 11, 0.2);
+}
+
+/* About Artwork Section */
+.about-title {
     font-family: 'Playfair Display', serif;
+    font-size: 22px;
     font-weight: 700;
-    font-size: 1.3rem;
+    color: #fbbf24;
+    margin-bottom: 25px;
 }
-.artwork-specification-details{
-    /* border: 2px solid blue; */
-    height: 58vh;
+
+.artwork-details {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.artwork-specs{
-    /* border: 2px solid black; */
-    border-radius: 20px;
-    background-color:#d1cfcf;
-    height: 15%;
+
+.artwork-title-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fbbf24;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.artwork-title-info h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #93c5fd;
+    margin-bottom: 8px;
+}
+
+.artwork-title-info h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #93c5fd;
+    opacity: 0.8;
+}
+
+.artwork-description {
+    font-size: 17px;
+    color: #93c5fd;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+}
+
+/* Artwork Specification Section */
+.artwork-specification-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fbbf24;
+    margin-bottom: 25px;
+}
+
+.artwork-specification-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.artwork-specs {
+    background: rgba(30, 58, 138, 0.15);
+    border: 1px solid rgba(147, 197, 253, 0.2);
+    border-radius: 12px;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px 0;
-    transition: all 0.2s ease-in-out;
-}
-.artwork-specs:hover{
-    transform: scale(1.05);
-}
-.artwork-specs p{
-    font-size: 1.1rem;
-    letter-spacing: 0.2rem;
+    transition: all 0.3s ease;
 }
 
-/* about artist section */
-.about-artist-title{
-    /* border: 2px solid blue; */
+.artwork-specs:hover {
+    background: rgba(30, 58, 138, 0.25);
+    border-color: #fbbf24;
+    transform: translateX(10px);
+}
+
+.artwork-specs h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-
+    font-size: 17px;
+    font-weight: 600;
+    color: #fbbf24;
 }
 
-.about-artist-description{
-    /* border: 2px solid blue; */
-    height: 20vh;
-    font-family: 'Inter', serif;
+.artwork-specs p {
+    font-size: 16px;
     font-weight: 400;
-    font-size: 1.2rem;
-    letter-spacing: 0.05rem;
+    color: #93c5fd;
+    letter-spacing: 0.5px;
 }
 
-/* button section */
-.control-btn button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+/* About Artist Section */
+.about-artist-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fbbf24;
+    margin-bottom: 20px;
+}
+
+.about-artist-name h3 {
     font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: 0.07rem;
+    font-size: 20px;
+    font-weight: 600;
+    color: #93c5fd;
+    margin-bottom: 15px;
+}
+
+.about-artist-description {
+    font-size: 17px;
+    color: #93c5fd;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+}
+
+/* Control Buttons */
+.control-btn {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.control-btn button {
+    flex: 1;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 20px;
+    border-radius: 50px;
     border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 1px;
 }
 
-.edit-artwork-btn{
-    background-color: #63e948;
-    transition: all 0.2s ease-in-out;
-}
-.edit-artwork-btn:hover{
-    transform: scale(1.05);
-    opacity: 0.5;
-}
-.delete-artwork-btn{
-    background-color: #f33737;
-    transition: all 0.2s ease-in-out;
-}
-.delete-artwork-btn:hover{
-    transform: scale(1.05);
-    opacity: 0.5;
+.edit-artwork-btn {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
 }
 
-/* responsiveness */
+.edit-artwork-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(16, 185, 129, 0.5);
+}
 
-/* Large Tablets and Small Laptops */
+.delete-artwork-btn {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(239, 68, 68, 0.3);
+}
+
+.delete-artwork-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(239, 68, 68, 0.5);
+}
+
+/* ============================================ */
+/* RESPONSIVE - 1024px */
+/* ============================================ */
 @media screen and (max-width: 1024px) {
-    /* Navigation */
-    nav {
-        height: 80px;
-        padding: 0 20px;
-    }
-    
-    div.title {
-        font-size: 24px;
-        width: 40%;
-    }
-    nav.tablet-mobile {
-        display: flex;
-    }
-    nav.desktop{
-        display: none;
-    }
-    
-    div.buttons {
-        width: 60%;
-    }
-    
-    div.buttons a {
-        padding: 0 15px;
-        font-size: 13px;
-        letter-spacing: 3px;
-    }
+    nav.desktop { display: none; }
+    nav.tablet-mobile { display: flex; }
 
-    /* Remove fixed height, make scrollable */
-    .artwork-section {
-        height: auto;
-        border: none;
-    }
-    
     .artwork-container {
-        position: static; /* Remove fixed positioning */
-        width: 100%;
-        left: 0;
-        height: auto;
-        flex-direction: column; /* Stack vertically */
-        padding-top: 90px;
-    }
-    
-    .art-img-container {
-        position: static; /* Remove fixed */
-        width: 100%;
-        height: auto;
-        overflow: visible;
-        display: flex;
         flex-direction: column;
-        gap: 10px;
-    }
-    
-    .back-btn-container {
-        height: auto;
-        /* padding: 15px 20px 0px; */
-        padding: 40px 20px 0px;
-    }
-    
-    .back-btn-link {
-        width: 200px;
-    }
-    
-    .back-btn-link button {
-        height: 50px;
-        font-size: 0.9rem;
-    }
-    
-    .art-detail-img {
-        position: static; /* Remove fixed */
-        height: auto;
-        width: 100%;
-        padding: 20px 20px;
-        /* padding-bottom: -20px; */
-        /* margin: -20px; */
-    }
-    
-    .art-detail-img img {
-        width: 100%;
-        height: 60vh;
-        max-height: 500px;
-        object-fit: cover;
-    }
-    
-    .art-details-container {
-        width: 100%;
-        height: auto;
-        overflow-y: visible; 
-        padding: 0 20px 40px;
-        padding-top: 0;
-    }
-    
-    /* Back Button */
-    /* .back-btn-link {
-        width: 35%;
-    }
-    
-    .back-btn-link button {
-        font-size: 0.85rem;
-        letter-spacing: 0.08rem;
-    } */
-    
-    /* Detail Sections */
-    .about-artwork,
-    .artwork-specification {
-        padding: 30px;
-    }
-    
-    .about-artist {
-        padding: 30px;
-    }
-    
-    /* Specification Details */
-    .artwork-specs p {
-        font-size: 1rem;
-        letter-spacing: 0.1rem;
-    }
-    
-    /* Control Buttons */
-    .control-btn button {
-        font-size: 1.1rem;
-        gap: 15px;
-    }
-}
-
-/* Tablets*/
-@media screen and (max-width: 768px) {
-    /* Navigation */
-    nav {
-        height: 70px;
-        flex-direction: column;
-        padding: 10px 20px;
-        gap: 10px;
-    }
-    nav.tablet-mobile {
-        display: flex;
-    }
-    nav.desktop{
-        display: none;
-    }
-    div.title {
-        width: 100%;
-        /* justify-content: center; */
-        font-size: 20px;
-    }
-    
-    div.buttons {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    div.buttons a {
-        padding: 0 10px;
-        font-size: 11px;
-        letter-spacing: 2px;
-        margin: 0 5px;
-    }
-    
-    .artwork-section {
-        height: auto;
-        border: none;
-    }
-    
-    .artwork-container {
-        position: static; 
-        width: 100%;
-        left: 0;
-        height: auto;
-        flex-direction: column; 
-        padding-top: 90px;
-    }
-    
-
-    .art-img-container {
-        position: static; /* Remove fixed */
-        width: 100%;
-        height: auto;
-        overflow: visible;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-    }
-    
-    .back-btn-container {
-        height: auto;
-        padding: 40px 20px 0PX;
-    }
-    
-    .back-btn-link {
-        width: 200px;
-    }
-    
-    .back-btn-link button {
-        height: 50px;
-        font-size: 0.9rem;
-    }
-    
-    .art-detail-img {
-        position: static; /* Remove fixed */
-        height: auto;
-        width: 100%;
-        padding: 0 20px 20px;
-    }
-    
-    .art-detail-img img {
-        width: 100%;
-        height: 60vh;
-        max-height: 500px;
-        object-fit: cover;
-    }
-    
-    .art-details-container {
-        width: 100%;
-        height: auto;
-        overflow-y: visible;
-        padding: 0 20px 40px;
-        padding-top: 0;
-    }
-    
-    /* Detail Sections */
-    .about-artwork,
-    .artwork-specification {
-        min-height: auto;
-        padding: 25px;
-        margin-bottom: 15px;
-    }
-    
-    .about-artist {
-        min-height: auto;
-        padding: 25px;
-        margin-bottom: 15px;
-    }
-    
-    /* Titles */
-    .about-title {
-        font-size: 1.2rem;
-    }
-    
-    .artwork-specification-title {
-        font-size: 1.1rem;
-        height: auto;
-    }
-    
-    .about-artist-title {
-        font-size: 1.1rem;
-    }
-    
-    /* Artwork Details */
-    .artwork-details {
-        gap: 15px;
-    }
-    
-    .artwork-description {
-        font-size: 0.95rem;
-        line-height: 1.5rem;
-    }
-    
-    /* Specifications */
-    .artwork-specification-details {
-        height: auto;
-        gap: 15px;
-    }
-    
-    .artwork-specs {
-        height: auto;
-        min-height: 60px;
-        padding: 15px 20px;
-    }
-    
-    .artwork-specs h2 {
-        font-size: 1rem;
-    }
-    
-    .artwork-specs p {
-        font-size: 0.95rem;
-        letter-spacing: 0.08rem;
-        text-align: right;
-    }
-    
-    /* Artist Description */
-    .about-artist-description {
-        height: auto;
-        font-size: 1rem;
-    }
-    
-    /* Control Buttons */
-    .control-btn {
-        min-height: auto;
-        height: auto;
-        gap: 10px;
-    }
-    
-    .control-btn button {
-        height: 55px;
-        font-size: 1rem;
-        gap: 12px;
-    }
-}
-
-/* Mobile Devices */
-@media screen and (max-width: 480px) {
-    /* Navigation */
-    nav {
-        height: auto;
-        padding: 15px 10px;
-    }
-    
-    div.title {
-        font-size: 18px;
-    }
-    
-    div.buttons {
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-    
-    div.buttons a {
-        padding: 8px 12px;
-        font-size: 10px;
-        letter-spacing: 1px;
-        margin: 2px;
-        height: 35px;
-    }
-    
-    /* Container */
-    .artwork-container {
         padding-top: 80px;
     }
-    
-    /* Back Button */
-    .back-btn-container {
-        padding: 10px 15px;
-    }
-    
-    .back-btn-link {
-        width: 100%;
-        max-width: 180px;
-    }
-    
-    .back-btn-link button {
-        height: 45px;
-        font-size: 0.8rem;
-        letter-spacing: 0.05rem;
-        gap: 8px;
-    }
-    
-    /* Image */
-    .art-detail-img {
-        padding: 0 15px 15px;
-    }
-    
-    .art-detail-img img {
-        height: 50vh;
-        max-height: 400px;
-    }
-    
-    /* Details Container */
-    .art-details-container {
-        padding: 0 15px 30px;
-    }
-    
-    /* Detail Sections */
-    .about-artwork,
-    .artwork-specification {
-        padding: 20px;
-        margin-bottom: 12px;
-    }
-    
-    .about-artist {
-        padding: 20px;
-        margin-bottom: 12px;
-        gap: 15px;
-    }
-    
-    /* Titles */
-    .about-title h1 {
-        font-size: 1.3rem;
-    }
-    
-    .artwork-specification-title h1 {
-        font-size: 1.3rem;
-    }
-    
-    .about-artist-title h1 {
-        font-size: 1.3rem;
-    }
-    
-    /* Artwork Info */
-    .artwork-title-info h2 {
-        font-size: 1.5rem;
-    }
-    
-    .artwork-title-info h3 {
-        font-size: 1.1rem;
-    }
-    
-    .artwork-title-info h4 {
-        font-size: 1rem;
-    }
-    
-    .artwork-details {
-        gap: 12px;
-    }
-    
-    .artwork-description {
-        font-size: 0.9rem;
-        line-height: 1.4rem;
-        letter-spacing: 0.03rem;
-    }
-    
-    /* Specifications - Stack on Mobile */
-    .artwork-specification-details {
-        gap: 12px;
-    }
-    
-    .artwork-specs {
-        min-height: 70px;
-        padding: 12px 15px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        /* align-items: flex-start; */
-        gap: 5px;
-    }
-    
-    .artwork-specs h2 {
-        font-size: 0.95rem;
-    }
-    
-    .artwork-specs p {
-        font-size: 0.9rem;
-        letter-spacing: 0.05rem;
-        text-align: left;
-    }
-    
-    /* Artist Info */
-    .about-artist-name h3 {
-        font-size: 1.2rem;
-    }
-    
-    .about-artist-description {
-        font-size: 0.95rem;
-        line-height: 1.5rem;
-    }
-    
-    /* Control Buttons - Stack Vertically */
-    .control-btn {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .control-btn button {
-        width: 100%;
-        height: 50px;
-        font-size: 0.95rem;
-        gap: 10px;
-    }
-}
 
-/* Extra Small Mobile (360px and below) */
-@media screen and (max-width: 360px) {
-    div.title {
-        font-size: 16px;
+    .art-img-container {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        padding: 30px 5%;
+        gap: 20px;
     }
-    
-    div.buttons a {
-        font-size: 9px;
-        padding: 6px 10px;
+
+    .art-detail-img {
+        height: 60vh;
+        min-height: 400px;
     }
-    
-    .back-btn-link button {
-        font-size: 0.75rem;
-        height: 42px;
+
+    .art-details-container {
+        width: 100%;
+        padding: 30px 5%;
     }
-    
-    .art-detail-img img {
-        height: 45vh;
-        max-height: 350px;
-    }
-    
+
     .about-artwork,
     .artwork-specification,
     .about-artist {
-        padding: 15px;
+        padding: 30px;
+        margin-bottom: 20px;
     }
-    
-    .about-title h1,
-    .artwork-specification-title h1,
-    .about-artist-title h1 {
-        font-size: 1.1rem;
+}
+
+/* RESPONSIVE - 768px */
+@media screen and (max-width: 768px) {
+    .art-img-container {
+        padding: 25px 5%;
+        gap: 15px;
     }
-    
+
+    .art-detail-img {
+        height: 50vh;
+        min-height: 350px;
+    }
+
+    .art-details-container {
+        padding: 25px 5%;
+    }
+
+    .about-artwork,
+    .artwork-specification,
+    .about-artist {
+        padding: 25px;
+        margin-bottom: 18px;
+    }
+
+    .about-title,
+    .artwork-specification-title,
+    .about-artist-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
     .artwork-title-info h2 {
-        font-size: 1.3rem;
+        font-size: 30px;
     }
-    
+
+    .artwork-title-info h3 {
+        font-size: 18px;
+    }
+
     .artwork-description,
     .about-artist-description {
-        font-size: 0.85rem;
+        font-size: 16px;
+        line-height: 1.7;
     }
-    
+
     .artwork-specs {
-        min-height: 65px;
-        padding: 10px 12px;
+        padding: 14px 20px;
     }
-    
+
     .artwork-specs h2 {
-        font-size: 0.9rem;
+        font-size: 16px;
     }
-    
+
     .artwork-specs p {
-        font-size: 0.85rem;
+        font-size: 15px;
     }
-    
+
+    .control-btn {
+        gap: 12px;
+    }
+
     .control-btn button {
-        height: 48px;
-        font-size: 0.9rem;
+        padding: 14px 18px;
+    }
+}
+
+/* RESPONSIVE - 480px */
+@media screen and (max-width: 480px) {
+    .artwork-container {
+        padding-top: 80px;
+    }
+
+    .art-img-container {
+        padding: 20px 5%;
+        gap: 15px;
+    }
+
+    .art-detail-img {
+        height: 45vh;
+        min-height: 300px;
+    }
+
+    .art-details-container {
+        padding: 20px 5%;
+    }
+
+    .back-btn-link button {
+        padding: 10px 22px;
+        font-size: 14px;
+        gap: 8px;
+    }
+
+    .about-artwork,
+    .artwork-specification,
+    .about-artist {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .about-title,
+    .artwork-specification-title,
+    .about-artist-title {
+        font-size: 19px;
+        margin-bottom: 18px;
+    }
+
+    .artwork-title-info h2 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    .artwork-title-info h3 {
+        font-size: 17px;
+        margin-bottom: 6px;
+    }
+
+    .artwork-title-info h4 {
+        font-size: 14px;
+    }
+
+    .artwork-description,
+    .about-artist-description {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .artwork-specification-details {
+        gap: 10px;
+    }
+
+    .artwork-specs {
+        padding: 14px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .artwork-specs h2 {
+        font-size: 15px;
+    }
+
+    .artwork-specs p {
+        font-size: 14px;
+    }
+
+    .about-artist-name h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .control-btn {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .control-btn button {
+        font-size: 15px;
+        padding: 14px 16px;
     }
 }
