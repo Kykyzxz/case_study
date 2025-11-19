@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>NOCTURNE GALLERY</title>
+        <title>Nocturne Gallery</title>
         <link rel="stylesheet" href="home.css">
+        <link rel="icon" href="ICONS/favicon.ico" type="image/x-icon">
     </head>
     <body>
         <nav class="desktop">
@@ -17,8 +18,8 @@
         </nav>
         <nav class="tablet-mobile">
             <div class="title">NOCTURNE GALLERY</div>
-            <button id="menubtn" onclick="toggle(true)"><img src="menu-1-svgrepo-com.svg" alt="Menu"></button>
-            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="close-1511-svgrepo-com.svg" alt="Close"></button>
+            <button id="menubtn" onclick="toggle(true)"><img src="ICONS/menu-1-svgrepo-com.svg" alt="Menu"></button>
+            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="ICONS/close-1511-svgrepo-com.svg" alt="Close"></button>
         </nav>
         <div id="panel" class="panel hidden">
             <a href="home.html">HOME</a>
@@ -29,13 +30,13 @@
         </div>
         <div class="slideshow">
             <div class="slides">
-                <div class="slide"><img src="Harvest Fields in Westerham.avif" alt="Harvest Fields in Westerham"></div>
-                <div class="slide"><img src="The Arrival of the Earl of Manchester in Venice.avif" alt="The Arrival of the Earl of Manchester in Venice"></div>
-                <div class="slide"><img src="Naples From Sir William Hamilton's Villa.avif" alt="Naples From Sir William Hamilton's Villa"></div>
+                <div class="slide"><img src="IMAGES/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Starry Night"></div>
+                <div class="slide"><img src="IMAGES/The_Great_Wave_off_Kanagawa.jpg" alt="The Great Wave of Kanagawa"></div>
+                <div class="slide"><img src="IMAGES/Anthropometry_of_the_Blue_Period.jpg" alt="Anthropometry of the Blue Period"></div>
             </div>
             <div class="slide-cont">
                 <h1>Discover Extraordinary Art</h1>
-                <p>Immerse yourself in a curated collection of contemporary masterpieces from visionary artists around the world.</p>
+                <p>Immerse yourself in a curated collection of contemporary masterpieces from visionary artists around the world and undiscovered local artists.</p>
                 <button><a href="../ARTLIST/artworks.html">Explore Gallery</a></button>
             </div>
             <div class="dots">
@@ -49,7 +50,7 @@
                 <h1>What is <b>ART</b>?</h1>
                 <p>Art is the intentional expression of human creativity and emotion, shaped into forms that communicate meaning beyond words. For artists, it’s a personal and cultural language — a way to reflect their inner experiences, challenge perspectives, and connect with others. Through their work, artists transform imagination into impact, making art not just a product, but a powerful process of exploration and storytelling.</p>
             </div>
-            <img src="Starry Night and the Astronauts.jpg" alt="Starry Night and the Astronauts">
+            <img src="IMAGES/Starry Night and the Astronauts.jpg" alt="Starry Night and the Astronauts">
         </div>
         <div class="artworks-cont">
             <div class="featured">
@@ -59,7 +60,7 @@
             <hr style="width: 95%; margin-top: -20px;">
             <div class="featured-images-cont">
                 <div class="featured-images">
-                    <img src="Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Starry Night">
+                    <img src="IMAGES/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Starry Night">
                     <div class="featured-info">
                         <h1>Starry Night  | 1889</h1>
                         <h3>Vincent Van Gogh | Post - Impressionism</h3>
@@ -67,15 +68,15 @@
                     </div>
                 </div>
                 <div class="featured-images">
-                    <img src="the_scream_final_ms.jpg" alt="The Scream">
+                    <img src="IMAGES/the_scream_final_ms.jpg" alt="The Scream">
                     <div class="featured-info">
                         <h1>The Scream  | 1893</h1>
                         <h3>Edvard Munch | Proto-Expressionism</h3>
-                        <p>The agonized face in the painting has become one of the most iconic images in art, seen as representing a profound experience of existential dread related to the human condition.</p>
+                        <p>The agonized face in the painting has become one of the most iconic images in art, seen as representing a profound experience of existential dread.</p>
                     </div>
                 </div>
                 <div class="featured-images">
-                    <img src="K6H3LY574RH2VN7HN3N4BTERPI.avif" alt="Impression, Sunrise">
+                    <img src="IMAGES/K6H3LY574RH2VN7HN3N4BTERPI.avif" alt="Impression, Sunrise">
                     <div class="featured-info">
                         <h1>Impression, Sunrise  | 1872</h1>
                         <h3>Claude Monet | Impressionism</h3>
@@ -112,13 +113,13 @@
             </div>
             <form>
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="off"><br><br>
+                <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="off" required><br><br>
                 <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Enter your e-mail" autocomplete="off"><br><br>
+                <input type="email" id="email" name="email" placeholder="Enter your e-mail" autocomplete="off" required><br><br>
                 <label for="feedback">Feedback</label>
-                <textarea name="feedback" id="feedback" rows="10" cols="30"  placeholder="Enter your feedback"></textarea><br><br>
+                <textarea name="feedback" id="feedback" rows="10" cols="30" placeholder="Enter your feedback" required></textarea><br><br>
                 <div class="submit">
-                    <input type="submit">
+                    <input type="submit" value="Submit Feedback">
                 </div>
             </form>
         </div>
@@ -127,9 +128,9 @@
                 <div class="logo">
                     NOCTURNE <br>GALLERY
                     <div class="logos">
-                        <img class="logo1" src="facebook-svgrepo-com.svg" alt="Facebook">
-                        <img class="logo2" src="email-circle-fill-svgrepo-com.svg" alt="Email">
-                        <img class="logo3" src="github-142-svgrepo-com.svg" alt="Github">
+                        <img class="logo1" src="ICONS/facebook-svgrepo-com.svg" alt="Facebook">
+                        <img class="logo2" src="ICONS/email-circle-fill-svgrepo-com.svg" alt="Email">
+                        <img class="logo3" src="ICONS/github-142-svgrepo-com.svg" alt="Github">
                     </div>
                 </div>
                 <div class="contact">

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/2972950e8f.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="artwork1.css">
+        <script src="/ARTLIST/artworks.js" defer></script>
+        <title>Nocturne Gallery</title>
+    </head>
+    <body>
+        <nav class="desktop">
+            <div class="title">NOCTURNE GALLERY</div>
+            <div class="buttons">
+                <a href="/HOME/home.html">HOME</a>
+                <a href="/ARTLIST/artworks.html">ARTWORK LIST</a>
+                <a href="/ABOUT/about.html">ABOUT</a>
+            </div>
+        </nav>
+        <nav class="tablet-mobile">
+            <div class="title">NOCTURNE GALLERY</div>
+            <button id="menubtn" onclick="toggle(true)"><img src="/HOME/menu-1-svgrepo-com.svg" alt="Menu"></button>
+            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="/HOME/close-1511-svgrepo-com.svg" alt="Close"></button>
+        </nav>
+        <div id="panel" class="panel hidden">
+            <a href="/HOME/home.html">HOME</a>
+            <hr style="width: 95%;">
+            <a href="/ARTLIST/artworks.html">ARTWORK LIST</a>
+            <hr style="width: 95%;">
+            <a href="/ABOUT/about.html">ABOUT</a>
+        </div>
+
+        <!-- art detail section -->
+         <section class="artwork-section">
+            <div class="artwork-container">
+                <div class="art-img-container">
+                    <div class="back-btn-container">
+                        <a href="/ARTLIST/artworks.html" class="back-btn-link">
+                            <button><i class="fa-solid fa-arrow-left-long fa-lg"></i>Back to Gallery</button>
+                        </a>
+                    </div>
+                    <div class="art-detail-img">
+                        <img src="/ARTLIST/IMAGES/12 LOCAL ARTWORKS/Beneath the Surface.jfif" alt="beneath the surface">
+                    </div>
+                </div>
+                <div class="art-details-container">
+                    <div class="about-artwork">
+                        <div class="artwork-details">
+                            <div class="about-title">
+                                <h1><i>About Artwork</i></h1>
+                            </div>
+                            <div class="artwork-title-info">
+                                <h2 class="artwork-title">Beneath the Surface</h2>
+                                <h3 class="artwork-author"><i>Persemonn</i></h3>
+                                <h4 class="artwork-year">2025</h5>
+                            </div>
+                            <div class="artwork-description">
+                                <p class="artwork-desc"> As one crawls underneath, hiding, and letting others define who they are, this piece is a symbol of rebellion- one that transcends others' perception of themselves. Beneath the surface, I shall rise for one's self will then regain its might. Reclaiming oneself with pride, one without shame and fear of being criticized. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- artwork specification -->
+                    <div class="artwork-specification">
+                        <div class="artwork-specification-title">
+                            <h1><i>Artwork Specification</i></h1>
+                        </div>
+                        <div class="artwork-specification-details">
+                            <div class="artwork-specs artist">
+                                <h2 >Artist</h2>
+                                <p>Persemonn</p>
+                            </div>
+                            <div class="artwork-specs year-created">
+                                <h2>Year created</h2>
+                                <p>2025</p>
+                            </div>
+                            <div class="artwork-specs medium">
+                                <h2>Medium</h2>
+                                <p>Acrylic in Canvas</p>
+                            </div>
+                            <div class="artwork-specs dimension">
+                                <h2>Dimension</h2>
+                                <p>18 in x 24 in</p>
+                            </div>
+                            <div class="artwork-specs category">
+                                <h2>Category</h2>
+                                <p>Painting</p>
+                            </div>
+                            <div class="artwork-specs orientation">
+                                <h2>Orientation</h2>
+                                <p>Landscape</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-artist">
+                        <div class="about-artist-title">
+                            <h1><i>About Artist</i></h1>
+                        </div>
+                        <div class="about-artist-name">
+                            <h3>Persemonn</h3>
+                        </div>
+                        <div class="about-artist-description">
+                            <p>Persemonn is an artist based in Tarlac City who channels raw emotion and the astounding world they have lived into abstract compositions. Their art captures the turbulence of human emotions creating a dialogue between their audience. They aim to share their work towards the world by actively contributing to one's awareness towards artistic expression.</p>
+                        </div>
+                    </div>
+                    <div class="control-btn">
+                        <button class="edit-artwork-btn"><i class="fa-solid fa-pencil fa-xl"></i>Edit Artwork</button>
+                        <button class="delete-artwork-btn"><i class="fa-solid fa-trash fa-xl"></i>Delete Artwork</button>
+                    </div>
+                </div>
+            </div>
+          </section>
+
+    </body>
+</html>

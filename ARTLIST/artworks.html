@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="artworks.css">
+        <link rel="icon" href="ICONS/favicon.ico" type="image/x-icon">
         <script src="artworks.js" defer></script>
         <title>Nocturne Gallery</title>
     </head>
@@ -18,11 +19,11 @@
         </nav>
         <nav class="tablet-mobile">
             <div class="title">NOCTURNE GALLERY</div>
-            <button id="menubtn" onclick="toggle(true)"><img src="../HOME/menu-1-svgrepo-com.svg" alt="Menu"></button>
-            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="../HOME/close-1511-svgrepo-com.svg" alt="Close"></button>
+            <button id="menubtn" onclick="toggle(true)"><img src="../HOME/ICONS/menu-1-svgrepo-com.svg" alt="Menu"></button>
+            <button id="closebtn" class="hidden" onclick="toggle(false)"><img src="../HOME/ICONS/close-1511-svgrepo-com.svg" alt="Close"></button>
         </nav>
         <div id="panel" class="panel hidden">
-            <a href="../ARTLIST/">HOME</a>
+            <a href="../HOME/home.html">HOME</a>
             <hr style="width: 95%;">
             <a href="../ARTLIST/artworks.html">ARTWORK LIST</a>
             <hr style="width: 95%;">
@@ -33,7 +34,7 @@
             <div class="hero-content">
                 <h1>Artwork Collection</h1>
                 <p>
-                    Explore our curated selection of exceptional artworks
+                    Explore our curated selection of exceptional artworks—from timeless classics to local contemporary masterpieces.
                 </p>
             </div>
         </section>
@@ -45,24 +46,16 @@
                 <div class="control">
                     <label for="category">Category</label>
                     <select name="category" id="#category">
-                        <option value="">All Category</option>
+                        <option value="">All Categories</option>
                         <option value="impressionism">Impressionism</option>
                         <option value="post-impressionism">Post-Impressionism</option>
-                        <option value="expressionism">Expressionism</option>
-                        <option value="cubism">Cubism</option>
-                        <option value="surrealism">Surrealism</option>
-                        <option value="futurism">Futurism</option>
-                        <option value="dadaism">Dadaism</option>
-                        <option value="abstract">Abstract</option>
-                        <option value="minimalism">Minimalism</option>
-                        <option value="pop-art">Pop Art</option>
-                        <option value="modernism">Modernism</option>
+                        <option value="modern">Proto-Expressionism</option>
                         <option value="contemporary">Contemporary</option>
                     </select>
                 </div>
                 <div class="control">
                     <label for="artist">Artist</label>
-                    <input type="text" id="search-artist" placeholder="Serch by Artist name">
+                    <input type="text" id="search-artist" placeholder="Search by Artist name">
                 </div>
                 <div class="control">
                     <label for="sort-by">Sort by</label>
@@ -96,23 +89,23 @@
             <div class="artwork-container grid-layout">
                 <a href="ARTFILE/artwork1.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/960px-Starry_Night_Over_the_Rhone.jpg" alt="starry night over the phone">
+                        <img src="IMAGES/12 ARTWORKS/Starry Night Over the Rhone.jpg" alt="Starry Night Over the Rhône">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Post - Impressionism</h3>
                             </div>
                             <div class="artwork-content">
-                                <h2 class="artwork-title">Starry Night Over the Rhone</h2>
+                                <h2 class="artwork-title">Starry Night Over the Rhône</h2>
                                 <h3 class="artwork-author"><i>Vincent Van Gogh</i></h3>
                                 <h5 class="artwork-year">1888</h5>
-                                <p class="artwork-description">Starry Night Over the Rhône is famous for the scene that captures the interplay between natural starlight and artificial light. This painting is one of Van Gogh's several "night effects" works. It depicts the view of the Rhône River at night from the bank in Arles, France, a short walk from the Yellow House where Van Gogh was living at the time. </p>
+                                <p class="artwork-description">Starry Night Over the Rhône is famous for the scene that captures the interplay between natural starlight and artificial light. This painting is one of Van Gogh's several "night effects" works. It depicts the view of the Rhône River at night from the bank in Arles, France, a short walk from the Yellow House where Van Gogh was living at the time.</p>
                             </div>
                         </div>
                     </div>
                 </a>
                 <a href="ARTFILE/artwork2.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/6552e5daa000275e000f7a5120d57e7a08e965b7-1200x900.avif" alt="a man starring at the pool">
+                        <img src="IMAGES/12 ARTWORKS/Mona Lisa.jpg" alt="Mona Lisa">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Renaissance</h3>
@@ -121,14 +114,14 @@
                                 <h2 class="artwork-title">Mona Lisa</h2>
                                 <h3 class="artwork-author"><i>Leonardo da Vinci</i></h3>
                                 <h5 class="artwork-year">1503-1506</h5>
-                                <p class="artwork-description">The Mona Lisa is one of the most famous paintings in the world, known for its mysterious smile and lifelike portrayal. It depicts a woman with an enigmatic expression, seated against a distant, dreamlike landscape. Leonardo’s mastery of sfumato—the delicate blending of tones and colors gives the portrait a soft, realistic quality.  </p>
+                                <p class="artwork-description">The Mona Lisa is one of the most famous paintings in the world, known for its mysterious smile and lifelike portrayal. It depicts a woman with an enigmatic expression, seated against a distant, dreamlike landscape. Leonardo’s mastery of sfumato—the delicate blending of tones and colors gives the portrait a soft, realistic quality. </p>
                             </div>
                         </div>
                     </div>
                 </a>
                 <a href="ARTFILE/artwork3.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/A Romantic Landscape with a Ruined Castle.jpg" alt="a romantic landscape with a ruined castle">
+                        <img src="IMAGES/12 ARTWORKS/Starry Night.jpg" alt="The Starry Night">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Post - Impressionism</h3>
@@ -137,14 +130,14 @@
                                 <h2 class="artwork-title">The Starry Night</h2>
                                 <h3 class="artwork-author"><i>Vincent Van Gogh</i></h3>
                                 <h5 class="artwork-year">1889</h5>
-                                <p class="artwork-description">The Starry Night depicts a swirling night sky over a quiet village, showcasing Van Gogh’s bold colors and expressive brushstrokes. Painted from his asylum room, it reflects his emotions and fascination with nature and the cosmos.</p>
+                                <p class="artwork-description">The Starry Night depicts a swirling night sky over a quiet village, showcasing Van Gogh’s bold colors and expressive brushstrokes. Painted from his asylum room, it reflects his emotions and fascination with nature and the cosmos. </p>
                             </div>
                         </div>
                     </div>
                 </a>
                 <a href="ARTFILE/artwork4.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/Blue_and_Green_Music_by_Georgia_O Keeffe,_1921.jpg" alt="blue and green music">
+                        <img src="IMAGES/12 ARTWORKS/Pool with Two Figures.avif" alt="Pool with Two Figures">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Pop Art</h3>
@@ -152,7 +145,7 @@
                             <div class="artwork-content">
                                 <h2 class="artwork-title">Pool with Two Figures</h2>
                                 <h3 class="artwork-author"><i>David Hockney</i></h3>
-                                <h5 class="artwork-year">1972</h5>
+                                <h5 class="artwork-year">1889</h5>
                                 <p class="artwork-description">Pool with Two Figures shows a man swimming underwater while another stands poolside, gazing down. The painting contrasts movement and stillness, capturing emotion through bright colours and clean composition.</p>
                             </div>
                         </div>
@@ -160,13 +153,13 @@
                 </a>
                 <a href="ARTFILE/artwork5.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/BMN594.webp" alt="bmn594">
+                        <img src="IMAGES/12 ARTWORKS/Nocturne in Blue and Gold.jpg" alt="Old Battersea Bridge">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Tonalism</h3>
                             </div>
                             <div class="artwork-content">
-                                <h2 class="artwork-title">Nocturne: Blue and Gold - Old Battersea Bridge</h2>
+                                <h2 class="artwork-title">Old Battersea Bridge</h2>
                                 <h3 class="artwork-author"><i>James Abbott McNeill Whistler</i></h3>
                                 <h5 class="artwork-year">1872-1875</h5>
                                 <p class="artwork-description">This nocturne depicts Old Battersea Bridge spanning the Thames River at night in atmospheric blues and golds. A solitary figure stands on the bridge while golden fireworks illuminate the dusky sky, creating a dreamlike version of the London riverscape.</p>
@@ -176,13 +169,13 @@
                 </a>
                 <a href="ARTFILE/artwork6.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/Henri_de_Toulouse-Lautrec,_French_-_At_the_Moulin_Rouge-_The_Dance_-_Google_Art_Project.jpg" alt="Henri">
+                        <img src="IMAGES/12 ARTWORKS/Impression, Sunrise.avif" alt="Impression, Sunrise">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Impressionism</h3>
                             </div>
                             <div class="artwork-content">
-                                <h2 class="artwork-title">Impressionism, Sunrise</h2>
+                                <h2 class="artwork-title">Impression, Sunrise</h2>
                                 <h3 class="artwork-author"><i>Claude Monet</i></h3>
                                 <h5 class="artwork-year">1872</h5>
                                 <p class="artwork-description">Impression, Sunrise depicts the port of Le Havre at dawn, with the sun casting an orange glow over misty waters. Small boats appear as dark silhouettes against the hazy atmosphere. The painting’s loose brushwork and focus on capturing fleeting light gave the Impressionist movement its name.</p>
@@ -192,7 +185,7 @@
                 </a>
                 <a href="ARTFILE/artwork7.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/James_Abbot_McNeill_Whistler_006.jpg" alt="James">
+                        <img src="IMAGES/12 ARTWORKS/At the Moulin Rouge, The Dance.jpg" alt="At the Moulin Rouge: The Dance">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Post - Impressionism</h3>
@@ -201,14 +194,14 @@
                                 <h2 class="artwork-title">At the Moulin Rouge: The Dance</h2>
                                 <h3 class="artwork-author"><i>Henri de Toulouse-Lautrec</i></h3>
                                 <h5 class="artwork-year">1890</h5>
-                                <p class="artwork-description">At the Moulin Rouge: The Dance captures the lively atmosphere of the famous Parisian nightclub, showing dancers and patrons in motion. The composition features bold outlines and flattened forms, with dynamic figures set against the vibrant interior of the dance hall. </p>
+                                <p class="artwork-description">At the Moulin Rouge: The Dance captures the lively atmosphere of the famous Parisian nightclub, showing dancers and patrons in motion. The composition features bold outlines and flattened forms, with dynamic figures set against the vibrant interior of the dance hall.</p>
                             </div>
                         </div>
                     </div>
                 </a>
                 <a href="ARTFILE/artwork8.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/K6H3LY574RH2VN7HN3N4BTERPI.avif" alt="landscape art">
+                        <img src="IMAGES/12 ARTWORKS/The Blue Vase.webp" alt="The Blue Vase">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Post - Impressionism</h3>
@@ -224,7 +217,7 @@
                 </a>
                <a href="ARTFILE/artwork9.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg" alt="mona lisa">
+                        <img src="IMAGES/12 ARTWORKS/A Sunday on La Grande Jatte.jpg" alt="A Sunday on La Grande Jatte">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Neo - Impressionism</h3>
@@ -240,14 +233,14 @@
                 </a>
                <a href="ARTFILE/artwork10.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/Mother and Child.jpg" alt="mother and child">
+                        <img src="IMAGES/12 ARTWORKS/Blue and Green Music.jpg" alt="Blue and Green Music">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Abstract Art</h3>
                             </div>
                             <div class="artwork-content">
                                 <h2 class="artwork-title">Blue and Green Music</h2>
-                                <h3 class="artwork-author"><i>Georgia O’Keeffe </i></h3>
+                                <h3 class="artwork-author"><i>Georgia O’Keeffe</i></h3>
                                 <h5 class="artwork-year">1921</h5>
                                 <p class="artwork-description">Blue and Green Music is an abstract composition featuring flowing, organic forms in shades of blue and green. The painting suggests rhythm and movement through its undulating shapes and color harmonies, reflecting O’Keeffe’s synesthetic response to music and her exploration of abstraction as visual melody.</p>
                             </div>
@@ -256,7 +249,7 @@
                 </a>
                <a href="ARTFILE/artwork11.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/Stacks of Wheat.jpg" alt="stacks of wheat">
+                        <img src="IMAGES/12 ARTWORKS/Cafe Terrace at Night.jpg" alt="Cafe Terrace at Night">
                         <div class="content-container">
                             <div class="category-container">
                                 <h3>Post - Impressionism</h3>
@@ -264,7 +257,7 @@
                             <div class="artwork-content">
                                 <h2 class="artwork-title">Cafe Terrace at Night</h2>
                                 <h3 class="artwork-author"><i>Vincent Van Gogh</i></h3>
-                                <h5 class="artwork-year">1889</h5>
+                                <h5 class="artwork-year">1888</h5>
                                 <p class="artwork-description">Café Terrace at Night is a vibrant oil painting that captures the warm, gaslight-illuminated terrace of a café against a deep blue, star-filled sky. This juxtaposition of cozy, artificial light and cool, natural darkness creates visual tension and captures the vibrant atmosphere of the place.</p>
                             </div>
                         </div>
@@ -272,16 +265,16 @@
                 </a>
                <a href="ARTFILE/artwork12.html" class="artwork-link">
                     <div class="artwork-item">
-                        <img src="IMAGES/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="starry night google art">
+                        <img src="IMAGES/12 ARTWORKS/The Scream.jpg" alt="The Scream">
                         <div class="content-container">
                             <div class="category-container">
-                                <h3>Proto - Expressionism</h3>
+                                <h3>Proto-Expressionism</h3>
                             </div>
                             <div class="artwork-content">
                                 <h2 class="artwork-title">The Scream</h2>
-                                <h3 class="artwork-author"><i>Vincent Van Gogh</i></h3>
-                                <h5 class="artwork-year">1893</h5>
-                                <p class="artwork-description">The Scream has a jarring palette of fiery oranges and reds for the sky, contrasting with deep blues for the fjord. The agonized, androgynous, skull-shaped figure has become an enduring symbol of modern existential dread and the "anxiety of modern life."</p>
+                                <h3 class="artwork-author"><i>Edvard Munch</i></h3>
+                                <h5 class="artwork-year">1889</h5>
+                                <p class="artwork-description">The Scream has a jarring palette of fiery oranges and reds for the sky, contrasting with deep blues for the fjord. The agonized, androgynous, skull-shaped figure has become an enduring symbol of modern existential dread and the "anxiety of modern life." </p>
                             </div>
                         </div>
                     </div>
@@ -302,24 +295,201 @@
            </section>
 
            <!-- footer section -->
-        <div class="contacts-cont">
-            <div class="contacts">
-                <div class="logo">
-                    NOCTURNE <br>GALLERY
-                    <div class="logos">
-                        <img class="logo1" src="ARTLIST/ICONS/facebook-svgrepo-com.svg" alt="Facebook">
-                        <img class="logo2" src="ARTLIST/ICONS/email-circle-fill-svgrepo-com.svg" alt="Email">
-                        <img class="logo3" src="ARTLIST/ICONS/github-142-svgrepo-com.svg" alt="Github">
+        
+    <!-- Local Artists Section -->
+    <section class="local-artists-section">
+        <div class="local-artists-header">
+            <h2>Featured Local Artists</h2>
+            <p>Discover exceptional works from talented artists in our community</p>
+        </div>
+
+        <!-- Local Artists Layout Control -->
+        <div class="local-artwork-count">
+            <h3 class="local-artwork-total">12 Local Artworks</h3>
+            <div class="local-artwork-layout-btn">
+                <button class="local-grid-view active">Grid View</button>
+                <button class="local-list-view">List View</button>
+            </div>
+        </div>
+
+        <div class="local-artists-container grid-layout">
+            <!-- Local Artist 1 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork1.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Labyrinthine Enigma.png" alt="Labyrinthine Enigma">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Labyrinthine Enigma</h3>
+                        <p class="local-artist-name"><i>Jose Ishmael Lapus</i></p>
+                        <p class="local-artwork-description">Labyrinthine Enigma is a paper quilled self-portrait that explores the complexity of the artist's mind and emotions. The swirls and patterns represent the winding paths of thoughts, feelings, and memories that constantly shift and change. The different colored pieces symbolize how people collect parts of themselves from everyone they meet throughout life—small habits, expressions, and lessons that shape who they become. This work is a tribute to the people who make life worth living, even when the world feels difficult.</p>
                     </div>
-                </div>
-                <div class="contact">
-                    <h4>Contacts</h4>
-                    <p>nocturnegallery@gmail.com</p>
-                    <p>(+63) 993-783-8753</p>
+                </a>
+            </div>
+
+            <!-- Local Artist 2 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork2.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Agony_s Grip.jpg" alt="Agony’s Grip">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Expressionism</div>
+                        <h3 class="local-artwork-title">Agony’s Grip</h3>
+                        <p class="local-artist-name"><i>Marc Cedrick Austria</i></p>
+                        <p class="local-artwork-description">This powerful piece of Expressionist Dotwork is a visceral study of human distress, titled "Agony's Grip." Rendered entirely in the meticulous, high-contrast style of stipple art, the digital illustration features a figure whose face is contorted in a silent, primal shriek. The hands are pressed desperately against the cheeks, an intense gesture of panic and emotional overload that dominates the composition. Breaking the monochrome field is the sole use of color: the eyes glow with an unnerving, blood-red intensity, suggesting either a flash of destructive rage or a mind pushed past its breaking point. The thousands of individual dots create a grainy, vibrating texture that effectively visualizes the internal static and chaos of anxiety, making the artwork a raw and compelling portrait of inner turmoil.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 3 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork3.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Sulyap ng Sibol sa Hinagpis.jpg" alt="Sulyap ng Sibol sa Hinagpis">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Sulyap ng Sibol sa Hinagpis</h3>
+                        <p class="local-artist-name"><i>Allen Ferdinald Torres</i></p>
+                        <p class="local-artwork-description">This piece tells the story of sacrifice, resilience, and hope — a hand hardened by labor, cracked and embedded with remnants of industry, yet sprouting new life. From the lifeless ruins below, warmth and light slowly emerge as day fades, symbolizing renewal after hardship. It speaks of people who find growth even in exhaustion, who continue to rise and rebuild despite the weight of their struggles.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 4 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork4.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/TWO VIEW.jpg" alt="Two View">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Two View</h3>
+                        <p class="local-artist-name"><i>Cesiah Gerona</i></p>
+                        <p class="local-artwork-description">The piece is about the sunset which often symbolizes the end of a cycle and the start of a new one. It tells people to not focus on the failure of yesterday but to start today with positive thoughts and expectations.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 5 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork5.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Memento Aamre.jfif" alt="Memento Amare">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Expressionism</div>
+                        <h3 class="local-artwork-title">Memento Amare</h3>
+                        <p class="local-artist-name"><i>Adrian Galsim</i></p>
+                        <p class="local-artwork-description">The piece resembling a being that embodies the struggle of the artist, the devil or the angel— an entity torn between divine and desire. The skull depicts that he's already dead inside but the blood is the resemblance of the struggle of being something. The eyes searches for truth, desperate to understand himself. Stripped bare, he stands with no defense — honest and vulnerable but has a will of a champion. As he reach through the sky — longing to ascend, know everything, and be something but deep down he cannot be the all knowing. The clothes clings to him as is all that's left on his purity, a reminder that his clothes is the only thing that hides him to his cruel sanity.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 6 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork6.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Hymn Of The Earth.jpg" alt="Hymn of the Earth">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Hymn of the Earth</h3>
+                        <p class="local-artist-name"><i>Persemonn</i></p>
+                        <p class="local-artwork-description">As the Earth gradually cries for help, we humans should become a channel of communication that heeds its call. The hymn of the Earth will reverberate through the cracks, each pulse imploring for help to come at last.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 7 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork7.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Balat Sibuyas.jfif" alt="Balat Sibuyas">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Expressionism</div>
+                        <h3 class="local-artwork-title">Balat Sibuyas</h3>
+                        <p class="local-artist-name"><i>Persemonn</i></p>
+                        <p class="local-artwork-description">Balat sibuyas describes a person who inevitably feels everything all too deeply. One which can be destroyed easily when even the smallest word or action occurs. Despite this tragedy lies a quiet strength, one that stands against all uncertainty. For this sensitivity is a form of courage and resilience. </p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 8 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork8.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Beneath the Surface.jfif" alt="Beneath the Surface">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Expressionism</div>
+                        <h3 class="local-artwork-title">Beneath the Surface</h3>
+                        <p class="local-artist-name"><i>Persemonn</i></p>
+                        <p class="local-artwork-description">As one crawls underneath, hiding, and letting others define who they are, this piece is a symbol of rebellion- one that transcends others' perception of themselves. Beneath the surface, I shall rise for one's self will then regain its might. Reclaiming oneself with pride, one without shame and fear of being criticized.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 9 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork9.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Specthesia.jpg" alt="Specthesia">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Expressionism</div>
+                        <h3 class="local-artwork-title">Specthesia</h3>
+                        <p class="local-artist-name"><i>an2knee</i></p>
+                        <p class="local-artwork-description">The title comes form the two words Spectrum and Esthesia. It's like the lights that represents earthy things that goes through your life and makes you able to feel the sensation. It simply means adaption of what is the trend, and finding purpose on it.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 10 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork10.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Banaag.jpg" alt="Banaag">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Banaag</h3>
+                        <p class="local-artist-name"><i>an2knee</i></p>
+                        <p class="local-artwork-description">Achieving dreams is like  building a house in the middle of the forest. You have the resources for your dream house, and you have yourself to make it higher as much as you like, until you see the sun. </p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 11 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork11.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Balakid.jpg" alt="Balakid">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Balakid</h3>
+                        <p class="local-artist-name"><i>an2knee</i></p>
+                        <p class="local-artwork-description">You're able to build a house, but not a home. Due to urge to achieve success in life, we forgot about its subjectivity. That we think about success  could serve as an obstacles to achieve the real success - a home. </p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Local Artist 12 -->
+            <div class="local-artist-item">
+                <a href="ARTFILE/localartwork12.html" class="local-artist-link">
+                    <img src="IMAGES/12 LOCAL ARTWORKS/Glass House.jpg" alt="Glass House">
+                    <div class="local-content-container">
+                        <div class="local-category-container">Contemporary</div>
+                        <h3 class="local-artwork-title">Glass House</h3>
+                        <p class="local-artist-name"><i>an2knee</i></p>
+                        <p class="local-artwork-description">Lost is inevitable. There some points where we find ourselves in different places. These represents our decisions in our life and its consequent effect. No matter how bad it is, whether you like it or not, and if it is intentional or not, it will still shape to be the best version of yourself, enough to make you shine like a star.</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="contacts-cont">
+        <div class="contacts">
+            <div class="logo">
+                NOCTURNE <br>GALLERY
+                <div class="logos">
+                    <img class="logo1" src="ICONS/facebook-svgrepo-com.svg" alt="Facebook">
+                    <img class="logo2" src="ICONS/email-circle-fill-svgrepo-com.svg" alt="Email">
+                    <img class="logo3" src="ICONS/github-142-svgrepo-com.svg" alt="Github">
                 </div>
             </div>
-            <hr style="width: 95%; margin-top: 10px; color: #ffffff;">
-            <div class="all-rights">© 2025 NOCTURNE GALLERY. All rights reserved. </div>
+            <div class="contact">
+                <h4>Contacts</h4>
+                <p>nocturnegallery@gmail.com</p>
+                <p>(+63) 993-783-8753</p>
+            </div>
+        </div>
+        <hr style="width: 95%; margin-top: 10px; color: #ffffff;">
+        <div class="all-rights">© 2025 NOCTURNE GALLERY. All rights reserved. </div>
         </div>
     </body>
 </html>
