@@ -20,15 +20,15 @@
                         <h2>Login</h2>
                         <h4>Here, arts illuminate the night.</h4>
                     </div>
-                    <form action="#" class="form-container">
-                        <div class="input-wrapper">
-                            <i class="fa-regular fa-user"></i>
-                            <input type="text" name="username" placeholder="Username">
-                        </div>
-                        <div class="input-wrapper">
+                    <form action="backend/auth/login.php" method="POST" class="form-container">
+                         <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" name="email" placeholder="Email" required>
+                         </div>
+                         <div class="input-wrapper">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" name="password" placeholder="Password">
-                        </div>
+                            <input type="password" name="password" placeholder="Password" required="wow">
+                         </div>
                         <div class="submit-container">
                             <input type="submit" value="Login">
                         </div>

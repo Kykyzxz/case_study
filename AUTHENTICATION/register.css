@@ -1,0 +1,116 @@
+/* ccs reset */
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+}
+/* login section */
+.main-section{
+    border: 2px solid blue;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-container{
+    border: 2px solid blue;
+    height: 70vh;
+    width: 60%;
+    display: flex;
+
+}
+
+.logo-container{
+    border: 2px solid red;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    /* align-items: center; */
+}
+.login-container{
+    border: 2px solid black;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+.form-title-container{
+    border: 2px solid red;
+    /* height: ; */
+    height: 20%;
+    width: 70%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.form-container{
+    border: 2px solid red;
+    height: 70%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-wrapper{
+    border: 2px solid blue;
+    width: 85%;
+    height: 23%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* align-content: center; */
+}
+.input-wrapper input{
+    width: 85%;
+    height: 100%;
+    text-align: left;
+}
+.input-wrapper i{
+    font-size: 30px;   /* adjust as needed */
+    color: #333;       /* optional: change color */
+    padding-left: 20px;
+}
+
+
+/* .form-container input{
+    height: 20%;
+    width: 80%;
+    text-align: center;
+} */
+.submit-container{
+    border: 2px solid blue;
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit-container input{
+    height: 60%;
+    width: 40%;
+    border-radius: 5px;
+}
+.submit-container input:hover{
+    transform: scale(1.05);
+}
+.register-desc{
+    border: 2px solid red;
+}
