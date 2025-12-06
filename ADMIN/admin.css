@@ -1,0 +1,43 @@
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-section{
+    border: 2px solid blue;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+
+}
+
+.left-side-bar{
+    border: 2px solid red;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+.title-admin-dashboard{
+    border: 2px solid blue;
+    height: 15%;
+    width: 100%;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.btn-container{
+    border: 2px solid blue;
+    height: 10%;
+    width: 90%;
+    margin-top: 10px;
+}
+.content-div{
+    border: 2px solid black;
+    height: 100%;
+    width: 80%;
+}
