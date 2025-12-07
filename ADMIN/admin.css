@@ -25,9 +25,10 @@
     border: 2px solid blue;
     height: 15%;
     width: 100%;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .btn-container{
@@ -35,9 +36,312 @@
     height: 10%;
     width: 90%;
     margin-top: 10px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    /* justify-content: center; */
 }
+
+.btn-container:hover{
+    transition: all 0.5s ease-in-out;
+    background-color: rgb(75, 75, 35);
+    transform: scale(1.05);
+}
+.icon-container{
+    border: 2px solid red;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+}
+.icon-container i{
+    font-size: 1.9rem;
+}
+.btn-name{
+    border: 2px solid black;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-name h3{
+    font-size: 1.3rem;
+    line-height: 1.5;
+    letter-spacing: 8px;
+}
+
+/* user container */
+.user-container{
+    border: 2px solid black;
+    height: 55%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    /* justify-content: end; */
+}
+.user-info-container{
+    border: 2px solid blue;
+    height: 20%;
+    width: 100%;
+    display: flex;
+}
+.user-icon-container{
+    /* border: 2px solid blue; */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    padding-left: 30px;
+    /* justify-content: cent; */
+}
+.user-icon-container i{
+    font-size: 2.4rem;
+}
+.user-info{
+    /* border: 2px solid blue; */
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+.user-info h3, .user-info h4{
+    letter-spacing: 0.5;
+}
+
+/* content div */
 .content-div{
     border: 2px solid black;
     height: 100%;
     width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-container{
+    /* border: 2px solid blue; */
+    height: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* justify-content: space-around; */
+}
+
+.art-count-container{
+    /* border: 2px solid blue; */
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.art-count-icon-container{
+    border: 2px solid blue;
+    width: 15%;
+    height: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.art-count-icon-container i{
+    font-size: 2.5rem;
+}
+
+.count-container{
+    border: 2px solid red;
+    height: 40%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.count-container h3{
+    font-size: 1.35rem;
+}
+
+/* add artwork btn container */
+.add-artwork-btn-container{
+    /* border: 2px solid blue; */
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-container{
+    border: 2px solid blue;
+    height: 60%;
+    width: 45%;
+    display:flex;
+    border-radius: 10px;
+    background-color: antiquewhite;
+}
+
+.add-container:hover{
+    transform: scale(1.02);
+}
+
+.add-icon-container{
+    /* border: 2px solid blue; */
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-icon-container i{
+    font-size: 1.6rem;
+}
+
+.add-btn-container{
+    /* border: 2px solid red; */
+    height: 100%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+.add-btn-container h3{
+    letter-spacing: 2px;
+}
+
+/* artwork collection title */
+.artwork-collection-title {
+    height: 10%;
+    padding-left: 20px;
+    display: none;
+    align-items: center;
+}
+.artwork-collection-title.active{
+    display: flex;
+}
+
+/* content container */
+.main-content-container {
+    border: 2px solid blue;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.content-container {
+    height: auto;
+    border: 2px solid black;
+    /* display: flex; */
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 30px;
+    gap: 40px;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+.content-container.active{
+    visibility: visible;
+    height: auto;
+    display: grid; /* This restores your original layout */
+}
+/* Make sample containers same height */
+.sample-container {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 550px;          
+    overflow: hidden;     
+}
+
+/* Image stays consistent */
+.sample-container img {
+    object-fit: cover;
+    height: 350px;          
+    width: 100%;
+}
+
+.sample-container-content {
+    border: 2px solid blue;
+    padding: 10px;
+    flex: 1;           
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* flex-direction: column-reverse; */
+    /* justify-content: center; */
+}
+.artwork-title{
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+}
+
+.artwork-desc{
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* DESCRIPTION TEXT WITH ELLIPSIS */
+.artwork-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Control icons container */
+.artwork-control-container {
+    border: 2px solid blue;
+    padding: 20px;
+    display: flex;
+    height: 10%;
+    align-items: center;
+    gap: 20px;
+    justify-content: end;
+    /* justify-content: space-around; */
+}
+
+.artwork-control-container i{
+    font-size: 1.4rem;
+}
+
+
+/* feedback contents */
+.feedback{
+    border: 2px solid red;
+    /* border: 2px solid blue; */
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    gap: 5px;
+}
+.content-feedback{
+    grid-template-columns: repeat(2,1fr);
+}
+.feedback-container{
+    width: 100%;
+    border: 2px solid black;
+    padding: 10px;
+    height: 140px;
+}
+
+.feedback-info{
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 3px;
+}
+
+.feedback-control{
+    /* border: 2px solid blue; */
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 20px;
+}
+.feedback-control i{
+    font-size: 1.2rem;
 }
