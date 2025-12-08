@@ -280,6 +280,7 @@ function showViewModal(artwork) {
         }
     });
 }
+
 // Close View Modal
 function closeViewModal() {
     const modal = document.getElementById('viewModalOverlay');
@@ -297,7 +298,6 @@ function closeViewModal() {
 }
 
 // Edit Artwork
-// Edit Artwork - Fetch data and open edit modal
 function editArtwork(id) {
     console.log('Editing artwork ID:', id);
     
@@ -325,6 +325,7 @@ function editArtwork(id) {
         alert('An error occurred while loading the artwork.');
     });
 }
+
 // Open Edit Modal with pre-filled data
 function openEditModal(artwork) {
     const modal = document.getElementById('editModalOverlay');
@@ -350,6 +351,7 @@ function openEditModal(artwork) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
+
 // Close Edit Modal
 function closeEditModal() {
     const modal = document.getElementById('editModalOverlay');
@@ -359,11 +361,13 @@ function closeEditModal() {
     document.getElementById('editFileName').textContent = 'No file chosen';
     document.getElementById('editImagePreview').style.display = 'none';
 }
+
 // Update file name for edit modal
 function updateEditFileName(input) {
     const fileName = input.files[0]?.name || 'No file chosen';
     document.getElementById('editFileName').textContent = fileName;
 }
+
 // Submit Edit Form
 function submitEditForm() {
     const form = document.getElementById('editArtworkForm');
@@ -416,6 +420,7 @@ function submitEditForm() {
         form.reportValidity();
     }
 }
+
 // Delete Artwork
 function deleteArtwork(id) {
     if (confirm('Are you sure you want to delete this artwork? This action cannot be undone.')) {
@@ -527,14 +532,65 @@ function deleteFeedback(id) {
     }
 }
 
-// Connect the "Add Artwork" button to open modal
+// ==========================================
+// LOGOUT FUNCTIONALITY
+// ==========================================
+
+// Open logout confirmation modal
+function openLogoutModal() {
+    document.getElementById('logoutModalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close logout modal
+function closeLogoutModal() {
+    document.getElementById('logoutModalOverlay').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Confirm logout and redirect
+function confirmLogout() {
+    // Show loading state
+    const logoutBtn = document.querySelector('.btn-danger');
+    const originalHTML = logoutBtn.innerHTML;
+    logoutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging out...';
+    logoutBtn.disabled = true;
+
+    // Call logout.php
+    fetch('../AUTHENTICATION/logout.php', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Redirect to login page
+            window.location.href = '../AUTHENTICATION/login.php';
+        } else {
+            alert('Logout failed. Please try again.');
+            logoutBtn.innerHTML = originalHTML;
+            logoutBtn.disabled = false;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Even if fetch fails, redirect to login (force logout)
+        window.location.href = '../AUTHENTICATION/login.php';
+    });
+}
+
+// ==========================================
+// DOM CONTENT LOADED
+// ==========================================
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Add Artwork button
     const addButton = document.querySelector('.add-container');
     if (addButton) {
         addButton.addEventListener('click', openModal);
         addButton.style.cursor = 'pointer';
     }
 
+    // Modal overlays click handlers
     const modalOverlay = document.getElementById('modalOverlay');
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(e) {
@@ -544,21 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const modal = document.getElementById('modalOverlay');
-            if (modal && modal.classList.contains('active')) {
-                closeModal();
-            }
-            
-            const viewModal = document.getElementById('viewModalOverlay');
-            if (viewModal && viewModal.classList.contains('active')) {
-                closeViewModal();
-            }
-        }
-    });
-
-        const editModalOverlay = document.getElementById('editModalOverlay');
+    const editModalOverlay = document.getElementById('editModalOverlay');
     if (editModalOverlay) {
         editModalOverlay.addEventListener('click', function(e) {
             if (e.target === this) {
@@ -567,22 +609,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ESC key handler - update to handle both modals
+    const logoutModalOverlay = document.getElementById('logoutModalOverlay');
+    if (logoutModalOverlay) {
+        logoutModalOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLogoutModal();
+            }
+        });
+    }
+
+    // Exit button functionality for LOGOUT
+    const btnExit = document.getElementById('btn-exit');
+    if (btnExit) {
+        btnExit.addEventListener('click', function() {
+            console.log('Exit button clicked!');
+            openLogoutModal();
+        });
+        btnExit.style.cursor = 'pointer';
+    } else {
+        console.error('Exit button not found! Make sure your HTML has id="btn-exit"');
+    }
+
+    // ESC key handler - handle all modals (SINGLE HANDLER)
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             const modal = document.getElementById('modalOverlay');
             if (modal && modal.classList.contains('active')) {
                 closeModal();
+                return;
             }
             
             const viewModal = document.getElementById('viewModalOverlay');
             if (viewModal && viewModal.classList.contains('active')) {
                 closeViewModal();
+                return;
             }
             
             const editModal = document.getElementById('editModalOverlay');
             if (editModal && editModal.classList.contains('active')) {
                 closeEditModal();
+                return;
+            }
+
+            const logoutModal = document.getElementById('logoutModalOverlay');
+            if (logoutModal && logoutModal.classList.contains('active')) {
+                closeLogoutModal();
+                return;
             }
         }
     });

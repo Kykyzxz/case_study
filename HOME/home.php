@@ -6,13 +6,14 @@
         <title>Nocturne Gallery</title>
         <link rel="stylesheet" href="home.css">
         <link rel="icon" href="ICONS/favicon.ico" type="image/x-icon">
+        <script src="home.js" defer></script>
     </head>
     <body>
         <nav class="desktop">
             <div class="title">NOCTURNE GALLERY</div>
             <div class="buttons">
                 <a href="home.html">HOME</a>
-                <a href="../ARTLIST/artworks.html">ARTWORK LIST</a>
+                <a href="../ARTLIST/artworks.php">ARTWORK LIST</a>
                 <a href="../ABOUT/about.html">ABOUT</a>
             </div>
         </nav>
@@ -24,7 +25,7 @@
         <div id="panel" class="panel hidden">
             <a href="home.html">HOME</a>
             <hr style="width: 95%;">
-            <a href="../ARTLIST/artworks.html">ARTWORK LIST</a>
+            <a href="../ARTLIST/artworks.php">ARTWORK LIST</a>
             <hr style="width: 95%;">
             <a href="../ABOUT/about.html">ABOUT</a>
         </div>
@@ -37,7 +38,7 @@
             <div class="slide-cont">
                 <h1>Discover Extraordinary Art</h1>
                 <p>Immerse yourself in a curated collection of contemporary masterpieces from visionary artists around the world and undiscovered local artists.</p>
-                <button><a href="../ARTLIST/artworks.html">Explore Gallery</a></button>
+                <button><a href="../ARTLIST/artworks.php">Explore Gallery</a></button>
             </div>
             <div class="dots">
                 <span class="dot dot1"></span>
@@ -84,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <button><a href="../ARTLIST/artworks.html">See more</a></button>
+            <button><a href="../ARTLIST/artworks.php">See more</a></button>
         </div>
         <div class="latest-feedback-cont">
             <div class="latest-feedback">
@@ -92,17 +93,10 @@
                 <p>Your voices inspire us to improve and create a better art experience.</p>
             </div>
             <div class="latest-feedback-texts">
+                <!-- Feedback will be loaded dynamically here -->
                 <div class="feedbacks">
-                    <h3>Luis Barba</h3>
-                    <p>“The website’s elegant design and seamless navigation beautifully highlight each artwork, creating an immersive viewing experience.”</p>
-                </div>
-                <div class="feedbacks">
-                    <h3>Kyran Solomon</h3>
-                    <p>“Impressive layout and user-friendly interface make browsing through diverse art collections enjoyable and inspiring.”</p>
-                </div>
-                <div class="feedbacks">
-                    <h3>Cedrick Austria</h3>
-                    <p>“The gallery’s modern aesthetic, vivid visuals, and organized sections enhance appreciation for every featured artist’s work.</p>
+                    <h3>Loading...</h3>
+                    <p>"Please wait while we load the latest feedback."</p>
                 </div>
             </div>
         </div>
@@ -111,7 +105,7 @@
                 <h1>Whistleblower Section</h1>
                 <p>Help us improve by reporting any issues or concerns. Your feedback is confidential.</p>
             </div>
-            <form>
+            <form id="feedbackForm" onsubmit="return false;">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="off" required><br><br>
                 <label for="email">E-mail</label>

@@ -52,7 +52,7 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                         <h3>Feedbacks</h3>
                     </div>
                 </div>
-                <div class="btn-container">
+                <div class="btn-container" id="btn-exit">
                     <div class="icon-container">
                         <i class="fa-solid fa-door-open"></i>
                     </div>
@@ -567,6 +567,34 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                         <button class="btn btn-submit btn-edit-submit" onclick="submitEditForm()">
                             <i class="fa-solid fa-check"></i>
                             Update Artwork
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Confirmation Modal -->
+            <div class="modal-overlay" id="logoutModalOverlay">
+                <div class="modal-container logout-modal">
+                    <div class="modal-header">
+                        <h2><i class="fa-solid fa-right-from-bracket"></i> Confirm Logout</h2>
+                    </div>
+
+                    <div class="modal-body">
+                        <div style="text-align: center; padding: 20px 0;">
+                            <i class="fa-solid fa-circle-exclamation" style="font-size: 4rem; color: #f59e0b; margin-bottom: 20px;"></i>
+                            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: #1f2937;">Are you sure you want to logout?</h3>
+                            <p style="color: #6b7280; font-size: 0.95rem;">You will be redirected to the login page.</p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-cancel" onclick="closeLogoutModal()">
+                            <i class="fa-solid fa-xmark"></i>
+                            Cancel
+                        </button>
+                        <button class="btn btn-danger" onclick="confirmLogout()">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Yes, Logout
                         </button>
                     </div>
                 </div>

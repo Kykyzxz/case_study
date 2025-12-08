@@ -72,7 +72,7 @@ if (isset($_POST['login'])) {
 
     // Admin login
     if ($email === "admin@gmail.com" && $password === "admin123") {
-        header("Location: ../ADMIN/admin.html");
+        header("Location: ../ADMIN/admin.php");
         exit();
     }
 
@@ -108,7 +108,7 @@ if (isset($_POST['login'])) {
     $_SESSION['email'] = $user['email'];
 
     $stmt->close();
-    header("Location: ../HOME/home.html");
+    header("Location: ../HOME/home.php");
     exit();
 }
 
