@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2025 at 04:50 PM
+-- Generation Time: Dec 10, 2025 at 09:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,7 +53,14 @@ INSERT INTO `artwork` (`artwork_id`, `artwork_title`, `artist`, `year_created`, 
 (7, 'hello helllo', 'hello', '0000-00-00', 'hello', 'hello', 'hello', 'hello', 'Landscape', 'hello', '1765348625_6939151111969.png', 'National'),
 (8, 'artworkartworkartwork', 'aokoakokaok', '0000-00-00', 'kjakjakjakj', 'okaokaok', 'okoakoak', 'okaokaoko', 'Landscape', 'kjakjkajkaj', '1765348683_6939154ba40fe.JPG', 'National'),
 (9, 'sdjkj', 'akjsdkj', '0000-00-00', 'akakj', 'kjakj', 'kjakj', 'kjkj', 'Landscape', 'aakjajakj', '1765348722_69391572f157b.png', 'National'),
-(10, 'ASD', 'ASD', '2025', 'ASD', 'ASD', 'ASD', 'Neo-Impressionism', 'Landscape', 'ASD', '1765368629_69396335c976e.png', 'National');
+(10, 'ASD', 'ASD', '2025', 'ASD', 'ASD', 'ASD', 'Neo-Impressionism', 'Landscape', 'ASD', '1765368629_69396335c976e.png', 'National'),
+(12, 'ad', 'asd', '222', 'asd', 'asd', 'asd', 'Abstract Art', 'Landscape', 'asd', '1765396437_6939cfd58e6cf.png', 'National'),
+(13, 'asd', 'asd', '22', 'asd', 'asd', 'asd', 'Abstract Art', 'Landscape', 'asd', '1765396475_6939cffba602c.png', 'National'),
+(14, 'asd', 'asd', '2222', 'asd', 'asd', '22', 'Abstract Art', 'Landscape', 'asd', '1765396529_6939d031a9ae8.png', 'National'),
+(15, 'asd', 'asd', '0', 'd', 'asd', 'd', 'Abstract Art', 'Landscape', 'dd', '1765396574_6939d05e13d10.png', 'National'),
+(16, 'asd', 'asd', '0', 'asd', 'ads', 'ad', 'Expressionism', 'Landscape', 'asd', '1765396648_6939d0a8ad2a5.png', 'National'),
+(17, 'sd', 'dd', '0', 'qwqd', 'd', 'd', 'Neo-Impressionism', 'Landscape', 'qd', '1765396684_6939d0cc34425.jpg', 'National'),
+(18, 'd', 'd', '0', 'asd', 'asd', 'asd', 'Tonalism', 'Landscape', 'asd', '1765396714_6939d0eaaf7f4.jpg', 'National');
 
 -- --------------------------------------------------------
 
@@ -92,7 +99,8 @@ INSERT INTO `artwork_comments` (`comment_id`, `artwork_id`, `user_id`, `comment_
 (15, 3, 4, 'pogi pogi ni luis here', '2025-12-10 15:25:22', '2025-12-10 15:25:22'),
 (16, 3, 4, 'bakit di nagsscroll isa panga', '2025-12-10 15:25:35', '2025-12-10 15:25:35'),
 (17, 3, 4, 'yan scrollable naba yung comments', '2025-12-10 15:25:49', '2025-12-10 15:25:49'),
-(18, 3, 4, 'omg ayan na scrollable na siya taena nice one', '2025-12-10 15:47:14', '2025-12-10 15:47:14');
+(18, 3, 4, 'omg ayan na scrollable na siya taena nice one', '2025-12-10 15:47:14', '2025-12-10 15:47:14'),
+(19, 4, 4, 'hi its me and my jowa yeah', '2025-12-10 17:00:52', '2025-12-10 17:00:52');
 
 -- --------------------------------------------------------
 
@@ -122,7 +130,8 @@ INSERT INTO `artwork_likes` (`like_id`, `artwork_id`, `user_id`, `created_at`) V
 (15, 10, 6, '2025-12-10 12:53:32'),
 (16, 6, 4, '2025-12-10 13:12:06'),
 (17, 11, 4, '2025-12-10 13:56:46'),
-(18, 10, 4, '2025-12-10 14:18:31');
+(18, 10, 4, '2025-12-10 14:18:31'),
+(19, 9, 4, '2025-12-10 16:14:27');
 
 -- --------------------------------------------------------
 
@@ -193,7 +202,14 @@ INSERT INTO `artwork_logs` (`log_id`, `user_id`, `artwork_id`, `action_type`, `a
 (46, 4, 3, 'comment', 'Commented: pogi pogi ni luis here', 2, '2025-12-10 15:25:22'),
 (47, 4, 3, 'comment', 'Commented: bakit di nagsscroll isa panga', 2, '2025-12-10 15:25:35'),
 (48, 4, 3, 'comment', 'Commented: yan scrollable naba yung comments', 2, '2025-12-10 15:25:49'),
-(49, 4, 3, 'comment', 'Commented: omg ayan na scrollable na siya taena nice one', 2, '2025-12-10 15:47:14');
+(49, 4, 3, 'comment', 'Commented: omg ayan na scrollable na siya taena nice one', 2, '2025-12-10 15:47:14'),
+(50, 4, 6, 'view', 'Viewed artwork', 2, '2025-12-10 16:13:51'),
+(51, 4, 9, 'like', 'Liked artwork', 1, '2025-12-10 16:14:27'),
+(52, 4, 3, 'view', 'Viewed artwork', 2, '2025-12-10 16:14:41'),
+(53, 4, 3, 'view', 'Viewed artwork', 2, '2025-12-10 16:31:58'),
+(54, 4, 4, 'view', 'Viewed artwork', 1, '2025-12-10 17:00:31'),
+(55, 4, 4, 'comment', 'Commented: hi its me and my jowa yeah', 1, '2025-12-10 17:00:52'),
+(56, 4, 9, 'view', 'Viewed artwork', 1, '2025-12-10 19:39:38');
 
 -- --------------------------------------------------------
 
@@ -213,7 +229,6 @@ CREATE TABLE `feedback` (
 --
 
 INSERT INTO `feedback` (`feedback_id`, `name`, `email`, `feedback_desc`) VALUES
-(3, 'tite tite tite', 'tite@gmail.com', 'latest bato weh'),
 (4, 'weh ba weh ba omg latest nga', 'grabe@gmail.com', 'grabegraegrabe'),
 (5, 'testing whistleblower', 'testing@gmail.com', 'efedfedfedefedf'),
 (8, 'Luis Armann Barba', 'armann@gmail.com', 'feedback to guys andito kami sa hey hideout brew coffee shop');
@@ -294,25 +309,25 @@ ALTER TABLE `user_acc`
 -- AUTO_INCREMENT for table `artwork`
 --
 ALTER TABLE `artwork`
-  MODIFY `artwork_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `artwork_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `artwork_comments`
 --
 ALTER TABLE `artwork_comments`
-  MODIFY `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `comment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `artwork_likes`
 --
 ALTER TABLE `artwork_likes`
-  MODIFY `like_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `like_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `artwork_logs`
 --
 ALTER TABLE `artwork_logs`
-  MODIFY `log_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `log_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `feedback`
