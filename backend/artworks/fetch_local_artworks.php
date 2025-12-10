@@ -1,5 +1,5 @@
 <?php
-// fetch_local_artworks.php - Fetch local artworks with likes and comments
+// fetch_local_artworks.php - Fetch local artworks with likes, comments, and FILTERS
 session_start();
 header('Content-Type: application/json');
 ob_start();
@@ -37,7 +37,46 @@ try {
         throw new Exception("Database connection failed: " . $conn->connect_error);
     }
     
-    // Fetch all local artworks with likes and comments count
+    $category = isset($_GET['category']) ? trim($_GET['category']) : '';
+    $artist = isset($_GET['artist']) ? trim($_GET['artist']) : '';
+    $sort = isset($_GET['sort']) ? trim($_GET['sort']) : 'latest';
+    
+    $where_conditions = ["(LOWER(status) = 'local' OR status = 'Local')"];
+    $params = [];
+    $types = "";
+    
+    if (!empty($category)) {
+        $where_conditions[] = "a.category = ?";
+        $params[] = $category;
+        $types .= "s";
+    }
+    
+    if (!empty($artist)) {
+        $where_conditions[] = "a.artist LIKE ?";
+        $params[] = "%$artist%";
+        $types .= "s";
+    }
+    
+    $where_clause = implode(" AND ", $where_conditions);
+
+    $order_by = "a.artwork_id DESC";
+    switch ($sort) {
+        case 'oldest':
+            $order_by = "a.artwork_id ASC";
+            break;
+        case 'a-z':
+            $order_by = "a.artwork_title ASC";
+            break;
+        case 'z-a':
+            $order_by = "a.artwork_title DESC";
+            break;
+        case 'latest':
+        default:
+            $order_by = "a.artwork_id DESC";
+            break;
+    }
+    
+    // Build the final query
     $query = "SELECT 
                 a.artwork_id, 
                 a.artwork_title, 
@@ -48,13 +87,29 @@ try {
                 (SELECT COUNT(*) FROM artwork_likes l WHERE l.artwork_id = a.artwork_id) as like_count,
                 (SELECT COUNT(*) FROM artwork_comments c WHERE c.artwork_id = a.artwork_id) as comment_count
               FROM artwork a 
-              WHERE (LOWER(status) = 'local' OR status = 'Local')
-              ORDER BY artwork_id DESC";
+              WHERE $where_clause
+              ORDER BY $order_by";
     
-    $result = $conn->query($query);
-    
-    if (!$result) {
-        throw new Exception("Failed to fetch local artworks: " . $conn->error);
+    if (!empty($params)) {
+        $stmt = $conn->prepare($query);
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement: " . $conn->error);
+        }
+        
+        // Bind parameters dynamically
+        $stmt->bind_param($types, ...$params);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if (!$result) {
+            throw new Exception("Failed to fetch local artworks: " . $stmt->error);
+        }
+    } else {
+        // No parameters, execute directly
+        $result = $conn->query($query);
+        if (!$result) {
+            throw new Exception("Failed to fetch local artworks: " . $conn->error);
+        }
     }
     
     // Check if user is logged in
@@ -86,6 +141,11 @@ try {
         ];
     }
     
+    // Close statement if it was used
+    if (isset($stmt)) {
+        $stmt->close();
+    }
+    
     $conn->close();
     
     ob_end_clean();
@@ -93,7 +153,12 @@ try {
         'success' => true,
         'artworks' => $artworks,
         'total' => count($artworks),
-        'logged_in' => $user_id !== null
+        'logged_in' => $user_id !== null,
+        'filters_applied' => [
+            'category' => $category,
+            'artist' => $artist,
+            'sort' => $sort
+        ]
     ]);
     
 } catch (Exception $e) {

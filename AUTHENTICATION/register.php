@@ -13,7 +13,7 @@
         <section class="main-section">
             <div class="main-container">
                 <div class="logo-container">
-                    <h1>logo</h1>
+                    <img src="logo.png" alt="logo">
                 </div>
                 <div class="login-container">
                     <div class="form-title-container">

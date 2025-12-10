@@ -105,6 +105,44 @@ div.buttons a:hover::after {
     width: 100%;
 }
 
+
+button.logoutDesktop, button.logoutMobile {
+    background-color: #fbbf24;
+    border: none;
+    border-radius: 5px;
+    height: auto;;
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    color: rgba(15, 23, 42, 0.85);
+    font-weight: bold;
+    padding: 10px;
+    gap: 7.5px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;;
+}
+
+button.logoutMobile {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+}
+
+.logoutIcon {
+    fill: rgba(15, 23, 42, 0.85);
+}
+
+button.logoutDesktop:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+button.logoutDesktop:active, button.logoutMobile:active {
+    transform: scale(0.95);
+}
+
 /* Mobile Navigation */
 nav.tablet-mobile {
     position: fixed;
@@ -623,6 +661,113 @@ div.all-rights {
     padding: 30px 0 5px;
     color: #93c5fd;
     border-top: 1px solid rgba(147, 197, 253, 0.2);
+}
+
+
+.popup-overlay {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;              /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup box */
+.popup-box {
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 23, 42);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    animation: popupFade 0.2s ease;
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #fbbf24;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Text */
+.popup-box h2 {
+    margin: 8px 0;
+    font-size: 30px;
+}
+
+.popup-box p {
+    font-size: 21px;
+    color: #7e7d7d;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.btn-cancel {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    flex: 1;
+    background: none;
+    border: solid 1px #fbbf24;
+    color: #fbbf24;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-logout {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    flex: 1;
+    background: #fbbf24;
+    border: none;
+    color: rgba(15, 23, 42);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Hover Effects */
+.btn-cancel:hover {
+    background: rgb(28, 42, 77);
+}
+
+.btn-logout:hover {
+    background: #dba61f;
+}
+
+/* Animation */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@media screen and (min-width: 992px) {
+    div.panel {
+        display: none;
+    }
 }
 
 /* Responsive Design */

@@ -31,55 +31,56 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
         
     </head>
     <body>
-        <script>
-         console.log('Admin.php loaded');
-        console.log('Window width:', window.innerWidth);
-        console.log('User agent:', navigator.userAgent);
-        
-        (function() {
-            // Prevent redirect loop - check if we just came from desktop_only.php
-            if (sessionStorage.getItem('from_desktop_only') === 'true') {
-                console.log('Just redirected from desktop_only.php - staying here');
-                sessionStorage.removeItem('from_desktop_only');
-                return;
-            }
+       <script>
+            console.log('Admin.php loaded');
+            console.log('Window width:', window.innerWidth);
+            console.log('User agent:', navigator.userAgent);
             
-            function isMobileOrTablet() {
-                if (window.innerWidth < 1024) {
-                    console.log('Width check: Mobile/Tablet detected');
-                    return true;
-                }
-                
-                const userAgent = navigator.userAgent.toLowerCase();
-                const mobileKeywords = ['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
-                
-                const isMobile = mobileKeywords.some(keyword => userAgent.includes(keyword));
-                console.log('User agent check:', isMobile);
-                return isMobile;
-            }
-            
-            if (isMobileOrTablet()) {
-                console.log('Redirecting to desktop_only.php');
-                sessionStorage.setItem('from_admin', 'true');
-                window.location.href = 'desktop_only.php';
-            } else {
-                console.log('Desktop device - staying on admin page');
-            }
-            
-            // Check on window resize
-            let resizeTimer;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(function() {
-                    console.log('Window resized to:', window.innerWidth);
-                    if (window.innerWidth < 1024) {
-                        console.log('Resized to mobile width - redirecting to desktop_only.php...');
+            (function() {
+                // Prevent redirect loop - check if we just came from desktop_only.php
+                if (sessionStorage.getItem('from_desktop_only') === 'true') {
+                    console.log('Just redirected from desktop_only.php - staying here');
+                    sessionStorage.removeItem('from_desktop_only');
+                } else {
+                    // Initial check only if not from desktop_only
+                    if (isMobileOrTablet()) {
+                        console.log('Initial check: Mobile/Tablet detected - redirecting to desktop_only.php');
                         sessionStorage.setItem('from_admin', 'true');
                         window.location.href = 'desktop_only.php';
+                        return; // Stop execution after redirect
                     }
-                }, 250); // Debounce to prevent multiple redirects
-            });
-        })();
+                }
+                
+                function isMobileOrTablet() {
+                    if (window.innerWidth < 1024) {
+                        console.log('Width check: Mobile/Tablet detected');
+                        return true;
+                    }
+                    
+                    const userAgent = navigator.userAgent.toLowerCase();
+                    const mobileKeywords = ['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
+                    
+                    const isMobile = mobileKeywords.some(keyword => userAgent.includes(keyword));
+                    console.log('User agent check:', isMobile);
+                    return isMobile;
+                }
+                
+                // Check on window resize
+                let resizeTimer;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(function() {
+                        console.log('Window resized to:', window.innerWidth);
+                        if (window.innerWidth < 1024) {
+                            console.log('Resized to mobile width - redirecting to desktop_only.php...');
+                            sessionStorage.setItem('from_admin', 'true');
+                            window.location.href = 'desktop_only.php';
+                        }
+                    }, 250); // Debounce to prevent multiple redirects
+                });
+                
+                console.log('Desktop device - staying on admin page');
+            })();
         </script>
         <section class="main-section">
             <div class="left-side-bar">
@@ -92,6 +93,14 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                     </div>
                     <div class="btn-name">
                         <h3>Artworks</h3>
+                    </div>
+                </div>
+                <div class="btn-container" id="btn-artwork-logs">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div class="btn-name">
+                        <h3>Artwork Logs</h3>
                     </div>
                 </div>
                 <div class="btn-container" id="btn-feedback">
@@ -155,38 +164,84 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                      </div>
                     <div class="content-container active" id="artwork-section">
                         
-                        <?php 
+                       <?php 
                         // Loop through all artworks and display them
                         if ($artwork_result && $artwork_result->num_rows > 0) {
                             while($row = $artwork_result->fetch_assoc()) {
+                                $artwork_id = $row['artwork_id'];
+                                
+                                // Get total likes for this artwork
+                                $like_query = "SELECT COUNT(*) as total_likes FROM artwork_likes WHERE artwork_id = ?";
+                                $like_stmt = $conn->prepare($like_query);
+                                $like_stmt->bind_param("i", $artwork_id);
+                                $like_stmt->execute();
+                                $like_result = $like_stmt->get_result();
+                                $total_likes = $like_result->fetch_assoc()['total_likes'];
+                                $like_stmt->close();
+                                
+                                // Get total comments for this artwork
+                                $comment_query = "SELECT COUNT(*) as total_comments FROM artwork_comments WHERE artwork_id = ?";
+                                $comment_stmt = $conn->prepare($comment_query);
+                                $comment_stmt->bind_param("i", $artwork_id);
+                                $comment_stmt->execute();
+                                $comment_result = $comment_stmt->get_result();
+                                $total_comments = $comment_result->fetch_assoc()['total_comments'];
+                                $comment_stmt->close();
                         ?>
-                        
+
                         <div class="sample-container" data-id="<?php echo $row['artwork_id']; ?>">
                             <img src="uploads/artworks/<?php echo htmlspecialchars($row['image']); ?>" 
-                                 alt="<?php echo htmlspecialchars($row['artwork_title']); ?>">
+                                alt="<?php echo htmlspecialchars($row['artwork_title']); ?>">
                             <div class="sample-container-content">
                                 <h3 class="artwork-title"><?php echo htmlspecialchars($row['artwork_title']); ?></h3>
                                 <p class="artwork-desc"><?php echo htmlspecialchars($row['artwork_desc']); ?></p>
                             </div>
+                            
                             <div class="artwork-control-container">
-                                <i class="fa-solid fa-eye" onclick="viewArtwork(<?php echo $row['artwork_id']; ?>)" title="View"></i>
-                                <i class="fa-solid fa-pen" onclick="editArtwork(<?php echo $row['artwork_id']; ?>)" title="Edit"></i>
-                                <i class="fa-solid fa-trash" onclick="deleteArtwork(<?php echo $row['artwork_id']; ?>)" title="Delete"></i>
+                                <!-- Stats on the left -->
+                                <div class="artwork-stats-left">
+                                    <span class="stat-item">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <?php echo $total_likes; ?>
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fa-solid fa-comment"></i>
+                                        <?php echo $total_comments; ?>
+                                    </span>
+                                </div>
+                                
+                                <!-- Control icons on the right -->
+                                <div class="artwork-controls-right">
+                                    <i class="fa-solid fa-eye" onclick="viewArtwork(<?php echo $row['artwork_id']; ?>)" title="View"></i>
+                                    <i class="fa-solid fa-pen" onclick="editArtwork(<?php echo $row['artwork_id']; ?>)" title="Edit"></i>
+                                    <i class="fa-solid fa-trash" onclick="deleteArtwork(<?php echo $row['artwork_id']; ?>)" title="Delete"></i>
+                                </div>
                             </div>
                         </div>
-                        
+
                         <?php 
                             }
                         } else {
                             // No artworks found
-                            echo '<div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
-                                    <i class="fa-solid fa-image" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.2;"></i>
-                                    <h3 style="font-size: 1.3rem; margin-bottom: 10px;">No artworks yet</h3>
-                                    <p style="font-size: 0.95rem;">Click "Add Artwork" to create your first piece.</p>
-                                  </div>';
+                            echo '<div style="grid-column: 1/-1; text-align: center; padding: 80px 20px; color: #93c5fd">
+                            <i class="fa-solid fa-image" style="font-size: 5rem; margin-bottom: 25px; color: rgba(251, 191, 36, 0.2);"></i>
+                            <h3 style="font-size: 1.5rem; margin-bottom: 15px; color: #fbbf24; font-family: \'Playfair Display\', serif;">No artworks yet</h3>
+                            <p style="font-size: 1rem; color: #93c5fd;">Click "Add Artwork" to create your first masterpiece.</p>
+                            </div>';
                         }
                         ?>
 
+                    </div>
+
+                    <!-- artwork logs title -->
+                    <div class="artwork-collection-title" id="logs-title">
+                        <h2>Artwork Activity Logs</h2>
+                    </div>
+                    <div class="content-container content-logs" id="logs-section">
+                        <div class="logs-loading" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                            <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: #667eea;"></i>
+                            <p style="margin-top: 15px; color: #666;">Loading activity logs...</p>
+                        </div>
                     </div>
 
                     <!-- feedback title -->
@@ -277,12 +332,10 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                                             Year Created <span class="required">*</span>
                                         </label>
                                         <input 
-                                            type="number" 
+                                            type="text" 
                                             id="yearCreated" 
                                             name="yearCreated" 
-                                            placeholder="e.g., 2024"
-                                            min="1800"
-                                            max="2100"
+                                            placeholder="e.g., 2020 - 2025, 2024"
                                             required
                                         >
                                     </div>
@@ -320,13 +373,19 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                                         <label for="category">
                                             Category <span class="required">*</span>
                                         </label>
-                                        <input 
-                                            type="text" 
-                                            id="category" 
-                                            name="category" 
-                                            placeholder="e.g., Abstract, Contemporary"
-                                            required
-                                        >
+                                        <select id="category" name="category" required>
+                                            <option value="">Select category</option>
+                                            <option value="Impressionism">Impressionism</option>
+                                            <option value="Post-Impressionism">Post-Impressionism</option>
+                                            <option value="Proto-Expressionism">Proto-Expressionism</option>
+                                            <option value="Contemporary">Contemporary</option>
+                                            <option value="Renaissance">Renaissance</option>
+                                            <option value="Pop Art">Pop Art</option>
+                                            <option value="Tonalism">Tonalism</option>
+                                            <option value="Neo-Impressionism">Neo-Impressionism</option>
+                                            <option value="Abstract Art">Abstract Art</option>
+                                            <option value="Expressionism">Expressionism</option>
+                                        </select>
                                     </div>
 
                                     <!-- Orientation -->
@@ -473,12 +532,10 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                                         Year Created <span class="required">*</span>
                                     </label>
                                     <input 
-                                        type="number" 
+                                        type="text" 
                                         id="editYearCreated" 
                                         name="yearCreated" 
-                                        placeholder="e.g., 2024"
-                                        min="1800"
-                                        max="2100"
+                                        placeholder="e.g., 2020 - 2025, 2024"
                                         required
                                     >
                                 </div>
@@ -516,13 +573,19 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                                     <label for="editCategory">
                                         Category <span class="required">*</span>
                                     </label>
-                                    <input 
-                                        type="text" 
-                                        id="editCategory" 
-                                        name="category" 
-                                        placeholder="e.g., Abstract, Contemporary"
-                                        required
-                                    >
+                                    <select id="editCategory" name="category" required>
+                                        <option value="">Select category</option>
+                                        <option value="Impressionism">Impressionism</option>
+                                        <option value="Post-Impressionism">Post-Impressionism</option>
+                                        <option value="Proto-Expressionism">Proto-Expressionism</option>
+                                        <option value="Contemporary">Contemporary</option>
+                                        <option value="Renaissance">Renaissance</option>
+                                        <option value="Pop Art">Pop Art</option>
+                                        <option value="Tonalism">Tonalism</option>
+                                        <option value="Neo-Impressionism">Neo-Impressionism</option>
+                                        <option value="Abstract Art">Abstract Art</option>
+                                        <option value="Expressionism">Expressionism</option>
+                                    </select>
                                 </div>
 
                                 <!-- Orientation -->
@@ -575,12 +638,11 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
                                         required
                                     ></textarea>
                                 </div>
-
-                                <!-- Current Image Preview -->
+                                
                                 <div class="form-group full-width" id="editImagePreview" style="display: none;">
                                     <label>Current Image</label>
-                                    <div style="padding: 10px; background: #f8f9fa; border-radius: 8px; text-align: center;">
-                                        <img id="editCurrentImage" src="" alt="Current artwork" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #e2e8f0;">
+                                    <div class="current-image-container">
+                                        <img id="editCurrentImage" src="" alt="Current artwork" class="current-image">
                                     </div>
                                 </div>
 
@@ -631,9 +693,12 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
 
                     <div class="modal-body">
                         <div style="text-align: center; padding: 20px 0;">
-                            <i class="fa-solid fa-circle-exclamation" style="font-size: 4rem; color: #f59e0b; margin-bottom: 20px;"></i>
-                            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: #1f2937;">Are you sure you want to logout?</h3>
-                            <p style="color: #6b7280; font-size: 0.95rem;">You will be redirected to the login page.</p>
+                            
+                            <i class="fa-solid fa-circle-exclamation" 
+                            style="font-size: 4rem; color: #fbbf24; margin-bottom: 20px; filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.4));"></i>
+
+                            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: #fbbf24;">Are you sure you want to logout?</h3>
+                            <p style="color: #93c5fd; font-size: 0.95rem;">You will be redirected to the login page.</p>
                         </div>
                     </div>
 

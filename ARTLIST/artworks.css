@@ -48,7 +48,7 @@ nav.desktop.scrolled {
 
 div.title {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: clamp(18px, 4vw, 28px);
     font-weight: 700;
     letter-spacing: 2px;
     color: #f59e0b;
@@ -102,6 +102,43 @@ div.buttons a:hover {
 
 div.buttons a:hover::after {
     width: 100%;
+}
+
+button.logoutDesktop, button.logoutMobile {
+    background-color: #fbbf24;
+    border: none;
+    border-radius: 5px;
+    height: auto;;
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    color: rgba(15, 23, 42, 0.85);
+    font-weight: bold;
+    padding: 10px;
+    gap: 7.5px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;;
+}
+
+button.logoutMobile {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+}
+
+.logoutIcon {
+    fill: rgba(15, 23, 42, 0.85);
+}
+
+button.logoutDesktop:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+button.logoutDesktop:active, button.logoutMobile:active {
+    transform: scale(0.95);
 }
 
 /* Mobile Navigation */
@@ -430,7 +467,7 @@ div.panel hr {
 
 .artwork-container.grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 40px;
     width: 100%;
     max-width: 1400px;
@@ -455,6 +492,15 @@ div.panel hr {
     border: 1px solid rgba(147, 197, 253, 0.3);
     display: flex;
     flex-direction: column;
+    height: 100%;
+}
+
+/* Override to limit max width of cards */
+.artwork-container.grid-layout .artwork-item,
+.local-artists-container.grid-layout .local-artist-item {
+    max-width: 450px; /* FIXED: Prevent cards from becoming too wide */
+    width: 100%;
+    justify-self: center;
 }
 
 .artwork-container.grid-layout .artwork-item:hover {
@@ -468,6 +514,7 @@ div.panel hr {
     color: inherit;
     display: flex;
     flex-direction: column;
+    flex: 1;
     height: 100%;
 }
 
@@ -477,6 +524,7 @@ div.panel hr {
     overflow: hidden;
     position: relative;
     background: rgba(15, 23, 42, 0.5);
+    flex-shrink: 0;
 }
 
 .artwork-container.grid-layout .artwork-item img {
@@ -496,11 +544,13 @@ div.panel hr {
     padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
     background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(10px);
     z-index: 2;
     position: relative;
+    flex: 1;
+    min-height: 0;
 }
 
 .artwork-container.list-layout .artwork-item {
@@ -572,13 +622,14 @@ div.panel hr {
     padding: 0.4rem 0.9rem;
     color: #0f172a;
     letter-spacing: 1.5px;
+    margin-bottom: 5px;
 }
 
 .artwork-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     color: #fbbf24;
-    margin: 0;
+    margin: 0 0 8px 0;
     line-height: 1.3;
 }
 
@@ -587,7 +638,7 @@ div.panel hr {
     font-size: 0.95rem;
     color: #93c5fd;
     font-weight: 500;
-    margin: 0;
+    margin: 0 0 5px 0;
 }
 
 .artwork-year {
@@ -595,7 +646,7 @@ div.panel hr {
     font-size: 0.85rem;
     color: #93c5fd;
     font-weight: 400;
-    margin: 0;
+    margin: 0 0 10px;
 }
 
 .artwork-description {
@@ -610,6 +661,7 @@ div.panel hr {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
+    margin-top: auto;
 }
 
 .artwork-container.list-layout .artwork-description {
@@ -720,7 +772,7 @@ div.panel hr {
     font-weight: 500;
     font-size: 1.5rem;
     color: #fbbf24;
-    letter-spacing: 2px;
+   letter-spacing: 2px;
 }
 
 .local-artwork-layout-btn {
@@ -788,6 +840,7 @@ div.panel hr {
     border: 1px solid rgba(147, 197, 253, 0.3);
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .local-artists-container.grid-layout .local-artist-item:hover {
@@ -802,15 +855,16 @@ div.panel hr {
     display: flex;
     flex-direction: column;
     height: 100%;
+    flex: 1;
 }
 
-/* Local Image Wrapper - CRITICAL FIX */
 .local-artists-container.grid-layout .local-artist-image-wrapper {
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     position: relative;
     background: rgba(15, 23, 42, 0.5);
+    flex-shrink: 0;
 }
 
 .local-artists-container.grid-layout .local-artist-item img {
@@ -830,9 +884,11 @@ div.panel hr {
     padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
     background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(10px);
+    flex: 1;
+    min-height: 0;
 }
 
 /* List Layout */
@@ -910,13 +966,14 @@ div.panel hr {
     padding: 0.4rem 0.9rem;
     color: #0f172a;
     letter-spacing: 1.5px;
+    margin-bottom: 5px;
 }
 
 .local-artwork-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     color: #fbbf24;
-    margin: 0;
+    margin: 0 0 8px 0;
     line-height: 1.3;
 }
 
@@ -925,7 +982,7 @@ div.panel hr {
     font-size: 0.95rem;
     color: #93c5fd;
     font-weight: 500;
-    margin: 0;
+    margin: 0 0 10px 0;
 }
 
 .local-artwork-description {
@@ -940,6 +997,7 @@ div.panel hr {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
+    margin-top: auto;
 }
 
 .local-artists-container.list-layout .local-artwork-description {
@@ -1131,10 +1189,112 @@ div.all-rights {
 .local-artists-container.list-layout .local-artist-item:hover img {
     transform: scale(1.05);
 }
+.popup-overlay {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;              /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
 
-/* ============================================ */
-/* RESPONSIVE DESIGN */
-/* ============================================ */
+/* Popup box */
+.popup-box {
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 23, 42);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    animation: popupFade 0.2s ease;
+}
+
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #fbbf24;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Text */
+.popup-box h2 {
+    margin: 8px 0;
+    font-size: 30px;
+}
+
+.popup-box p {
+    font-size: 21px;
+    color: #7e7d7d;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.btn-cancel {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    flex: 1;
+    background: none;
+    border: solid 1px #fbbf24;
+    color: #fbbf24;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-logout {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    flex: 1;
+    background: #fbbf24;
+    border: none;
+    color: rgba(15, 23, 42);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Hover Effects */
+.btn-cancel:hover {
+    background: rgb(28, 42, 77);
+}
+
+.btn-logout:hover {
+    background: #dba61f;
+}
+
+/* Animation */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media screen and (min-width: 992px) {
+    div.panel {
+        display: none;
+    }
+}
 
 /* Tablet & Desktop Small - 992px and below */
 @media screen and (max-width: 992px) {
@@ -1230,6 +1390,10 @@ div.all-rights {
 
 /* Tablet - 768px and below */
 @media screen and (max-width: 768px) {
+    div.title {
+        font-size: clamp(14px, 3vw, 20px);
+        letter-spacing: 1px;
+    }
     /* Hero Section */
     .hero-content h1 {
         font-size: 2.5rem;
@@ -1245,7 +1409,10 @@ div.all-rights {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-
+        .artwork-container.grid-layout .artwork-item,
+    .local-artists-container.grid-layout .local-artist-item {
+        max-width: 100%;
+    }
     /* Main Artworks List */
     .artwork-container.list-layout .artwork-item,
     .artwork-container.list-layout .artwork-link {
@@ -1285,6 +1452,23 @@ div.all-rights {
         flex: 1;
     }
 
+    .artwork-stats {
+        gap: 15px;
+        padding: 12px 16px;
+    }
+    
+    .like-btn, .comment-btn {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+    
+    .like-btn i, .comment-btn i {
+        font-size: 18px;
+    }
+    
+    .like-count, .comment-count {
+        font-size: 14px;
+    }
     /* Page Controls */
     .page-btn {
         flex-wrap: wrap;
@@ -1319,6 +1503,11 @@ div.all-rights {
 
 /* Mobile - 480px and below */
 @media screen and (max-width: 480px) {
+    div.title {
+        font-size: clamp(12px, 2.5vw, 18px);
+        letter-spacing: 0.5px;
+    }
+
     /* Hero Section */
     .hero {
         padding: 60px 5% 30px;
@@ -1357,6 +1546,23 @@ div.all-rights {
         width: 100%;
     }
 
+    .artwork-stats {
+        gap: 12px;
+        padding: 10px 14px;
+    }
+    
+    .like-btn, .comment-btn {
+        padding: 5px 8px;
+        font-size: 13px;
+    }
+    
+    .like-btn i, .comment-btn i {
+        font-size: 16px;
+    }
+    
+    .like-count, .comment-count {
+        font-size: 13px;
+    }
     /* Artwork Section */
     .artwork-section {
         padding: 40px 5%;
@@ -1423,6 +1629,35 @@ div.all-rights {
         font-size: 14px;
     }
 
+        .artwork-container.grid-layout .content-container,
+    .local-artists-container.grid-layout .local-content-container {
+        padding: 20px;
+        gap: 12px; 
+    }
+    
+    .category-container,
+    .local-category-container {
+        margin-bottom: 3px;
+    }
+    
+    .artwork-title,
+    .local-artwork-title {
+        margin-bottom: 6px;
+    }
+    
+    .artwork-author,
+    .local-artist-name {
+        margin-bottom: 4px;
+    }
+    
+    .artwork-year {
+        margin-bottom: 8px;
+    }
+
+    .artwork-container.grid-layout .artwork-item,
+    .local-artists-container.grid-layout .local-artist-item {
+        max-width: 100%;
+    }
     /* Local Artists Section */
     .local-artists-section {
         padding: 50px 5%;
@@ -1496,12 +1731,6 @@ div.all-rights {
     }
 }
 
-/* ============================================ */
-/* ARTWORK STATS - LIKES & COMMENTS */
-/* Replace the existing .artwork-stats section at the bottom of artworks.css */
-/* ============================================ */
-
-/* Fix artwork-item structure to accommodate stats */
 .artwork-container.grid-layout .artwork-item {
     position: relative;
     border-radius: 15px;
@@ -1531,6 +1760,8 @@ div.all-rights {
     background: rgba(15, 23, 42, 0.9);
     border-top: 1px solid rgba(147, 197, 253, 0.2);
     z-index: 10;
+    margin-top: auto;
+    flex-shrink: 0;
 }
 
 /* Like button */
@@ -1573,7 +1804,6 @@ div.all-rights {
     font-size: 16px;
 }
 
-/* Comment info (non-clickable) */
 .comment-info {
     display: flex;
     align-items: center;
@@ -1593,7 +1823,39 @@ div.all-rights {
     color: #93c5fd;
     font-size: 16px;
 }
+.comment-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #93c5fd;
+    font-family: 'Inter', sans-serif;
+}
 
+.comment-btn:hover {
+    background: rgba(147, 197, 253, 0.1);
+    transform: scale(1.05);
+}
+
+.comment-btn:active {
+    transform: scale(0.95);
+}
+
+.comment-btn i {
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.comment-btn:hover i {
+    transform: scale(1.2);
+    color: #60a5fa;
+}
 /* Local artist items - same structure */
 .local-artists-container.grid-layout .local-artist-item {
     position: relative;

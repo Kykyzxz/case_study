@@ -1,7 +1,8 @@
 <?php
 header('Content-Type: application/json');
-ini_set('display_errors', 0);
-error_reporting(0);
+// Temporarily enable errors to see what's wrong
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 require_once "../connection/connect.php";
 
@@ -19,13 +20,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $artwork_desc = isset($_POST['artworkDesc']) ? trim($_POST['artworkDesc']) : '';
     $artist_desc = isset($_POST['artistDesc']) ? trim($_POST['artistDesc']) : '';
 
+    // Debug: Log received data
+    error_log("Received data: " . print_r($_POST, true));
+
     // Validate required fields
     if (empty($artwork_id) || empty($artwork_title) || empty($artist) || empty($year_created) || 
         empty($medium) || empty($dimension) || empty($category) || empty($orientation) || 
         empty($status) || empty($artwork_desc) || empty($artist_desc)) {
         echo json_encode([
             'success' => false,
-            'message' => 'All fields except image are required'
+            'message' => 'All fields except image are required',
+            'debug' => [
+                'artwork_id' => $artwork_id,
+                'artwork_title' => $artwork_title,
+                'artist' => $artist,
+                'year_created' => $year_created,
+                'medium' => $medium,
+                'dimension' => $dimension,
+                'category' => $category,
+                'orientation' => $orientation,
+                'status' => $status
+            ]
         ]);
         exit;
     }
@@ -60,11 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Generate unique filename
         $file_extension = pathinfo($_FILES['artworkImage']['name'], PATHINFO_EXTENSION);
         $image_name = 'artwork_' . time() . '_' . uniqid() . '.' . $file_extension;
-        $upload_path = '../../admin/uploads/artworks/' . $image_name;
+        $upload_path = '../../ADMIN/uploads/artworks/' . $image_name;
 
         // Create directory if it doesn't exist
-        if (!file_exists('../../admin/uploads/artworks/')) {
-            mkdir('../../admin/uploads/artworks/', 0777, true);
+        if (!file_exists('../../ADMIN/uploads/artworks/')) {
+            mkdir('../../ADMIN/uploads/artworks/', 0777, true);
         }
 
         // Move uploaded file
@@ -83,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $result = $stmt->get_result();
         if ($row = $result->fetch_assoc()) {
-            $old_image_path = '../../admin/uploads/artworks/' . $row['image'];
+            $old_image_path = '../../ADMIN/uploads/artworks/' . $row['image'];
             if (file_exists($old_image_path)) {
                 unlink($old_image_path);
             }

@@ -1,22 +1,28 @@
 // Buttons
 const btnArtworks = document.getElementById("btn-artworks");
+const btnArtworkLogs = document.getElementById("btn-artwork-logs");
 const btnFeedback = document.getElementById("btn-feedback");
 
 // Titles
 const artworkTitle = document.getElementById("artwork-title");
+const logsTitle = document.getElementById("logs-title");
 const feedbackTitle = document.getElementById("feedback-title");
 
 // Content sections
 const artworkSection = document.getElementById("artwork-section");
+const logsSection = document.getElementById("logs-section");
 const feedbackSection = document.getElementById("feedback-section");
 
 // Reset everything
 function resetView() {
     artworkTitle.classList.remove("active");
+    logsTitle.classList.remove("active");
     feedbackTitle.classList.remove("active");
     artworkSection.classList.remove("active");
+    logsSection.classList.remove("active");
     feedbackSection.classList.remove("active");
     btnArtworks.classList.remove("active");
+    btnArtworkLogs.classList.remove("active");
     btnFeedback.classList.remove("active");
 }
 
@@ -28,6 +34,17 @@ btnArtworks.addEventListener("click", () => {
     artworkSection.classList.add("active");
 });
 
+// Show Artwork Logs
+btnArtworkLogs.addEventListener("click", () => {
+    resetView();
+    btnArtworkLogs.classList.add("active");
+    logsTitle.classList.add("active");
+    logsSection.classList.add("active");
+    
+    // Load logs when section is opened
+    loadArtworkLogs();
+});
+
 // Show Feedback
 btnFeedback.addEventListener("click", () => {
     resetView();
@@ -35,6 +52,109 @@ btnFeedback.addEventListener("click", () => {
     feedbackTitle.classList.add("active");
     feedbackSection.classList.add("active");
 });
+
+// Load Artwork Logs
+function loadArtworkLogs() {
+    logsSection.innerHTML = `
+        <div class="logs-loading" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size: 2rem; color: #667eea;"></i>
+            <p style="margin-top: 15px; color: #666;">Loading activity logs...</p>
+        </div>
+    `;
+    
+    fetch('../backend/artworks/fetch_artwork_logs.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.logs && data.logs.length > 0) {
+                displayLogs(data.logs);
+            } else {
+                logsSection.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
+                        <i class="fa-solid fa-clock-rotate-left" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.2;"></i>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 10px;">No activity logs yet</h3>
+                        <p style="font-size: 0.95rem;">User interactions with artworks will appear here.</p>
+                    </div>
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error loading logs:', error);
+            logsSection.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
+                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.2; color: #ef4444;"></i>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 10px;">Error loading logs</h3>
+                    <p style="font-size: 0.95rem;">Please try again later.</p>
+                </div>
+            `;
+        });
+}
+
+// Display Logs
+function displayLogs(logs) {
+    const getActionIcon = (actionType) => {
+        const icons = {
+            'view': 'fa-eye',
+            'like': 'fa-heart',
+            'unlike': 'fa-heart-crack',
+            'comment': 'fa-comment'
+        };
+        return icons[actionType] || 'fa-circle-info';
+    };
+    
+    const getActionText = (log) => {
+        const actions = {
+            'view': `viewed the artwork`,
+            'like': `liked the artwork`,
+            'unlike': `unliked the artwork`,
+            'comment': `commented on the artwork`
+        };
+        return actions[log.action_type] || 'performed an action on the artwork';
+    };
+    
+    const formatTime = (timestamp) => {
+        const date = new Date(timestamp);
+        const now = new Date();
+        const diff = Math.floor((now - date) / 1000); // difference in seconds
+        
+        if (diff < 60) return 'Just now';
+        if (diff < 3600) return `${Math.floor(diff / 60)} min ago`;
+        if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+        if (diff < 604800) return `${Math.floor(diff / 86400)} days ago`;
+        
+        return date.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric',
+            year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
+        });
+    };
+    
+    logsSection.innerHTML = logs.map(log => `
+        <div class="log-item">
+            <div class="log-icon ${log.action_type}">
+                <i class="fa-solid ${getActionIcon(log.action_type)}"></i>
+            </div>
+            <div class="log-content">
+                <div class="log-user">${escapeHtml(log.fullname)}</div>
+                <div class="log-action">${getActionText(log)}</div>
+                <span class="log-artwork-title">${escapeHtml(log.artwork_title)}</span>
+            </div>
+            <div class="log-meta">
+                <div class="log-time">${formatTime(log.created_at)}</div>
+                <div class="log-likes">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>${log.total_likes}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Helper function to escape HTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
 
 // Modal functions
 function openModal() {
@@ -119,7 +239,7 @@ function viewArtwork(id) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'artwork_id=' + id
+        body: 'artwork_id=' + id + '&from_admin=true'  // Add admin flag
     })
     .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
@@ -164,7 +284,6 @@ function closeLoadingModal() {
     }
 }
 
-// Show View Modal with Artwork Data - FIXED VERSION
 function showViewModal(artwork) {
     console.log('Artwork data received:', artwork);
     
@@ -315,6 +434,8 @@ function editArtwork(id) {
         closeLoadingModal();
         if (data.success) {
             openEditModal(data.data);
+            console.log(data.data)
+            
         } else {
             alert('Error: ' + data.message);
         }
@@ -461,7 +582,7 @@ function deleteArtwork(id) {
                             </div>
                         `;
                     }
-                }, 300);
+                }, 200);
                 
                 alert('Artwork deleted successfully!');
             } else {
@@ -548,19 +669,17 @@ function closeLogoutModal() {
 function confirmLogout() {
     // Show loading state
     const logoutBtn = document.querySelector('.btn-danger');
-    const originalHTML = logoutBtn.innerHTML;
     logoutBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging out...';
     logoutBtn.disabled = true;
-
     // Call logout.php
-    fetch('../AUTHENTICATION/logout.php', {
+    fetch('../backend/logout/logout.php', {
         method: 'POST'
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             // Redirect to login page
-            window.location.href = '../AUTHENTICATION/login.php';
+             window.location.href = '../backend/logout/logout.php';
         } else {
             alert('Logout failed. Please try again.');
             logoutBtn.innerHTML = originalHTML;

@@ -49,9 +49,24 @@ try {
     
     if ($stmt->execute()) {
         $comment_id = $conn->insert_id;
-        $created_at = date('Y-m-d H:i:s'); // Use current timestamp
+        $created_at = date('Y-m-d H:i:s');
         
- 
+        // ⭐ LOG THE COMMENT ACTION ⭐
+        // Get total likes for this artwork
+        $like_count_stmt = $conn->prepare("SELECT COUNT(*) as total FROM artwork_likes WHERE artwork_id = ?");
+        $like_count_stmt->bind_param("i", $artwork_id);
+        $like_count_stmt->execute();
+        $like_count_result = $like_count_stmt->get_result();
+        $like_count = $like_count_result->fetch_assoc()['total'];
+        $like_count_stmt->close();
+        
+        // Insert log entry
+        $log_stmt = $conn->prepare("INSERT INTO artwork_logs (user_id, artwork_id, action_type, action_details, total_likes) VALUES (?, ?, 'comment', ?, ?)");
+        $action_details = "Commented: " . substr($comment_text, 0, 100); // Store first 100 chars of comment
+        $log_stmt->bind_param("iisi", $user_id, $artwork_id, $action_details, $like_count);
+        $log_stmt->execute();
+        $log_stmt->close();
+        
         echo json_encode([
             'success' => true,
             'message' => 'Comment posted successfully',

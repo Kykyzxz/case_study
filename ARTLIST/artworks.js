@@ -1,4 +1,3 @@
-
 // Global state
 let currentPage = 1;
 let currentFilters = {
@@ -6,6 +5,14 @@ let currentFilters = {
     artist: '',
     sort: 'latest'
 };
+
+// for logout
+function openPopup() {
+    document.querySelector(".popup-overlay").style.display = "flex";
+}
+function closePopup() {
+    document.querySelector(".popup-overlay").style.display = "none";
+}
 
 // Toggle mobile menu
 function toggle(show) {
@@ -83,8 +90,7 @@ async function toggleLike(artworkId, heartIcon, likeCount) {
         heartIcon.style.color = '#ef4444';
         likeCount.textContent = currentCount + 1;
     }
-    
-    // OPTIMIZATION 2: Disable button temporarily to prevent double-clicks
+
     const likeBtn = heartIcon.closest('.like-btn');
     likeBtn.style.pointerEvents = 'none';
     
@@ -142,6 +148,24 @@ async function toggleLike(artworkId, heartIcon, likeCount) {
         // Re-enable button
         likeBtn.style.pointerEvents = 'auto';
     }
+}
+
+// Log artwork view
+function logArtworkView(artworkId) {
+    fetch('../backend/artworks/log_artwork_view.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ artwork_id: artworkId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('👁️ View logged:', data);
+    })
+    .catch(error => {
+        console.error('❌ Error logging view:', error);
+    });
 }
 
 // Load main artworks
@@ -223,7 +247,7 @@ function displayArtworks(artworks) {
         const heartColor = artwork.user_liked ? '#ef4444' : '#93c5fd';
 
         artworkWrapper.innerHTML = `
-            <a href="ARTFILE/artwork_detail.php?id=${artwork.id}" class="artwork-link">
+            <a href="#" class="artwork-link" data-artwork-id="${artwork.id}">
                 <div class="artwork-image-wrapper">
                     <img src="${artwork.image}" alt="${artwork.title}" onerror="this.src='../HOME/ICONS/placeholder.jpg'">
                 </div>
@@ -244,14 +268,29 @@ function displayArtworks(artworks) {
                     <i class="${heartClass} fa-heart" style="color: ${heartColor};"></i>
                     <span class="like-count">${artwork.like_count}</span>
                 </button>
-                <div class="comment-info">
+                <button class="comment-btn" data-artwork-id="${artwork.id}">
                     <i class="far fa-comment" style="color: #93c5fd;"></i>
                     <span class="comment-count">${artwork.comment_count}</span>
-                </div>
+                </button>
             </div>
         `;
 
         container.appendChild(artworkWrapper);
+
+        // Add click event listener to artwork link
+        const artworkLink = artworkWrapper.querySelector('.artwork-link');
+        artworkLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const artworkId = artworkLink.getAttribute('data-artwork-id');
+            
+            // Log the view
+            logArtworkView(artworkId);
+            
+            // Navigate to detail page after a short delay
+            setTimeout(() => {
+                window.location.href = `ARTFILE/artwork_detail.php?id=${artworkId}`;
+            }, 100);
+        });
 
         // Add like button event listener
         const likeBtn = artworkWrapper.querySelector('.like-btn');
@@ -261,6 +300,20 @@ function displayArtworks(artworks) {
             const heartIcon = likeBtn.querySelector('.fa-heart');
             const likeCount = likeBtn.querySelector('.like-count');
             toggleLike(artwork.id, heartIcon, likeCount);
+        });
+
+        // Add comment button event listener
+        const commentBtn = artworkWrapper.querySelector('.comment-btn');
+        commentBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const artworkId = commentBtn.getAttribute('data-artwork-id');
+            
+            // Log the view
+            logArtworkView(artworkId);
+            
+            // Navigate to detail page with hash to scroll to comments
+            window.location.href = `ARTFILE/artwork_detail.php?id=${artworkId}#comments`;
         });
     });
 
@@ -349,10 +402,20 @@ function updatePagination(currentPage, totalPages) {
 
 // Load local artworks
 function loadLocalArtworks() {
-    console.log('🔄 Loading local artworks...');
+    console.log('🔄 Loading local artworks with filters...');
+    console.log('📋 Current filters:', currentFilters);
     
-    const url = '../backend/artworks/fetch_local_artworks.php';
-    console.log('🌐 Fetching from:', url);
+    const container = document.querySelector('.local-artists-container');
+    container.innerHTML = '<p style="color: #93c5fd; text-align: center; padding: 40px; grid-column: 1/-1;">⏳ Loading local artworks...</p>';
+    
+    const params = new URLSearchParams({
+        category: currentFilters.category,
+        artist: currentFilters.artist,
+        sort: currentFilters.sort
+    });
+
+    const url = `../backend/artworks/fetch_local_artworks.php?${params}`;
+    console.log('🌐 Fetching local artworks from:', url);
     
     fetch(url)
         .then(response => {
@@ -374,7 +437,7 @@ function loadLocalArtworks() {
                     updateLocalArtworkCount(data.total);
                 } else {
                     console.error('❌ Failed to load local artworks:', data.message);
-                    displayLocalArtworksError('No local artworks available at the moment.');
+                    displayLocalArtworksError(data.message || 'No local artworks found matching your criteria.');
                 }
             } catch (e) {
                 console.error('❌ JSON Parse error:', e);
@@ -413,30 +476,45 @@ function displayLocalArtworks(artworks) {
         const heartColor = artwork.user_liked ? '#ef4444' : '#93c5fd';
 
         artworkItem.innerHTML = `
-            <a href="ARTFILE/artwork_detail.php?id=${artwork.id}" class="local-artist-link">
-                <div class="local-artist-image-wrapper">
-                    <img src="${artwork.image}" alt="${artwork.title}" onerror="this.src='../HOME/ICONS/placeholder.jpg'">
+                <a href="#" class="local-artist-link" data-artwork-id="${artwork.id}">
+                    <div class="local-artist-image-wrapper">
+                        <img src="${artwork.image}" alt="${artwork.title}" onerror="this.src='../HOME/ICONS/placeholder.jpg'">
+                    </div>
+                    <div class="local-content-container">
+                        <div class="local-category-container">${artwork.category}</div>
+                        <h3 class="local-artwork-title">${artwork.title}</h3>
+                        <p class="local-artist-name"><i>${artwork.artist}</i></p>
+                        <p class="local-artwork-description">${description}</p>
+                    </div>
+                </a>
+                <div class="artwork-stats">
+                    <button class="like-btn" data-artwork-id="${artwork.id}">
+                        <i class="${heartClass} fa-heart" style="color: ${heartColor};"></i>
+                        <span class="like-count">${artwork.like_count}</span>
+                    </button>
+                    <button class="comment-btn" data-artwork-id="${artwork.id}">
+                        <i class="far fa-comment" style="color: #93c5fd;"></i>
+                        <span class="comment-count">${artwork.comment_count}</span>
+                    </button>
                 </div>
-                <div class="local-content-container">
-                    <div class="local-category-container">${artwork.category}</div>
-                    <h3 class="local-artwork-title">${artwork.title}</h3>
-                    <p class="local-artist-name"><i>${artwork.artist}</i></p>
-                    <p class="local-artwork-description">${description}</p>
-                </div>
-            </a>
-            <div class="artwork-stats">
-                <button class="like-btn" data-artwork-id="${artwork.id}">
-                    <i class="${heartClass} fa-heart" style="color: ${heartColor};"></i>
-                    <span class="like-count">${artwork.like_count}</span>
-                </button>
-                <div class="comment-info">
-                    <i class="far fa-comment" style="color: #93c5fd;"></i>
-                    <span class="comment-count">${artwork.comment_count}</span>
-                </div>
-            </div>
-        `;
+            `;
 
-        container.appendChild(artworkItem);
+            container.appendChild(artworkItem);
+
+            // Add click event listener to local artwork link
+            const localArtworkLink = artworkItem.querySelector('.local-artist-link');
+            localArtworkLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                const artworkId = localArtworkLink.getAttribute('data-artwork-id');
+                
+                // Log the view
+                logArtworkView(artworkId);
+                
+                // Navigate to detail page after a short delay
+                setTimeout(() => {
+                    window.location.href = `ARTFILE/artwork_detail.php?id=${artworkId}`;
+                }, 100);
+            });
 
         const likeBtn = artworkItem.querySelector('.like-btn');
         likeBtn.addEventListener('click', (e) => {
@@ -445,6 +523,20 @@ function displayLocalArtworks(artworks) {
             const heartIcon = likeBtn.querySelector('.fa-heart');
             const likeCount = likeBtn.querySelector('.like-count');
             toggleLike(artwork.id, heartIcon, likeCount);
+        });
+
+        // Add comment button event listener for local artworks
+        const commentBtn = artworkItem.querySelector('.comment-btn');
+        commentBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const artworkId = commentBtn.getAttribute('data-artwork-id');
+            
+            // Log the view
+            logArtworkView(artworkId);
+            
+            // Navigate to detail page with hash to scroll to comments
+            window.location.href = `ARTFILE/artwork_detail.php?id=${artworkId}#comments`;
         });
     });
 
@@ -479,7 +571,7 @@ function applyFilters() {
     currentFilters.artist = artistInput ? artistInput.value.trim() : '';
     currentFilters.sort = sortSelect ? sortSelect.value : 'latest';
 
-    console.log('🎯 Applying filters:', currentFilters);
+    console.log('🎯 Applying filters to both sections:', currentFilters);
     
     const applyBtn = document.querySelector('.apply-filter');
     if (applyBtn) {
@@ -487,7 +579,9 @@ function applyFilters() {
         applyBtn.disabled = true;
     }
     
+
     loadArtworks(1);
+    loadLocalArtworks();
     
     setTimeout(() => {
         if (applyBtn) {
@@ -496,6 +590,7 @@ function applyFilters() {
         }
     }, 1000);
 }
+
 
 // Reset filters
 function resetFilters() {
@@ -515,8 +610,11 @@ function resetFilters() {
         sort: 'latest'
     };
 
-    console.log('✅ Filters reset to default');
+    console.log('✅ Filters reset to default for both sections');
+    
+    //Reset both national AND local artworks
     loadArtworks(1);
+    loadLocalArtworks();
 }
 
 // Adjust card heights for masonry layout

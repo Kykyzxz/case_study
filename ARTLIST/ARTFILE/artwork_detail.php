@@ -14,7 +14,11 @@
             <div class="buttons">
                 <a href="../../HOME/home.php">HOME</a>
                 <a href="../artworks.php">ARTWORK LIST</a>
-                <a href="../../ABOUT/about.html">ABOUT</a>
+                <a href="../../ABOUT/about.php">ABOUT</a>
+                <button class="logoutDesktop" onclick="openPopup()"><svg class="logoutIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 20C13 19.7348 13.1054 19.4804 13.2929 19.2929C13.4804 19.1054 13.7348 19 14 19H19V5H14C13.7348 5 13.4804 4.89464 13.2929 4.70711C13.1054 4.51957 13 4.26522 13 4C13 3.73478 13.1054 3.48043 13.2929 3.29289C13.4804 3.10536 13.7348 3 14 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H14C13.7348 21 13.4804 20.8946 13.2929 20.7071C13.1054 20.5196 13 20.2652 13 20Z" fill-opacity="0.85"/>
+                    <path d="M2.286 12.7001C2.10308 12.5142 2.00039 12.2639 2 12.0031V11.9971C2.00052 11.7329 2.1059 11.4797 2.293 11.2931L6.293 7.29308C6.38524 7.19757 6.49559 7.12139 6.61759 7.06898C6.7396 7.01657 6.87082 6.98898 7.0036 6.98783C7.13638 6.98668 7.26806 7.01198 7.39095 7.06226C7.51385 7.11254 7.6255 7.18679 7.71939 7.28069C7.81329 7.37458 7.88754 7.48623 7.93782 7.60913C7.9881 7.73202 8.0134 7.8637 8.01225 7.99648C8.0111 8.12926 7.98351 8.26048 7.9311 8.38249C7.87869 8.50449 7.80251 8.61483 7.707 8.70708L5.414 11.0001H15C15.2652 11.0001 15.5196 11.1054 15.7071 11.293C15.8946 11.4805 16 11.7349 16 12.0001C16 12.2653 15.8946 12.5197 15.7071 12.7072C15.5196 12.8947 15.2652 13.0001 15 13.0001H5.414L7.707 15.2931C7.88916 15.4817 7.98995 15.7343 7.98767 15.9965C7.9854 16.2587 7.88023 16.5095 7.69482 16.6949C7.50941 16.8803 7.2586 16.9855 6.9964 16.9878C6.7342 16.99 6.4816 16.8892 6.293 16.7071L2.293 12.7071L2.286 12.7001Z" fill-opacity="0.85"/>
+                </svg>Log out</button>
             </div>
         </nav>
         <nav class="tablet-mobile">
@@ -27,11 +31,15 @@
             <hr style="width: 95%;">
             <a href="../artworks.php">ARTWORK LIST</a>
             <hr style="width: 95%;">
-            <a href="../../ABOUT/about.html">ABOUT</a>
+            <a href="../ABOUT/about.php" style="margin-bottom: 20px;">ABOUT</a>
+            <button class="logoutMobile" onclick="openPopup()"><svg class="logoutIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13 20C13 19.7348 13.1054 19.4804 13.2929 19.2929C13.4804 19.1054 13.7348 19 14 19H19V5H14C13.7348 5 13.4804 4.89464 13.2929 4.70711C13.1054 4.51957 13 4.26522 13 4C13 3.73478 13.1054 3.48043 13.2929 3.29289C13.4804 3.10536 13.7348 3 14 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H14C13.7348 21 13.4804 20.8946 13.2929 20.7071C13.1054 20.5196 13 20.2652 13 20Z" fill-opacity="0.85"/>
+                <path d="M2.286 12.7001C2.10308 12.5142 2.00039 12.2639 2 12.0031V11.9971C2.00052 11.7329 2.1059 11.4797 2.293 11.2931L6.293 7.29308C6.38524 7.19757 6.49559 7.12139 6.61759 7.06898C6.7396 7.01657 6.87082 6.98898 7.0036 6.98783C7.13638 6.98668 7.26806 7.01198 7.39095 7.06226C7.51385 7.11254 7.6255 7.18679 7.71939 7.28069C7.81329 7.37458 7.88754 7.48623 7.93782 7.60913C7.9881 7.73202 8.0134 7.8637 8.01225 7.99648C8.0111 8.12926 7.98351 8.26048 7.9311 8.38249C7.87869 8.50449 7.80251 8.61483 7.707 8.70708L5.414 11.0001H15C15.2652 11.0001 15.5196 11.1054 15.7071 11.293C15.8946 11.4805 16 11.7349 16 12.0001C16 12.2653 15.8946 12.5197 15.7071 12.7072C15.5196 12.8947 15.2652 13.0001 15 13.0001H5.414L7.707 15.2931C7.88916 15.4817 7.98995 15.7343 7.98767 15.9965C7.9854 16.2587 7.88023 16.5095 7.69482 16.6949C7.50941 16.8803 7.2586 16.9855 6.9964 16.9878C6.7342 16.99 6.4816 16.8892 6.293 16.7071L2.293 12.7071L2.286 12.7001Z" fill-opacity="0.85"/>
+                </svg>Log out</button>
         </div>
 
         <!-- art detail section -->
-         <section class="artwork-section">
+        <section class="artwork-section">
             <div class="artwork-container">
                 <div class="art-img-container">
                     <div class="back-btn-container">
@@ -104,7 +112,7 @@
                     </div>
 
                     <!-- Comments Section -->
-                    <div class="comments-section">
+                    <div class="comments-section" id="comments">
                         <h1 class="comments-header">Comments (<span id="comment-count">0</span>)</h1>
                         
                         <div id="comment-form-container">
@@ -118,9 +126,32 @@
 
                 </div>
             </div>
-          </section>
-
-          <script>
+        </section>
+        <!-- logout overlay -->
+        <div id="popup" class="popup-overlay">
+            <div class="popup-box">
+                <div class="icon-circle">
+                    <svg class="logoutIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 20C13 19.7348 13.1054 19.4804 13.2929 19.2929C13.4804 19.1054 13.7348 19 14 19H19V5H14C13.7348 5 13.4804 4.89464 13.2929 4.70711C13.1054 4.51957 13 4.26522 13 4C13 3.73478 13.1054 3.48043 13.2929 3.29289C13.4804 3.10536 13.7348 3 14 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H14C13.7348 21 13.4804 20.8946 13.2929 20.7071C13.1054 20.5196 13 20.2652 13 20Z" fill-opacity="0.85"/>
+                    <path d="M2.286 12.7001C2.10308 12.5142 2.00039 12.2639 2 12.0031V11.9971C2.00052 11.7329 2.1059 11.4797 2.293 11.2931L6.293 7.29308C6.38524 7.19757 6.49559 7.12139 6.61759 7.06898C6.7396 7.01657 6.87082 6.98898 7.0036 6.98783C7.13638 6.98668 7.26806 7.01198 7.39095 7.06226C7.51385 7.11254 7.6255 7.18679 7.71939 7.28069C7.81329 7.37458 7.88754 7.48623 7.93782 7.60913C7.9881 7.73202 8.0134 7.8637 8.01225 7.99648C8.0111 8.12926 7.98351 8.26048 7.9311 8.38249C7.87869 8.50449 7.80251 8.61483 7.707 8.70708L5.414 11.0001H15C15.2652 11.0001 15.5196 11.1054 15.7071 11.293C15.8946 11.4805 16 11.7349 16 12.0001C16 12.2653 15.8946 12.5197 15.7071 12.7072C15.5196 12.8947 15.2652 13.0001 15 13.0001H5.414L7.707 15.2931C7.88916 15.4817 7.98995 15.7343 7.98767 15.9965C7.9854 16.2587 7.88023 16.5095 7.69482 16.6949C7.50941 16.8803 7.2586 16.9855 6.9964 16.9878C6.7342 16.99 6.4816 16.8892 6.293 16.7071L2.293 12.7071L2.286 12.7001Z" fill-opacity="0.85"/>
+                    </svg>
+                </div>
+                <h2>Log out</h2>
+                <p>Are you sure you want to logout?</p>
+                <div class="popup-actions">
+                    <button class="btn-cancel" onclick="closePopup()">Cancel</button>
+                    <button class="btn-logout" onclick="window.location.href='../../backend/logout/logout.php'">Log out</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            // for logout
+            function openPopup() {
+                document.querySelector(".popup-overlay").style.display = "flex";
+            }
+            function closePopup() {
+                document.querySelector(".popup-overlay").style.display = "none";
+            }
             // Toggle function
             function toggle(show) {
                 const panel = document.getElementById('panel');
@@ -166,7 +197,7 @@
                         try {
                             const data = JSON.parse(text);
                             console.log('Parsed data:', data);
-                            
+                            scrollToCommentsIfNeeded();
                             if (data.success) {
                                 const artwork = data.artwork;
                                 
@@ -219,7 +250,20 @@
                 alert('No artwork ID provided');
                 window.location.href = '../artworks.php';
             }
-
+            function scrollToCommentsIfNeeded() {
+                if (window.location.hash === '#comments') {
+                    setTimeout(() => {
+                        const commentsSection = document.getElementById('comments');
+                        if (commentsSection) {
+                            commentsSection.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'start' 
+                            });
+                            console.log('✅ Scrolled to comments section');
+                        }
+                    }, 500);
+                }
+            }
             // Check if user is logged in
             function checkLoginStatus() {
                 fetch('../../backend/artworks/get_artwork_stats.php?artwork_id=' + artworkId)
@@ -355,6 +399,6 @@
                     submitBtn.textContent = 'Post Comment';
                 }
             }
-          </script>
+        </script>
     </body>
 </html>
