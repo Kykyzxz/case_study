@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/2972950e8f.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="artwork1.css">
+        <link rel="stylesheet" href="artwork_detail.css">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <title>Nocturne Gallery - Artwork Details</title>
     </head>
@@ -103,6 +103,19 @@
                         </div>
                     </div>
 
+                    <!-- Comments Section -->
+                    <div class="comments-section">
+                        <h1 class="comments-header">Comments (<span id="comment-count">0</span>)</h1>
+                        
+                        <div id="comment-form-container">
+                            <!-- Comment form will be inserted here -->
+                        </div>
+
+                        <div class="comments-list" id="comments-list">
+                            <p class="no-comments">Loading comments...</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
           </section>
@@ -157,10 +170,8 @@
                             if (data.success) {
                                 const artwork = data.artwork;
                                 
-                                // Update page title
                                 document.title = `${artwork.title} - Nocturne Gallery`;
                                 
-                                // Update image - add extra ../ since we're in ARTFILE folder
                                 const imagePath = artwork.image;
                                 document.getElementById('artwork-image').src = imagePath;
                                 document.getElementById('artwork-image').alt = artwork.title;
@@ -168,13 +179,11 @@
                                     this.src = '../../HOME/ICONS/placeholder.jpg';
                                 };
                                 
-                                // Update about artwork section
                                 document.getElementById('artwork-title').textContent = artwork.title;
                                 document.getElementById('artwork-artist').textContent = artwork.artist;
                                 document.getElementById('artwork-year').textContent = artwork.year;
                                 document.getElementById('artwork-description').textContent = artwork.description;
                                 
-                                // Update specifications
                                 document.getElementById('spec-artist').textContent = artwork.artist;
                                 document.getElementById('spec-year').textContent = artwork.year;
                                 document.getElementById('spec-medium').textContent = artwork.medium || 'N/A';
@@ -182,9 +191,12 @@
                                 document.getElementById('spec-category').textContent = artwork.category;
                                 document.getElementById('spec-orientation').textContent = artwork.orientation || 'N/A';
                                 
-                                // Update about artist section
                                 document.getElementById('artist-name').textContent = artwork.artist;
                                 document.getElementById('artist-description').textContent = artwork.artist_desc || 'No artist description available.';
+                                
+                                // Load comments
+                                loadComments();
+                                checkLoginStatus();
                                 
                             } else {
                                 console.error('API returned error:', data.message);
@@ -206,6 +218,142 @@
             } else {
                 alert('No artwork ID provided');
                 window.location.href = '../artworks.php';
+            }
+
+            // Check if user is logged in
+            function checkLoginStatus() {
+                fetch('../../backend/artworks/get_artwork_stats.php?artwork_id=' + artworkId)
+                    .then(response => response.json())
+                    .then(data => {
+                        const formContainer = document.getElementById('comment-form-container');
+                        
+                        if (data.logged_in) {
+                            // Show comment form
+                            formContainer.innerHTML = `
+                                <form class="comment-form" id="comment-form">
+                                    <textarea 
+                                        id="comment-text" 
+                                        class="comment-textarea" 
+                                        placeholder="Share your thoughts about this artwork..." 
+                                        maxlength="1000"
+                                        required
+                                    ></textarea>
+                                    <button type="submit" class="comment-submit-btn">Post Comment</button>
+                                </form>
+                            `;
+                            
+                            // Add submit handler
+                            document.getElementById('comment-form').addEventListener('submit', submitComment);
+                        } else {
+                            // Show login prompt
+                            formContainer.innerHTML = `
+                                <div class="login-prompt">
+                                    <p>Please <a href="../../AUTHENTICATION/login.php">login</a> to leave a comment</p>
+                                </div>
+                            `;
+                        }
+                    })
+                    .catch(error => console.error('Error checking login status:', error));
+            }
+
+            // Load comments
+            function loadComments() {
+                fetch(`../../backend/artworks/get_comments.php?artwork_id=${artworkId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            displayComments(data.comments);
+                            document.getElementById('comment-count').textContent = data.total;
+                        } else {
+                            console.error('Failed to load comments:', data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading comments:', error);
+                        document.getElementById('comments-list').innerHTML = '<p class="no-comments">Failed to load comments</p>';
+                    });
+            }
+
+            // Display comments
+            function displayComments(comments) {
+                const commentsList = document.getElementById('comments-list');
+                
+                if (comments.length === 0) {
+                    commentsList.innerHTML = '<p class="no-comments">No comments yet. Be the first to share your thoughts!</p>';
+                    return;
+                }
+
+                commentsList.innerHTML = comments.map(comment => {
+                    const date = new Date(comment.created_at);
+                    const formattedDate = date.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+
+                    return `
+                        <div class="comment-item">
+                            <div class="comment-header">
+                                <span class="comment-author">${comment.fullname}</span>
+                                <span class="comment-date">${formattedDate}</span>
+                            </div>
+                            <p class="comment-text">${comment.comment_text}</p>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Submit comment
+            async function submitComment(e) {
+                e.preventDefault();
+                
+                const textarea = document.getElementById('comment-text');
+                const submitBtn = e.target.querySelector('.comment-submit-btn');
+                const commentText = textarea.value.trim();
+
+                if (!commentText) {
+                    alert('Please enter a comment');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Posting...';
+
+                try {
+                    const response = await fetch('../../backend/artworks/submit_comment.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            artwork_id: artworkId,
+                            comment_text: commentText
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        textarea.value = '';
+                        loadComments(); // Reload all comments
+                        alert('Comment posted successfully!');
+                    } else {
+                        if (data.message.includes('login')) {
+                            alert('Please login to comment');
+                            window.location.href = '../../AUTHENTICATION/login.php';
+                        } else {
+                            alert(data.message);
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error submitting comment:', error);
+                    alert('Failed to post comment. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Post Comment';
+                }
             }
           </script>
     </body>

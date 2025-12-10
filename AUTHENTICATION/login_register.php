@@ -104,6 +104,7 @@ if (isset($_POST['login'])) {
     }
 
     // Successful login
+    $_SESSION['user_id'] = $user['user_id']; 
     $_SESSION['fullname'] = $user['fullname'];
     $_SESSION['email'] = $user['email'];
 

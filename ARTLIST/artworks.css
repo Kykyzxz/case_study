@@ -1495,3 +1495,170 @@ div.all-rights {
         font-size: 14px;
     }
 }
+
+/* ============================================ */
+/* ARTWORK STATS - LIKES & COMMENTS */
+/* Replace the existing .artwork-stats section at the bottom of artworks.css */
+/* ============================================ */
+
+/* Fix artwork-item structure to accommodate stats */
+.artwork-container.grid-layout .artwork-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.artwork-container.grid-layout .artwork-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Artwork stats container */
+.artwork-stats {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 20px;
+    background: rgba(15, 23, 42, 0.9);
+    border-top: 1px solid rgba(147, 197, 253, 0.2);
+    z-index: 10;
+}
+
+/* Like button */
+.like-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: #93c5fd;
+    font-family: 'Inter', sans-serif;
+}
+
+.like-btn:hover {
+    background: rgba(147, 197, 253, 0.1);
+    transform: scale(1.05);
+}
+
+.like-btn:active {
+    transform: scale(0.95);
+}
+
+.like-btn i {
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.like-btn:hover i {
+    transform: scale(1.2);
+}
+
+.like-count {
+    font-weight: 600;
+    color: #93c5fd;
+    font-size: 16px;
+}
+
+/* Comment info (non-clickable) */
+.comment-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #93c5fd;
+    font-family: 'Inter', sans-serif;
+}
+
+.comment-info i {
+    font-size: 20px;
+}
+
+.comment-count {
+    font-weight: 600;
+    color: #93c5fd;
+    font-size: 16px;
+}
+
+/* Local artist items - same structure */
+.local-artists-container.grid-layout .local-artist-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid rgba(147, 197, 253, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.local-artists-container.grid-layout .local-artist-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* List view stats positioning */
+.artwork-container.list-layout .artwork-stats,
+.local-artists-container.list-layout .artwork-stats {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .artwork-stats {
+        gap: 15px;
+        padding: 12px 16px;
+    }
+    
+    .like-btn, .comment-info {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+    
+    .like-btn i, .comment-info i {
+        font-size: 18px;
+    }
+    
+    .like-count, .comment-count {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .artwork-stats {
+        gap: 12px;
+        padding: 10px 14px;
+    }
+    
+    .like-btn, .comment-info {
+        padding: 5px 8px;
+        font-size: 13px;
+    }
+    
+    .like-btn i, .comment-info i {
+        font-size: 16px;
+    }
+    
+    .like-count, .comment-count {
+        font-size: 13px;
+    }
+}

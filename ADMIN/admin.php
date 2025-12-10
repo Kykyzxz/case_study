@@ -25,12 +25,62 @@ if ($conn->query("SHOW TABLES LIKE 'feedback'")->num_rows > 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Page</title>
         <link rel="stylesheet" href="admin.css">
+        <!-- <script src="device_check.js"></script> -->
         <script src="admin.js" defer></script>
         <script src="https://kit.fontawesome.com/2972950e8f.js" crossorigin="anonymous"></script>
         
     </head>
     <body>
+        <script>
+         console.log('Admin.php loaded');
+        console.log('Window width:', window.innerWidth);
+        console.log('User agent:', navigator.userAgent);
         
+        (function() {
+            // Prevent redirect loop - check if we just came from desktop_only.php
+            if (sessionStorage.getItem('from_desktop_only') === 'true') {
+                console.log('Just redirected from desktop_only.php - staying here');
+                sessionStorage.removeItem('from_desktop_only');
+                return;
+            }
+            
+            function isMobileOrTablet() {
+                if (window.innerWidth < 1024) {
+                    console.log('Width check: Mobile/Tablet detected');
+                    return true;
+                }
+                
+                const userAgent = navigator.userAgent.toLowerCase();
+                const mobileKeywords = ['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
+                
+                const isMobile = mobileKeywords.some(keyword => userAgent.includes(keyword));
+                console.log('User agent check:', isMobile);
+                return isMobile;
+            }
+            
+            if (isMobileOrTablet()) {
+                console.log('Redirecting to desktop_only.php');
+                sessionStorage.setItem('from_admin', 'true');
+                window.location.href = 'desktop_only.php';
+            } else {
+                console.log('Desktop device - staying on admin page');
+            }
+            
+            // Check on window resize
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    console.log('Window resized to:', window.innerWidth);
+                    if (window.innerWidth < 1024) {
+                        console.log('Resized to mobile width - redirecting to desktop_only.php...');
+                        sessionStorage.setItem('from_admin', 'true');
+                        window.location.href = 'desktop_only.php';
+                    }
+                }, 250); // Debounce to prevent multiple redirects
+            });
+        })();
+        </script>
         <section class="main-section">
             <div class="left-side-bar">
                 <div class="title-admin-dashboard">

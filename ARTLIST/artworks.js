@@ -1,3 +1,4 @@
+
 // Global state
 let currentPage = 1;
 let currentFilters = {
@@ -65,12 +66,89 @@ function switchLocalView(view) {
     }
 }
 
+
+async function toggleLike(artworkId, heartIcon, likeCount) {
+
+    const isCurrentlyLiked = heartIcon.classList.contains('fas');
+    const currentCount = parseInt(likeCount.textContent);
+    
+    if (isCurrentlyLiked) {
+        heartIcon.classList.remove('fas');
+        heartIcon.classList.add('far');
+        heartIcon.style.color = '#93c5fd';
+        likeCount.textContent = currentCount - 1;
+    } else {
+        heartIcon.classList.remove('far');
+        heartIcon.classList.add('fas');
+        heartIcon.style.color = '#ef4444';
+        likeCount.textContent = currentCount + 1;
+    }
+    
+    // OPTIMIZATION 2: Disable button temporarily to prevent double-clicks
+    const likeBtn = heartIcon.closest('.like-btn');
+    likeBtn.style.pointerEvents = 'none';
+    
+    try {
+        const response = await fetch('../backend/artworks/toggle_like.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ artwork_id: artworkId })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Sync with actual server count (in case of discrepancy)
+            likeCount.textContent = data.like_count;
+        } else {
+            if (isCurrentlyLiked) {
+                heartIcon.classList.remove('far');
+                heartIcon.classList.add('fas');
+                heartIcon.style.color = '#ef4444';
+                likeCount.textContent = currentCount;
+            } else {
+                heartIcon.classList.remove('fas');
+                heartIcon.classList.add('far');
+                heartIcon.style.color = '#93c5fd';
+                likeCount.textContent = currentCount;
+            }
+            
+            if (data.message.includes('login')) {
+                alert('Please login to like artworks');
+                window.location.href = '../AUTHENTICATION/login.php';
+            } else {
+                alert(data.message);
+            }
+        }
+    } catch (error) {
+        console.error('Error toggling like:', error);
+        
+        if (isCurrentlyLiked) {
+            heartIcon.classList.remove('far');
+            heartIcon.classList.add('fas');
+            heartIcon.style.color = '#ef4444';
+            likeCount.textContent = currentCount;
+        } else {
+            heartIcon.classList.remove('fas');
+            heartIcon.classList.add('far');
+            heartIcon.style.color = '#93c5fd';
+            likeCount.textContent = currentCount;
+        }
+        
+        alert('Failed to update like. Please try again.');
+    } finally {
+        // Re-enable button
+        likeBtn.style.pointerEvents = 'auto';
+    }
+}
+
 // Load main artworks
 function loadArtworks(page = 1) {
     console.log('🔄 Loading artworks... Page:', page);
     console.log('📋 Current filters:', currentFilters);
     
-    // Show loading state
     const container = document.querySelector('.artwork-container');
     container.innerHTML = '<p style="color: #93c5fd; text-align: center; padding: 40px; grid-column: 1/-1;">⏳ Loading artworks...</p>';
     
@@ -131,18 +209,19 @@ function displayArtworks(artworks) {
     container.innerHTML = '';
 
     artworks.forEach(artwork => {
-        // Create wrapper div instead of anchor
         const artworkWrapper = document.createElement('div');
         artworkWrapper.className = 'artwork-item';
 
-        // Truncate description if too long
         const maxDescLength = 150;
         let description = artwork.description;
         if (description.length > maxDescLength) {
             description = description.substring(0, maxDescLength) + '...';
         }
 
-        // FIXED: Changed structure so link wraps everything properly
+        // Heart icon class based on user_liked
+        const heartClass = artwork.user_liked ? 'fas' : 'far';
+        const heartColor = artwork.user_liked ? '#ef4444' : '#93c5fd';
+
         artworkWrapper.innerHTML = `
             <a href="ARTFILE/artwork_detail.php?id=${artwork.id}" class="artwork-link">
                 <div class="artwork-image-wrapper">
@@ -160,15 +239,33 @@ function displayArtworks(artworks) {
                     </div>
                 </div>
             </a>
+            <div class="artwork-stats">
+                <button class="like-btn" data-artwork-id="${artwork.id}">
+                    <i class="${heartClass} fa-heart" style="color: ${heartColor};"></i>
+                    <span class="like-count">${artwork.like_count}</span>
+                </button>
+                <div class="comment-info">
+                    <i class="far fa-comment" style="color: #93c5fd;"></i>
+                    <span class="comment-count">${artwork.comment_count}</span>
+                </div>
+            </div>
         `;
 
         container.appendChild(artworkWrapper);
+
+        // Add like button event listener
+        const likeBtn = artworkWrapper.querySelector('.like-btn');
+        likeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const heartIcon = likeBtn.querySelector('.fa-heart');
+            const likeCount = likeBtn.querySelector('.like-count');
+            toggleLike(artwork.id, heartIcon, likeCount);
+        });
     });
 
-    // Adjust card heights after rendering
     setTimeout(adjustCardHeights, 100);
 }
-
 
 // Display no artworks message
 function displayNoArtworks(message = 'Unable to load artworks. Please try again later.') {
@@ -176,7 +273,6 @@ function displayNoArtworks(message = 'Unable to load artworks. Please try again 
     container.innerHTML = `<p style="color: #93c5fd; text-align: center; padding: 40px; grid-column: 1/-1;">${message}</p>`;
     updateArtworkCount(0);
     
-    // Clear pagination
     const pageContainer = document.querySelector('.page-btn');
     if (pageContainer) {
         pageContainer.innerHTML = '';
@@ -209,7 +305,6 @@ function updatePagination(currentPage, totalPages) {
         return;
     }
 
-    // Previous button
     const prevBtn = document.createElement('button');
     prevBtn.className = 'prev-btn';
     prevBtn.textContent = 'Previous';
@@ -222,7 +317,6 @@ function updatePagination(currentPage, totalPages) {
     };
     pageContainer.appendChild(prevBtn);
 
-    // Page numbers (show max 5 pages)
     const startPage = Math.max(1, currentPage - 2);
     const endPage = Math.min(totalPages, startPage + 4);
 
@@ -238,7 +332,6 @@ function updatePagination(currentPage, totalPages) {
         pageContainer.appendChild(pageBtn);
     }
 
-    // Next button
     const nextBtn = document.createElement('button');
     nextBtn.className = 'next-btn';
     nextBtn.textContent = 'Next';
@@ -310,14 +403,15 @@ function displayLocalArtworks(artworks) {
         const artworkItem = document.createElement('div');
         artworkItem.className = 'local-artist-item';
 
-        // Truncate description if too long
         const maxDescLength = 120;
         let description = artwork.description;
         if (description.length > maxDescLength) {
             description = description.substring(0, maxDescLength) + '...';
         }
 
-        // Structure already correct for local artworks
+        const heartClass = artwork.user_liked ? 'fas' : 'far';
+        const heartColor = artwork.user_liked ? '#ef4444' : '#93c5fd';
+
         artworkItem.innerHTML = `
             <a href="ARTFILE/artwork_detail.php?id=${artwork.id}" class="local-artist-link">
                 <div class="local-artist-image-wrapper">
@@ -330,14 +424,33 @@ function displayLocalArtworks(artworks) {
                     <p class="local-artwork-description">${description}</p>
                 </div>
             </a>
+            <div class="artwork-stats">
+                <button class="like-btn" data-artwork-id="${artwork.id}">
+                    <i class="${heartClass} fa-heart" style="color: ${heartColor};"></i>
+                    <span class="like-count">${artwork.like_count}</span>
+                </button>
+                <div class="comment-info">
+                    <i class="far fa-comment" style="color: #93c5fd;"></i>
+                    <span class="comment-count">${artwork.comment_count}</span>
+                </div>
+            </div>
         `;
 
         container.appendChild(artworkItem);
+
+        const likeBtn = artworkItem.querySelector('.like-btn');
+        likeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const heartIcon = likeBtn.querySelector('.fa-heart');
+            const likeCount = likeBtn.querySelector('.like-count');
+            toggleLike(artwork.id, heartIcon, likeCount);
+        });
     });
 
-    // Adjust card heights after rendering
     setTimeout(adjustCardHeights, 100);
 }
+
 // Display local artworks error
 function displayLocalArtworksError(message) {
     const container = document.querySelector('.local-artists-container');
@@ -368,16 +481,14 @@ function applyFilters() {
 
     console.log('🎯 Applying filters:', currentFilters);
     
-    // Visual feedback
     const applyBtn = document.querySelector('.apply-filter');
     if (applyBtn) {
         applyBtn.textContent = 'Loading...';
         applyBtn.disabled = true;
     }
     
-    loadArtworks(1); // Reset to page 1 when filters change
+    loadArtworks(1);
     
-    // Reset button after a short delay
     setTimeout(() => {
         if (applyBtn) {
             applyBtn.textContent = 'Apply Filters';
@@ -422,11 +533,9 @@ function adjustCardHeights() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 DOM Content Loaded - Initializing Nocturne Gallery...');
     
-    // Load artworks
     loadArtworks();
     loadLocalArtworks();
 
-    // Filter buttons
     const applyBtn = document.querySelector('.apply-filter');
     const resetBtn = document.querySelector('.reset-filter');
 
@@ -444,7 +553,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('❌ Reset filter button not found!');
     }
 
-    // Allow Enter key to apply filters
     const artistInput = document.getElementById('search-artist');
     if (artistInput) {
         artistInput.addEventListener('keypress', function(e) {
@@ -456,7 +564,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Enter key listener attached to artist search');
     }
 
-    // Local artists view buttons
     const localGridBtn = document.querySelector('.local-grid-view');
     const localListBtn = document.querySelector('.local-list-view');
 
@@ -476,7 +583,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Local list view button attached');
     }
 
-    // Navbar scroll effect
     const navbar = document.querySelector('nav.desktop');
     if (navbar) {
         window.addEventListener('scroll', function() {
@@ -489,7 +595,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Navbar scroll effect attached');
     }
     
-    // Adjust card heights on window resize
     window.addEventListener('resize', adjustCardHeights);
     console.log('✅ Window resize listener attached');
     

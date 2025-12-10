@@ -107,7 +107,7 @@ function submitForm() {
     }
 }
 
-// View Artwork Details - OPTIMIZED VERSION
+//viewartwork
 function viewArtwork(id) {
     console.log('Viewing artwork ID:', id);
     
@@ -532,10 +532,6 @@ function deleteFeedback(id) {
     }
 }
 
-// ==========================================
-// LOGOUT FUNCTIONALITY
-// ==========================================
-
 // Open logout confirmation modal
 function openLogoutModal() {
     document.getElementById('logoutModalOverlay').classList.add('active');
@@ -577,10 +573,6 @@ function confirmLogout() {
         window.location.href = '../AUTHENTICATION/login.php';
     });
 }
-
-// ==========================================
-// DOM CONTENT LOADED
-// ==========================================
 
 document.addEventListener('DOMContentLoaded', function() {
     // Add Artwork button

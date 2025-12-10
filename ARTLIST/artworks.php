@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="artworks.css">
         <link rel="icon" href="ICONS/favicon.ico" type="image/x-icon">
+        <script src="https://kit.fontawesome.com/2972950e8f.js" crossorigin="anonymous"></script>
         <script src="artworks.js" defer></script>
         <title>Nocturne Gallery - Artwork Collection</title>
     </head>

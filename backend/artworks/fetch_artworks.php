@@ -1,5 +1,6 @@
 <?php
-// fetch_artworks.php - Fetch national/featured artworks with filtering and pagination
+// fetch_artworks.php - Fetch national/featured artworks with filtering, pagination, likes and comments
+session_start();
 header('Content-Type: application/json');
 ob_start();
 
@@ -42,10 +43,10 @@ try {
     $artist = isset($_GET['artist']) ? trim($_GET['artist']) : '';
     $sort = isset($_GET['sort']) ? trim($_GET['sort']) : 'latest';
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-    $limit = 12; // Items per page
+    $limit = 12;
     $offset = ($page - 1) * $limit;
     
-    // Build WHERE clause - USING 'artwork' TABLE (SINGULAR)
+    // Build WHERE clause
     $where = "WHERE (LOWER(status) = 'national' OR status = 'National')";
     $params = [];
     $types = '';
@@ -79,7 +80,7 @@ try {
             break;
     }
     
-    // Get total count - USING 'artwork' TABLE
+    // Get total count
     $countQuery = "SELECT COUNT(*) as total FROM artwork {$where}";
     if (!empty($params)) {
         $countStmt = $conn->prepare($countQuery);
@@ -99,16 +100,27 @@ try {
         $totalCount = $countResult->fetch_assoc()['total'];
     }
     
-    // Fetch artworks - USING 'artwork' TABLE
-    $query = "SELECT artwork_id, artwork_title, artist, year_created, artwork_desc, 
-              category, image FROM artwork {$where} {$orderBy} LIMIT ? OFFSET ?";
+    // Fetch artworks with likes and comments count
+    $query = "SELECT 
+                a.artwork_id, 
+                a.artwork_title, 
+                a.artist, 
+                a.year_created, 
+                a.artwork_desc, 
+                a.category, 
+                a.image,
+                (SELECT COUNT(*) FROM artwork_likes l WHERE l.artwork_id = a.artwork_id) as like_count,
+                (SELECT COUNT(*) FROM artwork_comments c WHERE c.artwork_id = a.artwork_id) as comment_count
+              FROM artwork a 
+              {$where} 
+              {$orderBy} 
+              LIMIT ? OFFSET ?";
     
     $stmt = $conn->prepare($query);
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $conn->error);
     }
     
-    // Add limit and offset to params
     $params[] = $limit;
     $params[] = $offset;
     $types .= 'ii';
@@ -117,8 +129,22 @@ try {
     $stmt->execute();
     $result = $stmt->get_result();
     
+    // Check if user is logged in
+    $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    
     $artworks = [];
     while ($row = $result->fetch_assoc()) {
+        // Check if current user liked this artwork
+        $user_liked = false;
+        if ($user_id) {
+            $like_check = $conn->prepare("SELECT like_id FROM artwork_likes WHERE artwork_id = ? AND user_id = ?");
+            $like_check->bind_param("ii", $row['artwork_id'], $user_id);
+            $like_check->execute();
+            $like_result = $like_check->get_result();
+            $user_liked = $like_result->num_rows > 0;
+            $like_check->close();
+        }
+        
         $artworks[] = [
             'id' => $row['artwork_id'],
             'title' => htmlspecialchars($row['artwork_title'], ENT_QUOTES, 'UTF-8'),
@@ -126,7 +152,10 @@ try {
             'year' => $row['year_created'],
             'description' => htmlspecialchars($row['artwork_desc'], ENT_QUOTES, 'UTF-8'),
             'category' => htmlspecialchars($row['category'], ENT_QUOTES, 'UTF-8'),
-            'image' => '../ADMIN/uploads/artworks/' . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8')
+            'image' => '../ADMIN/uploads/artworks/' . htmlspecialchars($row['image'], ENT_QUOTES, 'UTF-8'),
+            'like_count' => (int)$row['like_count'],
+            'comment_count' => (int)$row['comment_count'],
+            'user_liked' => $user_liked
         ];
     }
     
@@ -142,7 +171,8 @@ try {
         'total' => $totalCount,
         'page' => $page,
         'totalPages' => $totalPages,
-        'limit' => $limit
+        'limit' => $limit,
+        'logged_in' => $user_id !== null
     ]);
     
 } catch (Exception $e) {
